@@ -647,6 +647,26 @@ function makeThattu(root, x, z, colliders) {
   colliders.push({ type: "box", x, z, hw: 1.8, hd: 1.1, rot: 0 });
 }
 
+function makePond(root, x, z, r = 4.4) {
+  const y = heightAt(x, z);
+  const T = shared();
+  const bank = new THREE.Mesh(
+    new THREE.RingGeometry(r - 0.15, r + 0.55, 36),
+    new THREE.MeshLambertMaterial({ color: 0xe8d4a8 })
+  );
+  bank.rotation.x = -Math.PI / 2;
+  bank.position.set(x, y + 0.07, z);
+  root.add(bank);
+  const pool = new THREE.Mesh(
+    new THREE.CircleGeometry(r - 0.12, 36),
+    new THREE.MeshLambertMaterial({ map: T.pond, color: 0xffffff })
+  );
+  pool.rotation.x = -Math.PI / 2;
+  pool.position.set(x, y + 0.1, z);
+  root.add(pool);
+  return { x, z, r: r + 0.6, y: y + 0.1 };
+}
+
 function makePeak(root, x, z, colliders) {
   const y = heightAt(x, z);
   const rockM = new THREE.MeshLambertMaterial({ color: 0x6a6a58 });
@@ -1266,6 +1286,7 @@ export function buildWorld(scene, opts = {}) {
   extras.grass = grass;
 
   for (const p of CURRENT.places) {
+    try {
     const { kind: k, x, z } = p;
     if (k === "temple") {
       colliders.push(temple(root, x, z));
@@ -1322,6 +1343,9 @@ export function buildWorld(scene, opts = {}) {
     } else if (k === "tea") {
       makeFactory(root, x, z, colliders);
       addJob(root, jobs, "picker", x, z + 8);
+    }
+    } catch (err) {
+      console.warn("landmark", p?.id, err);
     }
   }
 

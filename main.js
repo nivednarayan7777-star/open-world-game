@@ -1436,7 +1436,8 @@ function enterGame(name) {
     console.error(err);
     state = "title";
     $("title-screen").style.display = "flex";
-    if (btn) btn.textContent = "Enter Kerala";
+    if (btn) btn.textContent = "Play";
+    toast("Couldn't load", String(err?.message || err).slice(0, 80));
     return;
   }
   $("hud").classList.add("show");
