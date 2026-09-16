@@ -1097,8 +1097,9 @@ canvas.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false
 /* ---------- sidebar ---------- */
 const KIND_ICO = {
   beach: "🌊", drivein: "🌊", fort: "🏰", temple: "🛕", church: "⛪", mosque: "🕌",
-  lighthouse: "🗼", nets: "🎣", jetty: "⚓", pond: "🎣", lake: "💧", tea: "🍃",
-  peak: "⛰", dam: "▬", cave: "⬤", paddy: "🌾", houseboat: "🛶", chaya: "🍵",
+  lighthouse: "🗼", nets: "🗼", jetty: "▣", pond: "🎣", lake: "💧", tea: "🍃",
+  peak: "⛰", dam: "▬", cave: "⬤", paddy: "🌾", houseboat: "▣", chaya: "🍵",
+  palace: "▣", factory: "🏭", shrine: "⛩", tower: "🗼", mandapam: "▣",
   thattukada: "🍛", hotel: "🏨", market: "🛒", forest: "🌳",
 };
 

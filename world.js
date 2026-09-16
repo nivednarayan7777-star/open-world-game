@@ -421,218 +421,373 @@ function houseboat(root, x, z, rot = 0) {
   return g;
 }
 
+function box(g, geo, mat, x, y, z, rx = 0, ry = 0, rz = 0) {
+  const m = new THREE.Mesh(geo, mat);
+  m.position.set(x, y, z);
+  m.rotation.set(rx, ry, rz);
+  g.add(m);
+  return m;
+}
+
 function temple(root, x, z) {
   const g = new THREE.Group();
-  const base = new THREE.Mesh(new THREE.BoxGeometry(8, 1, 8), SM(0xe8d9b8, "laterite", { roughness: 0.88 }));
-  base.position.y = 0.5;
-  g.add(base);
-  const hall = new THREE.Mesh(new THREE.BoxGeometry(5.2, 3.2, 5.2), SM(0xf3ead3, "plaster", { roughness: 0.84 }));
-  hall.position.y = 2.6;
-  g.add(hall);
+  const laterite = SM(0xe8d9b8, "laterite", { roughness: 0.88 });
+  const plaster = SM(0xf3ead3, "plaster", { roughness: 0.84 });
   const copper = SM(0xb87333, "tile", { roughness: 0.45, metalness: 0.35 });
-  for (let i = 0; i < 3; i++) {
-    const py = new THREE.Mesh(new THREE.ConeGeometry(3.2 - i * 0.7, 1.6, 4), copper);
-    py.position.y = 4.6 + i * 1.15;
+  const wood = SM(0x6b4a28, "wood", { roughness: 0.82 });
+  const gold = SM(0xd4a017, "tile", { roughness: 0.35, metalness: 0.45 });
+  box(g, new THREE.BoxGeometry(16, 0.7, 16), laterite, 0, 0.35, 0);
+  box(g, new THREE.BoxGeometry(14.2, 0.28, 14.2), plaster, 0, 0.78, 0);
+  for (const [wx, wz, ww, wd] of [
+    [0, -7.4, 15.2, 0.55], [0, 7.4, 15.2, 0.55],
+    [-7.4, 0, 0.55, 14.2], [7.4, 0, 0.55, 14.2],
+  ]) box(g, new THREE.BoxGeometry(ww, 2.2, wd), laterite, wx, 1.85, wz);
+  box(g, new THREE.BoxGeometry(3.4, 2.6, 1.1), laterite, 0, 2.0, 7.4);
+  box(g, new THREE.BoxGeometry(6.4, 3.6, 6.4), plaster, 0, 2.7, 0);
+  for (const s of [-2.2, 0, 2.2]) {
+    box(g, new THREE.BoxGeometry(0.9, 1.2, 0.08), new THREE.MeshLambertMaterial({ color: 0x1a1a16 }), s, 2.6, 3.24);
+  }
+  for (let i = 0; i < 4; i++) {
+    const py = new THREE.Mesh(new THREE.ConeGeometry(3.6 - i * 0.62, 1.45, 4), i === 3 ? gold : copper);
+    py.position.y = 4.7 + i * 1.05;
     py.rotation.y = Math.PI / 4;
     g.add(py);
+  }
+  const finial = new THREE.Mesh(new THREE.SphereGeometry(0.22, 8, 6), gold);
+  finial.position.y = 9.3;
+  g.add(finial);
+  for (const s of [-4.6, 4.6]) {
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.12, 7.2, 8), wood);
+    pole.position.set(s, 4.4, 5.4);
+    g.add(pole);
+    const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.22, 8, 6), gold);
+    lamp.position.set(s, 8.1, 5.4);
+    g.add(lamp);
+  }
+  for (let i = 0; i < 5; i++) {
+    box(g, new THREE.BoxGeometry(4.2 - i * 0.35, 0.16, 0.7), laterite, 0, 0.12 + i * 0.16, 8.6 + i * 0.32);
   }
   g.position.set(x, heightAt(x, z), z);
   addShadow(g);
   root.add(g);
-  return { type: "box", x, z, hw: 4.3, hd: 4.3, rot: 0 };
+  return { type: "box", x, z, hw: 8.2, hd: 8.2, rot: 0 };
 }
 
 function church(root, x, z) {
   const g = new THREE.Group();
-  const body = new THREE.Mesh(new THREE.BoxGeometry(6, 3.2, 9), SM(0xf7f1e4, "plaster", { roughness: 0.84 }));
-  body.position.y = 1.6;
-  g.add(body);
-  const steeple = new THREE.Mesh(new THREE.BoxGeometry(1.4, 4.2, 1.4), SM(0xf7f1e4, "plaster", { roughness: 0.84 }));
-  steeple.position.set(0, 5.4, 4.2);
-  g.add(steeple);
-  const cap = new THREE.Mesh(new THREE.ConeGeometry(1.1, 1.8, 4), SM(0x8b1e1e, "tile", { roughness: 0.7 }));
-  cap.position.set(0, 8.4, 4.2);
-  g.add(cap);
-  roof(g, 3.4, 6.4, 9, 0x8b1e1e);
+  const plaster = SM(0xf7f1e4, "plaster", { roughness: 0.84 });
+  const tile = SM(0x8b1e1e, "tile", { roughness: 0.7 });
+  const dark = SM(0x3a2a20, "wood", { roughness: 0.85 });
+  box(g, new THREE.BoxGeometry(8.4, 0.5, 14), plaster, 0, 0.25, 0);
+  box(g, new THREE.BoxGeometry(7.2, 4.2, 12.2), plaster, 0, 2.4, -0.4);
+  box(g, new THREE.BoxGeometry(9.2, 3.2, 4.4), plaster, 0, 1.9, 1.2);
+  roof(g, 4.7, 7.8, 12.6, 0x8b1e1e);
+  box(g, new THREE.BoxGeometry(2.2, 6.4, 2.2), plaster, 0, 5.4, 5.6);
+  box(g, new THREE.ConeGeometry(1.5, 2.4, 4), tile, 0, 9.6, 5.6);
+  const crossV = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.1, 0.12), dark);
+  crossV.position.set(0, 11.1, 5.6);
+  g.add(crossV);
+  const crossH = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.12, 0.12), dark);
+  crossH.position.set(0, 10.85, 5.6);
+  g.add(crossH);
+  for (const s of [-2.4, 0, 2.4]) {
+    box(g, new THREE.BoxGeometry(0.9, 1.5, 0.08), new THREE.MeshLambertMaterial({ color: 0x7eafc4 }), s, 2.8, 5.74);
+  }
+  for (let i = 0; i < 4; i++) {
+    box(g, new THREE.BoxGeometry(3.6 - i * 0.3, 0.16, 0.65), plaster, 0, 0.12 + i * 0.16, 7.4 + i * 0.3);
+  }
   g.position.set(x, heightAt(x, z), z);
   addShadow(g);
   root.add(g);
-  return { type: "box", x, z, hw: 3.4, hd: 4.9, rot: 0 };
+  return { type: "box", x, z, hw: 4.8, hd: 7.4, rot: 0 };
 }
 
 function mosque(root, x, z) {
   const g = new THREE.Group();
   const cream = SM(0xf4efe4, "plaster", { roughness: 0.84 });
-  const hall = new THREE.Mesh(new THREE.BoxGeometry(6.2, 3.2, 7.2), cream);
-  hall.position.y = 1.6;
-  g.add(hall);
-  const dome = new THREE.Mesh(new THREE.SphereGeometry(1.85, 10, 8), SM(0xd4c48a, "plaster", { roughness: 0.55 }));
-  dome.position.y = 4.15;
+  const domeM = SM(0xd4c48a, "plaster", { roughness: 0.5 });
+  const green = SM(0x2d6a3a, "tile", { roughness: 0.62 });
+  box(g, new THREE.BoxGeometry(12, 0.45, 12), cream, 0, 0.22, 0);
+  box(g, new THREE.BoxGeometry(8.2, 3.6, 9.2), cream, 0, 2.0, 0);
+  const dome = new THREE.Mesh(new THREE.SphereGeometry(2.35, 12, 10), domeM);
+  dome.position.y = 4.85;
   g.add(dome);
-  const min = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.36, 7.2, 8), cream);
-  min.position.set(2.7, 3.6, 2.9);
-  g.add(min);
+  box(g, new THREE.CylinderGeometry(0.18, 0.18, 0.9, 8), green, 0, 7.4, 0);
+  for (const [mx, mz] of [[-4.4, 4.0], [4.4, 4.0]]) {
+    box(g, new THREE.CylinderGeometry(0.32, 0.42, 8.4, 10), cream, mx, 4.2, mz);
+    box(g, new THREE.ConeGeometry(0.55, 0.9, 8), green, mx, 8.7, mz);
+  }
+  for (const s of [-2.4, 0, 2.4]) {
+    box(g, new THREE.BoxGeometry(1.0, 1.4, 0.08), new THREE.MeshLambertMaterial({ color: 0x1a4a3a }), s, 2.2, 4.64);
+  }
   g.position.set(x, heightAt(x, z), z);
   addShadow(g);
   root.add(g);
-  return { type: "box", x, z, hw: 3.4, hd: 3.9, rot: 0 };
+  return { type: "box", x, z, hw: 6.2, hd: 6.2, rot: 0 };
 }
 
 function lighthouse(root, x, z) {
   const g = new THREE.Group();
   const y = Math.max(heightAt(x, z), WATER + 1);
-  const body = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.9, 16, 10), SM(0xf2efe8, "plaster", { roughness: 0.84 }));
-  body.position.y = 8;
-  g.add(body);
-  const band = new THREE.Mesh(new THREE.CylinderGeometry(1.45, 1.7, 2.2, 10), SM(0xb42318, "plaster", { roughness: 0.8 }));
-  band.position.y = 11;
-  g.add(band);
-  const lamp = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 1.6, 10), new THREE.MeshLambertMaterial({ color: 0xffe9a8, emissive: 0xffcc66, emissiveIntensity: 0.6 }));
-  lamp.position.y = 16.6;
-  g.add(lamp);
+  const plaster = SM(0xf2efe8, "plaster", { roughness: 0.84 });
+  const red = SM(0xb42318, "plaster", { roughness: 0.8 });
+  box(g, new THREE.CylinderGeometry(2.4, 3.0, 1.2, 12), plaster, 0, 0.6, 0);
+  box(g, new THREE.CylinderGeometry(1.35, 2.05, 14, 12), plaster, 0, 8.2, 0);
+  box(g, new THREE.CylinderGeometry(1.55, 1.75, 2.4, 12), red, 0, 12.4, 0);
+  box(g, new THREE.CylinderGeometry(1.65, 1.65, 2.0, 12), new THREE.MeshLambertMaterial({ color: 0xffe9a8, emissive: 0xffcc66, emissiveIntensity: 0.7 }), 0, 16.5, 0);
+  box(g, new THREE.ConeGeometry(1.7, 1.4, 8), red, 0, 18.1, 0);
   g.position.set(x, y, z);
   root.add(g);
-  return { x, z, r: 3.6, topY: y + 17 };
+  return { x, z, r: 3.8, topY: y + 19 };
 }
 
 function makeFort(root, x, z, colliders) {
   const y = heightAt(x, z);
   const mat = SM(0xb45a32, "laterite", { roughness: 0.9 });
-  const wall = (wx, wz, w, d) => {
-    const m = new THREE.Mesh(new THREE.BoxGeometry(w, 2.4, d), mat);
-    m.position.set(wx, y + 1.2, wz);
+  const wall = (wx, wz, w, d, h = 3.2) => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+    m.position.set(wx, y + h / 2, wz);
     root.add(m);
   };
-  wall(x, z - 7, 16, 0.7);
-  wall(x, z + 7, 16, 0.7);
-  wall(x - 7.6, z, 0.7, 14);
-  wall(x + 7.6, z, 0.7, 14);
-  const gate = new THREE.Mesh(new THREE.BoxGeometry(3.2, 3.4, 1.1), mat);
-  gate.position.set(x, y + 1.7, z + 7);
+  wall(x, z - 9, 20, 1.1, 3.4);
+  wall(x, z + 9, 20, 1.1, 3.4);
+  wall(x - 9.6, z, 1.1, 18, 3.4);
+  wall(x + 9.6, z, 1.1, 18, 3.4);
+  for (const [bx, bz] of [[-9.6, -9], [9.6, -9], [-9.6, 9], [9.6, 9]]) {
+    const keep = new THREE.Mesh(new THREE.BoxGeometry(3.4, 5.2, 3.4), mat);
+    keep.position.set(x + bx, y + 2.6, z + bz);
+    root.add(keep);
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.35, 3.8), mat);
+    cap.position.set(x + bx, y + 5.4, z + bz);
+    root.add(cap);
+  }
+  const gate = new THREE.Mesh(new THREE.BoxGeometry(4.2, 4.4, 1.6), mat);
+  gate.position.set(x, y + 2.2, z + 9);
   root.add(gate);
-  colliders.push({ type: "box", x, z: z - 7, hw: 8.2, hd: 0.5, rot: 0 });
-  colliders.push({ type: "box", x: x - 4.6, z: z + 7, hw: 3.4, hd: 0.5, rot: 0 });
-  colliders.push({ type: "box", x: x + 4.6, z: z + 7, hw: 3.4, hd: 0.5, rot: 0 });
-  colliders.push({ type: "box", x: x - 7.6, z, hw: 0.5, hd: 7.2, rot: 0 });
-  colliders.push({ type: "box", x: x + 7.6, z, hw: 0.5, hd: 7.2, rot: 0 });
+  const keepG = new THREE.Group();
+  const inner = new THREE.Mesh(new THREE.BoxGeometry(6.5, 4.8, 6.5), SM(0xece4d4, "plaster", { roughness: 0.86 }));
+  inner.position.y = 2.4;
+  keepG.add(inner);
+  roof(keepG, 5.0, 7.0, 7.0, 0x6b5335);
+  keepG.position.set(x, y, z);
+  root.add(keepG);
+  colliders.push({ type: "box", x, z: z - 9, hw: 10.2, hd: 0.7, rot: 0 });
+  colliders.push({ type: "box", x: x - 5.2, z: z + 9, hw: 4.2, hd: 0.7, rot: 0 });
+  colliders.push({ type: "box", x: x + 5.2, z: z + 9, hw: 4.2, hd: 0.7, rot: 0 });
+  colliders.push({ type: "box", x: x - 9.6, z, hw: 0.7, hd: 9.2, rot: 0 });
+  colliders.push({ type: "box", x: x + 9.6, z, hw: 0.7, hd: 9.2, rot: 0 });
+  colliders.push({ type: "box", x, z, hw: 3.5, hd: 3.5, rot: 0 });
 }
 
 function makeHotel(root, x, z, colliders) {
   const g = new THREE.Group();
   const y = heightAt(x, z);
-  const body = new THREE.Mesh(new THREE.BoxGeometry(10, 4.4, 6.2), SM(0xece4d4, "plaster", { roughness: 0.86 }));
-  body.position.y = 2.2;
-  g.add(body);
-  const band = new THREE.Mesh(new THREE.BoxGeometry(10.2, 0.18, 6.4), new THREE.MeshLambertMaterial({ color: 0xc45c26 }));
-  band.position.y = 4.45;
-  g.add(band);
-  const sign = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.55, 0.08), new THREE.MeshLambertMaterial({ color: 0x1a4a7a }));
-  sign.position.set(0, 3.4, 3.18);
-  g.add(sign);
-  for (const s of [-3.2, 0, 3.2]) {
-    const w = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.9, 0.08), new THREE.MeshLambertMaterial({ color: 0x7eafc4 }));
-    w.position.set(s, 2.6, 3.16);
-    g.add(w);
+  const plaster = SM(0xece4d4, "plaster", { roughness: 0.86 });
+  const accent = new THREE.MeshLambertMaterial({ color: 0xc45c26 });
+  box(g, new THREE.BoxGeometry(12.4, 0.4, 8.2), plaster, 0, 0.2, 0);
+  box(g, new THREE.BoxGeometry(11.2, 7.2, 7.0), plaster, 0, 3.8, 0);
+  box(g, new THREE.BoxGeometry(11.5, 0.2, 7.3), accent, 0, 4.0, 0);
+  box(g, new THREE.BoxGeometry(11.5, 0.2, 7.3), accent, 0, 6.4, 0);
+  box(g, new THREE.BoxGeometry(4.2, 0.7, 0.12), new THREE.MeshLambertMaterial({ color: 0x1a4a7a }), 0, 6.9, 3.56);
+  for (const fy of [2.4, 4.8]) {
+    for (const s of [-3.8, -1.3, 1.3, 3.8]) {
+      box(g, new THREE.BoxGeometry(1.15, 1.05, 0.08), new THREE.MeshLambertMaterial({ color: 0x7eafc4 }), s, fy, 3.54);
+    }
   }
+  box(g, new THREE.BoxGeometry(2.2, 2.4, 0.2), SM(0x6b4a28, "wood", { roughness: 0.82 }), 0, 1.4, 3.55);
+  box(g, new THREE.BoxGeometry(3.6, 0.18, 2.2), plaster, 0, 2.7, 4.4);
   g.position.set(x, y, z);
   addShadow(g);
   root.add(g);
-  colliders.push({ type: "box", x, z, hw: 5.3, hd: 3.4, rot: 0 });
+  colliders.push({ type: "box", x, z, hw: 5.8, hd: 3.7, rot: 0 });
 }
 
 function makeChaya(root, x, z, colliders) {
   const g = new THREE.Group();
   const y = heightAt(x, z);
-  const tin = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.08, 3.4), new THREE.MeshLambertMaterial({ color: 0x3d8a4a }));
-  tin.position.y = 2.35;
-  tin.rotation.z = 0.08;
-  g.add(tin);
-  for (const s of [-1.8, 1.8]) {
-    const p = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.07, 2.3, 5), SM(0x6b4a28, "wood", { roughness: 0.82 }));
-    p.position.set(s, 1.15, 1.4);
-    g.add(p);
+  const wood = SM(0x6b4a28, "wood", { roughness: 0.82 });
+  const tin = new THREE.MeshLambertMaterial({ color: 0x3d8a4a });
+  box(g, new THREE.BoxGeometry(6.4, 0.1, 4.6), tin, 0, 2.55, 0, 0, 0, 0.07);
+  for (const [px, pz] of [[-2.6, 1.8], [2.6, 1.8], [-2.6, -1.6], [2.6, -1.6]]) {
+    box(g, new THREE.CylinderGeometry(0.07, 0.09, 2.5, 6), wood, px, 1.25, pz);
   }
-  const bench = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.32, 0.5), SM(0x6b4a28, "wood", { roughness: 0.82 }));
-  bench.position.set(0, 0.4, 0.4);
-  g.add(bench);
-  const kettle = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.28, 8), new THREE.MeshLambertMaterial({ color: 0xc45c26 }));
-  kettle.position.set(0.6, 0.72, 0.2);
-  g.add(kettle);
+  box(g, new THREE.BoxGeometry(5.2, 0.9, 1.4), wood, 0, 0.7, -0.6);
+  box(g, new THREE.BoxGeometry(4.4, 0.32, 0.55), wood, 0, 0.42, 1.5);
+  box(g, new THREE.BoxGeometry(4.4, 0.32, 0.55), wood, 0, 0.42, 2.1);
+  box(g, new THREE.CylinderGeometry(0.18, 0.22, 0.32, 8), new THREE.MeshLambertMaterial({ color: 0xc45c26 }), 1.2, 1.28, -0.4);
+  box(g, new THREE.CylinderGeometry(0.14, 0.16, 0.28, 8), new THREE.MeshLambertMaterial({ color: 0x333 }), 0.6, 1.24, -0.5);
+  const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.12, 8, 6), new THREE.MeshLambertMaterial({ color: 0xffe2a0, emissive: 0xffc14d, emissiveIntensity: 0.75 }));
+  lamp.position.set(-1.8, 2.15, 1.2);
+  g.add(lamp);
   g.position.set(x, y, z);
   addShadow(g);
   root.add(g);
-  colliders.push({ type: "box", x, z, hw: 2.1, hd: 1.5, rot: 0 });
+  colliders.push({ type: "box", x, z, hw: 3.2, hd: 2.2, rot: 0 });
 }
 
 function makeThattu(root, x, z, colliders) {
   const g = new THREE.Group();
   const y = heightAt(x, z);
-  const cart = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.7, 1.6), SM(0x6b4a28, "wood", { roughness: 0.82 }));
-  cart.position.y = 0.7;
-  g.add(cart);
-  const tarp = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.06, 1.8), new THREE.MeshLambertMaterial({ color: 0xc41e3a }));
-  tarp.position.y = 2.05;
-  g.add(tarp);
-  const pan = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.08, 10), new THREE.MeshLambertMaterial({ color: 0x333 }));
-  pan.position.set(0, 1.12, 0);
-  g.add(pan);
-  const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.1, 6, 4), new THREE.MeshLambertMaterial({ color: 0xffe2a0, emissive: 0xffc14d, emissiveIntensity: 0.7 }));
-  lamp.position.set(0.9, 1.5, 0);
+  const wood = SM(0x6b4a28, "wood", { roughness: 0.82 });
+  box(g, new THREE.BoxGeometry(3.4, 0.85, 2.0), wood, 0, 0.85, 0);
+  for (const s of [-1.2, 1.2]) {
+    box(g, new THREE.CylinderGeometry(0.22, 0.22, 0.16, 10), new THREE.MeshLambertMaterial({ color: 0x222 }), s, 0.22, 0.7);
+    box(g, new THREE.CylinderGeometry(0.22, 0.22, 0.16, 10), new THREE.MeshLambertMaterial({ color: 0x222 }), s, 0.22, -0.7);
+  }
+  box(g, new THREE.BoxGeometry(3.6, 0.08, 2.2), new THREE.MeshLambertMaterial({ color: 0xc41e3a }), 0, 2.25, 0);
+  for (const s of [-1.4, 1.4]) box(g, new THREE.CylinderGeometry(0.05, 0.06, 1.3, 5), wood, s, 1.55, 0.8);
+  box(g, new THREE.CylinderGeometry(0.5, 0.5, 0.1, 12), new THREE.MeshLambertMaterial({ color: 0x333 }), 0, 1.35, 0);
+  box(g, new THREE.CylinderGeometry(0.28, 0.28, 0.08, 10), new THREE.MeshLambertMaterial({ color: 0x444 }), 0.9, 1.32, 0.3);
+  const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.12, 6, 4), new THREE.MeshLambertMaterial({ color: 0xffe2a0, emissive: 0xffc14d, emissiveIntensity: 0.75 }));
+  lamp.position.set(1.1, 1.7, 0);
   g.add(lamp);
   g.position.set(x, y, z);
   addShadow(g);
   root.add(g);
-  colliders.push({ type: "box", x, z, hw: 1.4, hd: 0.9, rot: 0 });
-}
-
-function makePond(root, x, z, r = 4.4) {
-  const y = heightAt(x, z);
-  const T = shared();
-  const bank = new THREE.Mesh(
-    new THREE.RingGeometry(r - 0.15, r + 0.55, 36),
-    new THREE.MeshLambertMaterial({ color: 0xe8d4a8 })
-  );
-  bank.rotation.x = -Math.PI / 2;
-  bank.position.set(x, y + 0.07, z);
-  root.add(bank);
-  const pool = new THREE.Mesh(
-    new THREE.CircleGeometry(r - 0.12, 36),
-    new THREE.MeshLambertMaterial({ map: T.pond, color: 0xffffff })
-  );
-  pool.rotation.x = -Math.PI / 2;
-  pool.position.set(x, y + 0.1, z);
-  root.add(pool);
-  return { x, z, r: r + 0.6, y: y + 0.1 };
+  colliders.push({ type: "box", x, z, hw: 1.8, hd: 1.1, rot: 0 });
 }
 
 function makePeak(root, x, z, colliders) {
   const y = heightAt(x, z);
-  const rock = new THREE.Mesh(new THREE.ConeGeometry(4.2, 7.5, 5), new THREE.MeshLambertMaterial({ color: 0x6a6a58 }));
-  rock.position.set(x, y + 3.6, z);
-  root.add(rock);
-  colliders.push({ x, z, r: 3.4 });
+  const rockM = new THREE.MeshLambertMaterial({ color: 0x6a6a58 });
+  const rock2 = new THREE.MeshLambertMaterial({ color: 0x7a7a64 });
+  const a = new THREE.Mesh(new THREE.ConeGeometry(5.2, 9.5, 6), rockM);
+  a.position.set(x, y + 4.6, z);
+  root.add(a);
+  const b = new THREE.Mesh(new THREE.DodecahedronGeometry(2.8, 0), rock2);
+  b.position.set(x - 3.4, y + 2.2, z + 1.6);
+  root.add(b);
+  const c = new THREE.Mesh(new THREE.DodecahedronGeometry(2.2, 0), rockM);
+  c.position.set(x + 3.2, y + 1.8, z - 1.4);
+  root.add(c);
+  const shrine = new THREE.Mesh(new THREE.BoxGeometry(1.1, 1.4, 1.1), SM(0xe8d9b8, "laterite", { roughness: 0.88 }));
+  shrine.position.set(x, y + 9.6, z);
+  root.add(shrine);
+  colliders.push({ x, z, r: 4.6 });
 }
 
 function makeDam(root, x, z, colliders) {
   const y = heightAt(x, z);
-  const wall = new THREE.Mesh(new THREE.BoxGeometry(18, 5.5, 1.4), new THREE.MeshLambertMaterial({ color: 0x9aa09a }));
-  wall.position.set(x, y + 2.6, z);
+  const conc = new THREE.MeshLambertMaterial({ color: 0x9aa09a });
+  const wall = new THREE.Mesh(new THREE.BoxGeometry(22, 7.2, 1.8), conc);
+  wall.position.set(x, y + 3.5, z);
   root.add(wall);
-  colliders.push({ type: "box", x, z, hw: 9.2, hd: 0.9, rot: 0 });
+  for (const s of [-9, 9]) {
+    const t = new THREE.Mesh(new THREE.BoxGeometry(2.4, 9.0, 2.4), conc);
+    t.position.set(x + s, y + 4.5, z);
+    root.add(t);
+  }
+  const rail = new THREE.Mesh(new THREE.BoxGeometry(22, 0.12, 0.12), conc);
+  rail.position.set(x, y + 7.3, z + 0.7);
+  root.add(rail);
+  colliders.push({ type: "box", x, z, hw: 11.2, hd: 1.2, rot: 0 });
 }
 
 function makeCave(root, x, z, colliders) {
   const y = heightAt(x, z);
   const rockM = new THREE.MeshLambertMaterial({ color: 0x8a8474 });
-  for (const s of [-2.2, 2.2]) {
-    const rk = new THREE.Mesh(new THREE.DodecahedronGeometry(2.4, 0), rockM);
-    rk.position.set(x + s, y + 1.6, z);
+  const dark = new THREE.MeshLambertMaterial({ color: 0x2a2820 });
+  for (const [ox, oz, s] of [[-3.2, 0.4, 3.1], [3.2, 0.2, 3.0], [0, -2.4, 2.6], [-1.6, 2.2, 2.2], [1.8, 2.4, 2.3]]) {
+    const rk = new THREE.Mesh(new THREE.DodecahedronGeometry(s, 0), rockM);
+    rk.position.set(x + ox, y + s * 0.7, z + oz);
     root.add(rk);
-    colliders.push({ x: x + s, z, r: 1.9 });
+    colliders.push({ x: x + ox, z: z + oz, r: s * 0.72 });
   }
-  const lintel = new THREE.Mesh(new THREE.BoxGeometry(5.2, 1.1, 2.4), rockM);
-  lintel.position.set(x, y + 3.4, z);
-  root.add(lintel);
+  const mouth = new THREE.Mesh(new THREE.BoxGeometry(2.4, 2.6, 1.2), dark);
+  mouth.position.set(x, y + 1.4, z + 1.6);
+  root.add(mouth);
+}
+
+function makePalace(root, x, z, colliders) {
+  const g = new THREE.Group();
+  const y = heightAt(x, z);
+  const laterite = SM(0xb45a32, "laterite", { roughness: 0.9 });
+  const plaster = SM(0xf0e6d2, "plaster", { roughness: 0.84 });
+  box(g, new THREE.BoxGeometry(18, 0.5, 10), laterite, 0, 0.25, 0);
+  box(g, new THREE.BoxGeometry(16.4, 4.6, 8.2), plaster, 0, 2.55, 0);
+  box(g, new THREE.BoxGeometry(6.2, 6.2, 6.2), plaster, 0, 3.4, 0);
+  roof(g, 5.1, 16.8, 8.8, 0x6b5335);
+  roof(g, 6.8, 6.8, 6.8, 0x8b1e1e);
+  for (const s of [-6, -2, 2, 6]) {
+    box(g, new THREE.BoxGeometry(1.1, 1.4, 0.08), new THREE.MeshLambertMaterial({ color: 0x7eafc4 }), s, 2.8, 4.14);
+  }
+  for (const s of [-5.5, 5.5]) {
+    box(g, new THREE.CylinderGeometry(0.18, 0.22, 4.4, 8), SM(0x6b4a28, "wood", { roughness: 0.82 }), s, 2.4, 3.6);
+  }
+  g.position.set(x, y, z);
+  addShadow(g);
+  root.add(g);
+  colliders.push({ type: "box", x, z, hw: 8.5, hd: 4.4, rot: 0 });
+}
+
+function makeFactory(root, x, z, colliders) {
+  const g = new THREE.Group();
+  const y = heightAt(x, z);
+  const plaster = SM(0xe8e0d0, "plaster", { roughness: 0.88 });
+  const tin = new THREE.MeshLambertMaterial({ color: 0x6a7a4a });
+  box(g, new THREE.BoxGeometry(14, 4.2, 6.4), plaster, 0, 2.1, 0);
+  box(g, new THREE.BoxGeometry(14.4, 0.12, 6.8), tin, 0, 4.3, 0, 0, 0, 0.06);
+  box(g, new THREE.CylinderGeometry(0.55, 0.7, 8.5, 10), SM(0xb45a32, "laterite", { roughness: 0.9 }), 5.4, 5.2, -1.2);
+  for (const s of [-4, 0, 4]) {
+    box(g, new THREE.BoxGeometry(1.6, 1.2, 0.08), new THREE.MeshLambertMaterial({ color: 0x7eafc4 }), s, 2.4, 3.24);
+  }
+  g.position.set(x, y, z);
+  addShadow(g);
+  root.add(g);
+  colliders.push({ type: "box", x, z, hw: 7.2, hd: 3.4, rot: 0 });
+}
+
+function makeShrine(root, x, z, colliders) {
+  const g = new THREE.Group();
+  const y = heightAt(x, z);
+  const laterite = SM(0xe8d9b8, "laterite", { roughness: 0.88 });
+  const wood = SM(0x6b4a28, "wood", { roughness: 0.82 });
+  const red = new THREE.MeshLambertMaterial({ color: 0xb42318 });
+  box(g, new THREE.CylinderGeometry(2.2, 2.4, 0.4, 12), laterite, 0, 0.2, 0);
+  box(g, new THREE.BoxGeometry(1.8, 2.2, 1.8), laterite, 0, 1.4, 0);
+  box(g, new THREE.ConeGeometry(1.5, 1.3, 4), SM(0xb87333, "tile", { roughness: 0.5, metalness: 0.3 }), 0, 2.9, 0);
+  for (const a of [0, 2.1, 4.2]) {
+    const px = Math.cos(a) * 2.6, pz = Math.sin(a) * 2.6;
+    box(g, new THREE.CylinderGeometry(0.05, 0.06, 3.4, 5), wood, px, 1.7, pz);
+    box(g, new THREE.BoxGeometry(0.55, 0.7, 0.04), red, px, 3.2, pz);
+  }
+  g.position.set(x, y, z);
+  addShadow(g);
+  root.add(g);
+  colliders.push({ x, z, r: 1.6 });
+}
+
+function makeTower(root, x, z, colliders) {
+  const g = new THREE.Group();
+  const y = heightAt(x, z);
+  const plaster = SM(0xf2efe8, "plaster", { roughness: 0.84 });
+  box(g, new THREE.BoxGeometry(3.6, 0.4, 3.6), plaster, 0, 0.2, 0);
+  box(g, new THREE.BoxGeometry(2.8, 9.2, 2.8), plaster, 0, 4.8, 0);
+  box(g, new THREE.BoxGeometry(3.4, 1.6, 3.4), plaster, 0, 10.2, 0);
+  box(g, new THREE.ConeGeometry(2.2, 1.8, 4), SM(0x8b1e1e, "tile", { roughness: 0.7 }), 0, 11.9, 0);
+  for (const fy of [3.2, 6.4]) {
+    box(g, new THREE.BoxGeometry(0.7, 0.9, 0.08), new THREE.MeshLambertMaterial({ color: 0x7eafc4 }), 0, fy, 1.44);
+  }
+  g.position.set(x, y, z);
+  addShadow(g);
+  root.add(g);
+  colliders.push({ type: "box", x, z, hw: 1.7, hd: 1.7, rot: 0 });
+}
+
+function makeMandapam(root, x, z, colliders) {
+  const g = new THREE.Group();
+  const y = heightAt(x, z);
+  const laterite = SM(0xe8d9b8, "laterite", { roughness: 0.88 });
+  const wood = SM(0x6b4a28, "wood", { roughness: 0.82 });
+  box(g, new THREE.BoxGeometry(7.2, 0.45, 7.2), laterite, 0, 0.22, 0);
+  for (const [px, pz] of [[-2.6, -2.6], [2.6, -2.6], [-2.6, 2.6], [2.6, 2.6]]) {
+    box(g, new THREE.CylinderGeometry(0.16, 0.2, 3.2, 8), wood, px, 1.85, pz);
+  }
+  box(g, new THREE.BoxGeometry(7.6, 0.16, 7.6), SM(0x6b5335, "tile", { roughness: 0.7 }), 0, 3.55, 0);
+  g.position.set(x, y, z);
+  addShadow(g);
+  root.add(g);
+  colliders.push({ type: "box", x, z, hw: 3.6, hd: 3.6, rot: 0 });
 }
 
 function canoe() {
@@ -1145,9 +1300,14 @@ export function buildWorld(scene, opts = {}) {
       makeDam(root, x, z, colliders);
       addJob(root, jobs, "dam", x, z + 4.2);
     } else if (k === "cave") makeCave(root, x, z, colliders);
-    else if (k === "jetty") { /* land only */ }
-    else if (k === "nets") { /* land only */ }
-    else if (k === "houseboat") { /* land only */ }
+    else if (k === "jetty") makeMandapam(root, x, z, colliders);
+    else if (k === "nets") makeTower(root, x, z, colliders);
+    else if (k === "houseboat") makeMandapam(root, x, z, colliders);
+    else if (k === "palace") makePalace(root, x, z, colliders);
+    else if (k === "factory") makeFactory(root, x, z, colliders);
+    else if (k === "shrine") makeShrine(root, x, z, colliders);
+    else if (k === "tower") makeTower(root, x, z, colliders);
+    else if (k === "mandapam") makeMandapam(root, x, z, colliders);
     else if (k === "beach" || k === "drivein") {
       sandBeach(root, x, z);
       addJob(root, jobs, "cleaner", x + 8, z);
@@ -1160,7 +1320,8 @@ export function buildWorld(scene, opts = {}) {
       const mix = [darkProto, teakProto, banyanProto, rubberProto, jackProto];
       for (let i = 0; i < 14; i++) placeTree(mix[i % mix.length], x + (hash(i, 1) - 0.5) * 28, z + (hash(i, 2) - 0.5) * 28, 1.1 + hash(i, 3) * 0.35, 0.7);
     } else if (k === "tea") {
-      addJob(root, jobs, "picker", x, z + 6);
+      makeFactory(root, x, z, colliders);
+      addJob(root, jobs, "picker", x, z + 8);
     }
   }
 
