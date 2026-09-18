@@ -29,10 +29,10 @@ import bpy
 import numpy as np
 from mathutils import Vector
 
-OUT = os.environ.get("MODEL_OUT", "/tmp/modelout")
+OUT = os.environ.get("MODEL_OUT") or "/tmp/modelout"
 os.makedirs(OUT, exist_ok=True)
 
-WORK = os.environ.get("WORK", "/tmp/model")
+WORK = os.environ.get("WORK") or "/tmp/model"
 MAX_GEOM_TRIS = 12000          # skip meshes heavier than this in the mesh dump
 MAX_GEOM_OBJECTS = 80          # and cap how many meshes get dumped at all
 MAX_OBJ_RENDERS = 40           # per-model renders

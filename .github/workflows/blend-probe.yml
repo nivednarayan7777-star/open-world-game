@@ -1,9 +1,12 @@
 name: blend-probe
 
-# Manual only: downloads a model file from Google Drive, reads its scene, node
-# graphs and geometry and renders it, then commits the results back to the
-# branch it runs on. Run it from the Actions tab (or `gh workflow run`) when you
-# want to measure a reference file. It never fires on its own.
+# Reads a model file from Google Drive (the sandbox cannot reach Drive, the
+# runner can), dumps its scene, node graphs and geometry, renders it, and
+# commits the results back to the branch it runs on.
+#
+# Two ways to run it — both end up in probe/: 
+#   * edit .github/probe-request.json and push (a request is a commit), or
+#   * Actions → blend-probe → Run workflow, and fill in the inputs.
 on:
   workflow_dispatch:
     inputs:
@@ -23,27 +26,31 @@ on:
         description: '"latest" = official newest Blender, "apt" = distro package'
         required: false
         default: "latest"
-      runs_on:
-        description: Runner label (e.g. a self-hosted GPU runner)
-        required: false
-        default: "ubuntu-latest"
+  push:
+    paths:
+      - ".github/probe-request.json"
 
 permissions:
   contents: write
 
 jobs:
   probe:
-    runs-on: ${{ inputs.runs_on }}
+    runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
-      BLEND_ID: ${{ inputs.blend_id }}
       BRANCH: ${{ github.ref_name }}
-      OUT_DIR: ${{ inputs.out_dir }}
-      MODEL_OUT: ${{ inputs.out_dir }}
       WORK: /tmp/model
-      PROBE_SCRIPT: ${{ inputs.probe_script }}
+      PROBE_REQUEST: .github/probe-request.json
+      IN_BLEND_ID: ${{ inputs.blend_id }}
+      IN_OUT_DIR: ${{ inputs.out_dir }}
+      IN_PROBE_SCRIPT: ${{ inputs.probe_script }}
+      IN_BLENDER_KIND: ${{ inputs.blender }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Resolve request
+        id: req
+        run: bash .github/resolve_request.sh
 
       - name: Download source file from Drive
         id: fetch
@@ -55,7 +62,7 @@ jobs:
         id: blender
         continue-on-error: true
         run: |
-          if [ "${{ inputs.blender }}" = "latest" ]; then
+          if [ "$BLENDER_KIND" = "latest" ]; then
             bash .github/install_blender_latest.sh || bash .github/install_blender.sh
           else
             bash .github/install_blender.sh
@@ -82,7 +89,7 @@ jobs:
           python3 - <<'PY'
           import glob, os
           from PIL import Image
-          out = os.environ.get("MODEL_OUT", "probe/model")
+          out = os.environ.get("MODEL_OUT") or "probe/model"
           total = 0
           for p in glob.glob(os.path.join(out, "*.png")):
               try:

@@ -1,0 +1,8 @@
+{
+  "blend_id": "1_lDEoRHZ3hbZD7YBjWaXbwW0SZxpmIoH",
+  "out_dir": "probe/model",
+  "probe_script": ".github/model_probe.py",
+  "blender": "latest",
+  "requested": "2026-09-18",
+  "note": "New reference file the owner shared: read it, port the models in it onto the game's ground and terrain."
+}
