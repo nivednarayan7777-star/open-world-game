@@ -1,0 +1,13 @@
+== strategy 1: curl usercontent ==
+curl exit: 0
+HTTP/2 200 
+content-type: application/octet-stream
+content-disposition: attachment; filename="Low Poly Scenery Hills and Lake.glb"
+content-length: 406076
+filename: "Low Poly Scenery Hills and Lake.glb"
+--- check /tmp/model/download.raw ---
+-rw-r--r-- 1 runner runner 406076 Sep 18 16:10 /tmp/model/download.raw
+type: glTF binary model, version 2, length 406076 bytes
+head bytes: 0000000   g   l   T   F 002  \0  \0  \0   <   2 006  \0   P 277  \0  \0 0000020   J   S   O   N   {   "   a   s 0000030 
+sha256: c8ff55586365d2862795a91a0da377a20edb6674de799dcc80e1e8f4811d408f
+CHOSEN: /tmp/model/source.raw (406076 bytes, kind=unknown)
