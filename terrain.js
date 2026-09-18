@@ -55,8 +55,8 @@ export const MUSGRAVE = { scale: 8.5, detail: 1.6, dimension: 0.6, lacunarity: 2
  * while beaches, paddies and tea slopes still tell themselves apart.
  */
 export const GROUND_TINT = {
-  village: lin(0.0580, 0.3450, 0.0370),   // the blend's mid green, slightly cooled
-  lowland: lin(0.0780, 0.3650, 0.0440),   // backwater banks: a touch brighter
+  village: lin(0.0480, 0.3300, 0.0400),   // the blend's mid green, slightly cooled
+  lowland: lin(0.0640, 0.3480, 0.0455),   // backwater banks: a touch brighter
   slope: lin(0.0480, 0.2700, 0.0360),     // hill flanks: deeper green
   paddy: lin(0.1150, 0.3400, 0.0450),     // paddy: yellow-green, like the blend's light stop
   tea: lin(0.0520, 0.2700, 0.0480),       // tea slopes: fresh, cool green
@@ -313,12 +313,13 @@ export const RAMP_DARK_MUL = rampRatio(GRASS_RAMP.dark, GRASS_RAMP.mid, 0.95);
  *
  * Per channel, because the blend's stops are far more saturated than any real
  * surface: its light stop is ×3.9 the mid stop in *red* alone, which as a plain
- * ratio would light the patches orange. The exponent pulls each channel back
- * into a believable spread while keeping the ramp's hue drift — the highlights
- * stay yellow-green. `green` is what the eye reads as "how bright is this
- * patch", so it gets the largest exponent of the three.
+ * ratio would light the patches orange. The exponents pull each channel back to
+ * a believable spread while keeping the ramp's hue drift — the highlights stay
+ * yellow-green, not orange. `green` is what the eye reads as "how bright is
+ * this patch", so it gets by far the largest exponent; red is held back hardest
+ * so the patches never lose the blend's green.
  */
-export const RAMP_LIGHT_MUL = rampRatio(GRASS_RAMP.light, GRASS_RAMP.mid, [0.70, 1.66, 0.70]);
+export const RAMP_LIGHT_MUL = rampRatio(GRASS_RAMP.light, GRASS_RAMP.mid, [0.30, 1.66, 0.55]);
 /** The ColorRamp's stop positions in the blend, used as the shader's ramp knots. */
 export const GRASS_RAMP_STOPS = { dark: 0.0, mid: 0.2909, light: 0.8591 };
 
@@ -338,7 +339,10 @@ export function terrainMaterial(opts = {}) {
     tint = null,              // flat albedo override (used for sand / paddy slabs)
     patchScale = 0.05,        // ≈ 20 m washes
     patchMid = 0.30,          // ≈ 3.3 m patches — the motif the reference shows
-    patchStrength = 1.0,      // 0 → plain green, 1 → full ramp contrast
+    // 0 → flat colour, 1 → full ramp contrast. The sand and paddy slabs pass a
+    // small value: the green ramp would otherwise tint them, and a beach wants
+    // to stay sand.
+    patchStrength = 1.0,
     // Levels adjustment. Our value-noise FBM is a tamer signal than Blender's
     // Musgrave: across the map it spans ≈ 0.35 … 0.65 (p10 … p90), where the
     // blend's Musgrave.Fac spans nearly 0 … 1. Feeding it to the ramp unstretched

@@ -843,7 +843,7 @@ function stalls(root, x, z, colliders) {
 }
 
 function paddyPatch(root, x, z) {
-  const paddyMat = terrainMaterial({ tint: GROUND_TINT.paddy, flatShading: false });
+  const paddyMat = terrainMaterial({ tint: GROUND_TINT.paddy, flatShading: false, patchStrength: 0.35 });
   const waterPaddy = new THREE.MeshLambertMaterial({ color: 0x4a9aaa, transparent: true, opacity: 0.55 });
   for (let i = 0; i < 6; i++) {
     const px = x + (i % 3) * 12;
@@ -888,7 +888,7 @@ function addJob(root, jobs, id, x, z) {
 }
 
 function sandBeach(root, x, z) {
-  const sandM = terrainMaterial({ tint: GROUND_TINT.beach, flatShading: false });
+  const sandM = terrainMaterial({ tint: GROUND_TINT.beach, flatShading: false, patchStrength: 0.3 });
   for (let i = 0; i < 4; i++) {
     const zz = z - 12 + i * 10;
     const sand = new THREE.Mesh(new THREE.PlaneGeometry(16, 12), sandM);
@@ -1226,12 +1226,13 @@ export function buildWorld(scene, opts = {}) {
       grass.setMatrixAt(gi, dummy.matrix);
       // Per-tuft tint: mostly the meadow green, a few blades catching the light.
       const gv = hash(p * 80 + k, 81);
+      // red stays under green at every step, so a tuft can never turn straw
       grass.setColorAt(
         gi,
         tmpCol.setRGB(
-          0.72 + gv * 0.62,
-          0.92 + gv * 0.26,
-          0.70 + gv * 0.55,
+          0.80 + gv * 0.35,
+          0.94 + gv * 0.20,
+          0.78 + gv * 0.32,
           THREE.LinearSRGBColorSpace
         )
       );
