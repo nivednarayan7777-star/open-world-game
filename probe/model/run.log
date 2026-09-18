@@ -1,6 +1,16 @@
-run: 35367036492  https://github.com/nivednarayan7777-star/open-world-game/actions/runs/35367036492
-date: Fri Sep 18 16:12:36 UTC 2026
-files:
+source: /tmp/model/source.glb
+running: blender -b -noaudio --python .github/model_probe.py -- /tmp/model/source.glb
+blender exit: 0
+SOURCE import: /tmp/model/source.glb .glb
+wrote probe/model/objects.json 60689
+wrote probe/model/groups.json 16239
+wrote probe/model/materials.json 78413
+wrote probe/model/textures.json 246
+wrote probe/model/geometry_index.json 6037
+geometry: 43 meshes, 10890 verts, 391363 bytes raw -> 65379 gz
+render engine: CYCLES
+wrote probe/model/probe.log 887
+MODEL_PROBE_FAILED
 total 268
 drwxr-xr-x 2 runner runner  4096 Sep 18 16:12 .
 drwxr-xr-x 4 runner runner  4096 Sep 18 16:12 ..
@@ -13,7 +23,7 @@ drwxr-xr-x 4 runner runner  4096 Sep 18 16:12 ..
 -rw-r--r-- 1 runner runner 78413 Sep 18 16:12 materials.json
 -rw-r--r-- 1 runner runner 60689 Sep 18 16:12 objects.json
 -rw-r--r-- 1 runner runner   887 Sep 18 16:12 probe.log
--rw-r--r-- 1 runner runner   142 Sep 18 16:12 publish.txt
--rw-r--r-- 1 runner runner  1385 Sep 18 16:12 run.log
--rw-r--r-- 1 runner runner   334 Sep 18 16:12 tex_Viewer_Node.png
+-rw-r--r-- 1 runner runner   358 Sep 18 16:12 publish.txt
+-rw-r--r-- 1 runner runner   501 Sep 18 16:12 run.log
+-rw-r--r-- 1 runner runner  1406 Sep 18 16:12 tex_Viewer_Node.png
 -rw-r--r-- 1 runner runner   246 Sep 18 16:12 textures.json

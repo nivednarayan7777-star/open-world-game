@@ -1,0 +1,18 @@
+SOURCE import: /tmp/model/source.glb .glb
+wrote probe/model/objects.json 60689
+wrote probe/model/groups.json 16239
+wrote probe/model/materials.json 78413
+wrote probe/model/textures.json 246
+wrote probe/model/geometry_index.json 6037
+geometry: 43 meshes, 10890 verts, 391363 bytes raw -> 65379 gz
+render engine: CYCLES
+Traceback (most recent call last):
+  File "/home/runner/work/open-world-game/open-world-game/.github/model_probe.py", line 918, in <module>
+    main()
+    ~~~~^^
+  File "/home/runner/work/open-world-game/open-world-game/.github/model_probe.py", line 877, in main
+    engine = setup_render(fast=True)
+  File "/home/runner/work/open-world-game/open-world-game/.github/model_probe.py", line 557, in setup_render
+    sc.cycles.use_persistent_data = True
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CyclesRenderSettings' object has no attribute 'use_persistent_data'

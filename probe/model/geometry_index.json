@@ -1,0 +1,303 @@
+[
+ {
+  "key": "MESH|8|12|(2.0, 2.0, 2.0)|('Material',)",
+  "name": "Cube",
+  "verts": 8,
+  "tris": 12,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|1280|2549|(2.752, 0.525, 2.5)|('Material_0',)",
+  "name": "Landscape",
+  "verts": 1280,
+  "tris": 2549,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_1',)",
+  "name": "rock_01",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_2',)",
+  "name": "rock_01.001",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_3',)",
+  "name": "rock_01.002",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_4',)",
+  "name": "rock_01.003",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_5',)",
+  "name": "rock_01.004",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_6',)",
+  "name": "rock_01.005",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_7',)",
+  "name": "rock_02",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_8',)",
+  "name": "rock_02.001",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_9',)",
+  "name": "rock_02.002",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_10',)",
+  "name": "rock_02.003",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_11',)",
+  "name": "rock_02.004",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_12',)",
+  "name": "rock_02.005",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_13',)",
+  "name": "rock_03",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_14',)",
+  "name": "rock_03.001",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_15',)",
+  "name": "rock_03.002",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_16',)",
+  "name": "rock_03.003",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_17',)",
+  "name": "rock_03.004",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_18',)",
+  "name": "rock_03.005",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_19',)",
+  "name": "rock_03.006",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_20',)",
+  "name": "rock_03.007",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.061, 0.03, 0.047)|('Material_21',)",
+  "name": "rock_04",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.061, 0.03, 0.047)|('Material_22',)",
+  "name": "rock_04.001",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.061, 0.03, 0.047)|('Material_23',)",
+  "name": "rock_04.002",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.061, 0.03, 0.047)|('Material_24',)",
+  "name": "rock_04.003",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.061, 0.03, 0.047)|('Material_25',)",
+  "name": "rock_04.004",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_26',)",
+  "name": "rock_05",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_27',)",
+  "name": "rock_05.001",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_28',)",
+  "name": "rock_05.002",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_29',)",
+  "name": "rock_05.003",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_30',)",
+  "name": "rock_05.004",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_31',)",
+  "name": "rock_05.005",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_32',)",
+  "name": "rock_05.006",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_33',)",
+  "name": "rock_05.007",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_34',)",
+  "name": "rock_05.008",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_35',)",
+  "name": "rock_05.009",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_36',)",
+  "name": "rock_05.010",
+  "verts": 120,
+  "tris": 40,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|240|80|(1.902, 2.0, 2.0)|('Material_37',)",
+  "name": "sun",
+  "verts": 240,
+  "tris": 80,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|1392|464|(0.571, 1.139, 0.626)|('Material_38',)",
+  "name": "tree.001",
+  "verts": 1392,
+  "tris": 464,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|1392|464|(0.743, 1.21, 0.691)|('Material_39',)",
+  "name": "tree.002",
+  "verts": 1392,
+  "tris": 464,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|1392|464|(0.647, 1.246, 0.672)|('Material_40',)",
+  "name": "tree.003",
+  "verts": 1392,
+  "tris": 464,
+  "dup_of": null
+ },
+ {
+  "key": "MESH|866|1538|(2.543, 0.012, 2.529)|('Material_41',)",
+  "name": "water",
+  "verts": 866,
+  "tris": 1538,
+  "dup_of": null
+ }
+]

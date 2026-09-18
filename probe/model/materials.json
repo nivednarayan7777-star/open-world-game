@@ -1,0 +1,4709 @@
+{
+ "Dots Stroke": {
+  "name": "Dots Stroke",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "FRAME",
+    "name": "Frame",
+    "label": "Versioning: Use Nodes was removed",
+    "inputs": {}
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   },
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.8,
+      0.8,
+      0.8,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.5,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output.001",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   },
+   {
+    "type": "BSDF_DIFFUSE",
+    "name": "Diffuse BSDF",
+    "label": "",
+    "inputs": {
+     "Color": [
+      0.8,
+      0.8,
+      0.8,
+      1.0
+     ],
+     "Roughness": 0.0,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ],
+   [
+    "Diffuse BSDF.BSDF",
+    "Material Output.001.Surface"
+   ]
+  ]
+ },
+ "Material": {
+  "name": "Material",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   },
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.8,
+      0.8,
+      0.8,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.5,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_0": {
+  "name": "Material_0",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_1": {
+  "name": "Material_1",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_10": {
+  "name": "Material_10",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_11": {
+  "name": "Material_11",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_12": {
+  "name": "Material_12",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_13": {
+  "name": "Material_13",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_14": {
+  "name": "Material_14",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_15": {
+  "name": "Material_15",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_16": {
+  "name": "Material_16",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_17": {
+  "name": "Material_17",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_18": {
+  "name": "Material_18",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_19": {
+  "name": "Material_19",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_2": {
+  "name": "Material_2",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_20": {
+  "name": "Material_20",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_21": {
+  "name": "Material_21",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_22": {
+  "name": "Material_22",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_23": {
+  "name": "Material_23",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_24": {
+  "name": "Material_24",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_25": {
+  "name": "Material_25",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_26": {
+  "name": "Material_26",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_27": {
+  "name": "Material_27",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_28": {
+  "name": "Material_28",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_29": {
+  "name": "Material_29",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_3": {
+  "name": "Material_3",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_30": {
+  "name": "Material_30",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_31": {
+  "name": "Material_31",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_32": {
+  "name": "Material_32",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_33": {
+  "name": "Material_33",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_34": {
+  "name": "Material_34",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_35": {
+  "name": "Material_35",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_36": {
+  "name": "Material_36",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_37": {
+  "name": "Material_37",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_38": {
+  "name": "Material_38",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_39": {
+  "name": "Material_39",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_4": {
+  "name": "Material_4",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_40": {
+  "name": "Material_40",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_41": {
+  "name": "Material_41",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_5": {
+  "name": "Material_5",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_6": {
+  "name": "Material_6",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_7": {
+  "name": "Material_7",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_8": {
+  "name": "Material_8",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ },
+ "Material_9": {
+  "name": "Material_9",
+  "blend_method": "HASHED",
+  "nodes": [
+   {
+    "type": "BSDF_PRINCIPLED",
+    "name": "Principled BSDF",
+    "label": "",
+    "distribution": "MULTI_GGX",
+    "inputs": {
+     "Base Color": [
+      0.4678,
+      0.4793,
+      0.5089,
+      1.0
+     ],
+     "Metallic": 0.0,
+     "Roughness": 0.6,
+     "IOR": 1.5,
+     "Alpha": 1.0,
+     "Thin Wall": false,
+     "Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Weight": 0.0,
+     "Diffuse Roughness": 0.0,
+     "Subsurface Weight": 0.0,
+     "Subsurface Radius": [
+      1.0,
+      0.2,
+      0.1
+     ],
+     "Subsurface Scale": 0.005,
+     "Subsurface IOR": 1.4,
+     "Subsurface Anisotropy": 0.0,
+     "Specular IOR Level": 0.5,
+     "Specular Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Anisotropic": 0.0,
+     "Anisotropic Rotation": 0.0,
+     "Tangent": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Transmission Weight": 0.0,
+     "Coat Weight": 0.0,
+     "Coat Roughness": 0.03,
+     "Coat IOR": 1.5,
+     "Coat Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Coat Normal": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Sheen Weight": 0.0,
+     "Sheen Roughness": 0.5,
+     "Sheen Tint": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "Emission Strength": 0.0,
+     "Thin Film Thickness": 0.0,
+     "Thin Film IOR": 1.33
+    }
+   },
+   {
+    "type": "OUTPUT_MATERIAL",
+    "name": "Material Output",
+    "label": "",
+    "inputs": {
+     "Displacement": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "Thickness": 0.0
+    }
+   }
+  ],
+  "links": [
+   [
+    "Principled BSDF.BSDF",
+    "Material Output.Surface"
+   ]
+  ]
+ }
+}

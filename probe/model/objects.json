@@ -1,0 +1,4818 @@
+[
+ {
+  "name": "Camera",
+  "type": "CAMERA",
+  "parent": null,
+  "location": [
+   7.3589,
+   -6.9258,
+   4.9583
+  ],
+  "rotation_euler_deg": [
+   63.5593,
+   0.0,
+   46.6919
+  ],
+  "rotation_quaternion": null,
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "matrix_world": [
+   0.6859,
+   -0.324,
+   0.6516,
+   7.3589,
+   0.7277,
+   0.3054,
+   -0.6142,
+   -6.9258,
+   0.0,
+   0.8954,
+   0.4453,
+   4.9583,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [],
+  "modifiers": [],
+  "camera": {
+   "type": "PERSP",
+   "lens": 50.0,
+   "sensor_width": 36.0,
+   "ortho_scale": 7.3143,
+   "shift_x": 0.0,
+   "shift_y": 0.0
+  }
+ },
+ {
+  "name": "Cube",
+  "type": "MESH",
+  "parent": null,
+  "location": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": null,
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   2.0,
+   2.0,
+   2.0
+  ],
+  "matrix_world": [
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   2.0,
+   2.0,
+   2.0
+  ],
+  "mesh": {
+   "verts": 8,
+   "edges": 12,
+   "tris": 12,
+   "polys": 6,
+   "bbox_min": [
+    -1.0,
+    -1.0,
+    -1.0
+   ],
+   "bbox_max": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "dims": [
+    2.0,
+    2.0,
+    2.0
+   ],
+   "centroid": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "4": 6
+   },
+   "smooth_fraction": 0.0,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material"
+   ]
+  },
+  "evaluated": {
+   "verts": 8,
+   "tris": 12
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "Landscape",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   2.7518,
+   0.5251,
+   2.5
+  ],
+  "matrix_world": [
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   -0.0,
+   1.0,
+   0.0,
+   0.0,
+   -1.0,
+   -0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_0"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   2.7518,
+   0.5251,
+   2.5
+  ],
+  "mesh": {
+   "verts": 1280,
+   "edges": 3828,
+   "tris": 2549,
+   "polys": 2549,
+   "bbox_min": [
+    -1.5018,
+    -0.4212,
+    -1.25
+   ],
+   "bbox_max": [
+    1.25,
+    0.1039,
+    1.25
+   ],
+   "dims": [
+    2.7518,
+    0.5251,
+    2.5
+   ],
+   "centroid": [
+    -0.0203,
+    -0.03,
+    -0.005
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 2549
+   },
+   "smooth_fraction": 1.0,
+   "material_slots": [
+    "Material_0"
+   ]
+  },
+  "evaluated": {
+   "verts": 1280,
+   "tris": 2549
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "Light",
+  "type": "LIGHT",
+  "parent": null,
+  "location": [
+   4.0762,
+   1.0055,
+   5.9039
+  ],
+  "rotation_euler_deg": [
+   37.261,
+   3.1637,
+   106.9363
+  ],
+  "rotation_quaternion": null,
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "matrix_world": [
+   -0.2909,
+   -0.7711,
+   0.5664,
+   4.0762,
+   0.9552,
+   -0.1999,
+   0.2184,
+   1.0055,
+   -0.0552,
+   0.6045,
+   0.7947,
+   5.9039,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [],
+  "modifiers": [],
+  "light": {
+   "kind": "POINT",
+   "energy": 1000.0,
+   "color": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "radius": 0.0,
+   "angle": 0.0,
+   "size": 0.0
+  }
+ },
+ {
+  "name": "Node_42",
+  "type": "EMPTY",
+  "parent": null,
+  "location": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.7071,
+   -0.7071,
+   0.0,
+   0.0
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "matrix_world": [
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   -0.0,
+   1.0,
+   0.0,
+   0.0,
+   -1.0,
+   -0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [],
+  "modifiers": [],
+  "empty_type": "PLAIN_AXES",
+  "empty_size": 0.001
+ },
+ {
+  "name": "rock_01",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.2491,
+   0.1201,
+   0.4004
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.1285,
+   0.0575,
+   0.1351
+  ],
+  "matrix_world": [
+   1.0,
+   0.0,
+   0.0,
+   -0.2491,
+   0.0,
+   -0.0,
+   1.0,
+   0.4004,
+   0.0,
+   -1.0,
+   -0.0,
+   -0.1201,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_1"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.1285,
+   0.0575,
+   0.1351
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.5481,
+    -0.141,
+    -0.4385
+   ],
+   "bbox_max": [
+    -0.4196,
+    -0.0835,
+    -0.3034
+   ],
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ],
+   "centroid": [
+    -0.484,
+    -0.1145,
+    -0.3725
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.05,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_1"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_01.001",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.4152,
+   0.0056,
+   0.3019
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.7494,
+   0.0,
+   0.6621,
+   0.0
+  ],
+  "scale": [
+   0.9573,
+   1.1697,
+   0.9573
+  ],
+  "dims": [
+   0.123,
+   0.0672,
+   0.1294
+  ],
+  "matrix_world": [
+   0.118,
+   0.0,
+   0.95,
+   -0.4152,
+   -0.95,
+   -0.0,
+   0.118,
+   0.3019,
+   0.0,
+   -1.1697,
+   -0.0,
+   -0.0056,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_2"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.1178,
+   0.0786,
+   0.1238
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0642,
+    -0.0321,
+    -0.0661
+   ],
+   "bbox_max": [
+    0.0643,
+    0.0253,
+    0.069
+   ],
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ],
+   "centroid": [
+    -0.0001,
+    -0.0057,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.075,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_2"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_01.002",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.393,
+   -0.0259,
+   0.3706
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.8444,
+   0.1829,
+   0.4906,
+   0.1129
+  ],
+  "scale": [
+   0.5686,
+   0.8799,
+   0.5686
+  ],
+  "dims": [
+   0.0731,
+   0.0506,
+   0.0768
+  ],
+  "matrix_world": [
+   0.2804,
+   -0.0098,
+   0.4946,
+   -0.393,
+   -0.4477,
+   0.3692,
+   0.2568,
+   0.3706,
+   -0.2104,
+   -0.7986,
+   0.1126,
+   0.0259,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_3"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0415,
+   0.0445,
+   0.0437
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0642,
+    -0.0321,
+    -0.0661
+   ],
+   "bbox_max": [
+    0.0643,
+    0.0253,
+    0.069
+   ],
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ],
+   "centroid": [
+    -0.0001,
+    -0.0057,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.075,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_3"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_01.003",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.4552,
+   -0.1067,
+   0.4801
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.8844,
+   0.3514,
+   0.257,
+   -0.1681
+  ],
+  "scale": [
+   0.6681,
+   1.0338,
+   0.6681
+  ],
+  "dims": [
+   0.0859,
+   0.0594,
+   0.0903
+  ],
+  "matrix_world": [
+   0.5421,
+   0.4941,
+   0.2247,
+   -0.4552,
+   -0.3826,
+   0.5533,
+   0.4149,
+   0.4801,
+   0.078,
+   -0.7201,
+   0.473,
+   0.1067,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_4"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0574,
+   0.0614,
+   0.0603
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0642,
+    -0.0321,
+    -0.0661
+   ],
+   "bbox_max": [
+    0.0643,
+    0.0253,
+    0.069
+   ],
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ],
+   "centroid": [
+    -0.0001,
+    -0.0057,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.075,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_4"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_01.004",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.4661,
+   -0.1393,
+   0.5243
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.8593,
+   0.1433,
+   0.0323,
+   -0.49
+  ],
+  "scale": [
+   0.3399,
+   0.526,
+   0.3399
+  ],
+  "dims": [
+   0.0437,
+   0.0302,
+   0.0459
+  ],
+  "matrix_world": [
+   0.176,
+   0.4478,
+   -0.0288,
+   -0.4661,
+   -0.0666,
+   0.1129,
+   0.3253,
+   0.5243,
+   0.2831,
+   -0.2519,
+   0.0945,
+   0.1393,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_5"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0149,
+   0.0159,
+   0.0156
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0642,
+    -0.0321,
+    -0.0661
+   ],
+   "bbox_max": [
+    0.0643,
+    0.0253,
+    0.069
+   ],
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ],
+   "centroid": [
+    -0.0001,
+    -0.0057,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.075,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_5"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_01.005",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.3029,
+   0.0066,
+   -0.2911
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.9027,
+   0.0,
+   0.4304,
+   0.0
+  ],
+  "scale": [
+   1.0,
+   1.496,
+   1.0
+  ],
+  "dims": [
+   0.1285,
+   0.086,
+   0.1351
+  ],
+  "matrix_world": [
+   0.6296,
+   0.0,
+   0.7769,
+   -0.3029,
+   -0.7769,
+   -0.0,
+   0.6296,
+   -0.2911,
+   0.0,
+   -1.496,
+   -0.0,
+   -0.0066,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_6"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.1285,
+   0.1286,
+   0.1351
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0642,
+    -0.0321,
+    -0.0661
+   ],
+   "bbox_max": [
+    0.0643,
+    0.0253,
+    0.069
+   ],
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ],
+   "centroid": [
+    -0.0001,
+    -0.0057,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.075,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_6"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_02",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.7825,
+   0.0367,
+   -0.0449
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.4619,
+   0.0,
+   -0.8869,
+   0.0
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.1033,
+   0.0596,
+   0.1046
+  ],
+  "matrix_world": [
+   -0.5733,
+   0.0,
+   -0.8193,
+   -0.7825,
+   0.8193,
+   -0.0,
+   -0.5733,
+   -0.0449,
+   -0.0,
+   -1.0,
+   0.0,
+   -0.0367,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_7"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.1033,
+   0.0596,
+   0.1046
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0458,
+    -0.0337,
+    -0.0494
+   ],
+   "bbox_max": [
+    0.0576,
+    0.0259,
+    0.0552
+   ],
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ],
+   "centroid": [
+    0.0003,
+    -0.0054,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.05,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_7"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_02.001",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.929,
+   0.0245,
+   -0.1673
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.9209,
+   0.0,
+   -0.3898,
+   0.0
+  ],
+  "scale": [
+   0.6815,
+   0.6815,
+   0.6815
+  ],
+  "dims": [
+   0.0704,
+   0.0406,
+   0.0713
+  ],
+  "matrix_world": [
+   0.4745,
+   0.0,
+   -0.4893,
+   -0.929,
+   0.4893,
+   -0.0,
+   0.4745,
+   -0.1673,
+   -0.0,
+   -0.6815,
+   -0.0,
+   -0.0245,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_8"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.048,
+   0.0277,
+   0.0486
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0458,
+    -0.0337,
+    -0.0494
+   ],
+   "bbox_max": [
+    0.0576,
+    0.0259,
+    0.0552
+   ],
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ],
+   "centroid": [
+    0.0003,
+    -0.0054,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.05,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_8"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_02.002",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -1.1619,
+   0.0245,
+   -0.4559
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.6129,
+   0.0,
+   -0.7902,
+   0.0
+  ],
+  "scale": [
+   0.6815,
+   0.6815,
+   0.6815
+  ],
+  "dims": [
+   0.0704,
+   0.0406,
+   0.0713
+  ],
+  "matrix_world": [
+   -0.1695,
+   0.0,
+   -0.6601,
+   -1.1619,
+   0.6601,
+   -0.0,
+   -0.1695,
+   -0.4559,
+   -0.0,
+   -0.6815,
+   0.0,
+   -0.0245,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_9"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.048,
+   0.0277,
+   0.0486
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0458,
+    -0.0337,
+    -0.0494
+   ],
+   "bbox_max": [
+    0.0576,
+    0.0259,
+    0.0552
+   ],
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ],
+   "centroid": [
+    0.0003,
+    -0.0054,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.05,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_9"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_02.003",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.4866,
+   0.0041,
+   0.3585
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.9724,
+   0.1257,
+   0.1673,
+   0.1029
+  ],
+  "scale": [
+   1.5478,
+   1.5478,
+   1.5478
+  ],
+  "dims": [
+   0.1599,
+   0.0922,
+   0.1619
+  ],
+  "matrix_world": [
+   1.4284,
+   -0.2448,
+   0.5435,
+   -0.4866,
+   -0.4634,
+   0.4318,
+   1.4122,
+   0.3585,
+   -0.375,
+   -1.466,
+   0.3252,
+   -0.0041,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_10"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.2475,
+   0.1428,
+   0.2507
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0458,
+    -0.0337,
+    -0.0494
+   ],
+   "bbox_max": [
+    0.0576,
+    0.0259,
+    0.0552
+   ],
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ],
+   "centroid": [
+    0.0003,
+    -0.0054,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_10"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_02.004",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.35,
+   0.0448,
+   -0.2095
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.3336,
+   0.0,
+   -0.9427,
+   0.0
+  ],
+  "scale": [
+   1.0,
+   1.6825,
+   1.0
+  ],
+  "dims": [
+   0.1033,
+   0.1003,
+   0.1046
+  ],
+  "matrix_world": [
+   -0.7775,
+   0.0,
+   -0.6289,
+   -0.35,
+   0.6289,
+   -0.0,
+   -0.7775,
+   -0.2095,
+   -0.0,
+   -1.6825,
+   0.0,
+   -0.0448,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_11"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.1033,
+   0.1687,
+   0.1046
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0458,
+    -0.0337,
+    -0.0494
+   ],
+   "bbox_max": [
+    0.0576,
+    0.0259,
+    0.0552
+   ],
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ],
+   "centroid": [
+    0.0003,
+    -0.0054,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_11"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_02.005",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.553,
+   0.0477,
+   -0.004
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.1257,
+   0.0,
+   0.9921,
+   0.0
+  ],
+  "scale": [
+   1.0,
+   1.6825,
+   1.0
+  ],
+  "dims": [
+   0.1033,
+   0.1003,
+   0.1046
+  ],
+  "matrix_world": [
+   -0.9684,
+   0.0,
+   0.2494,
+   -0.553,
+   -0.2494,
+   -0.0,
+   -0.9684,
+   -0.004,
+   0.0,
+   -1.6825,
+   0.0,
+   -0.0477,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_12"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.1033,
+   0.1687,
+   0.1046
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0458,
+    -0.0337,
+    -0.0494
+   ],
+   "bbox_max": [
+    0.0576,
+    0.0259,
+    0.0552
+   ],
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ],
+   "centroid": [
+    0.0003,
+    -0.0054,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_12"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_03",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.6708,
+   0.0135,
+   -0.3499
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.1122,
+   0.0,
+   0.9937,
+   0.0
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.0694,
+   0.0432,
+   0.0685
+  ],
+  "matrix_world": [
+   -0.9748,
+   0.0,
+   0.223,
+   -0.6708,
+   -0.223,
+   -0.0,
+   -0.9748,
+   -0.3499,
+   0.0,
+   -1.0,
+   0.0,
+   -0.0135,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_13"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0694,
+   0.0432,
+   0.0685
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0335,
+    -0.0234,
+    -0.0364
+   ],
+   "bbox_max": [
+    0.0358,
+    0.0198,
+    0.0321
+   ],
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0042,
+    0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_13"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_03.001",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.5588,
+   -0.0238,
+   -1.0428
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.799,
+   0.0501,
+   0.5981,
+   0.0375
+  ],
+  "scale": [
+   0.8325,
+   0.8325,
+   0.8325
+  ],
+  "dims": [
+   0.0577,
+   0.0359,
+   0.057
+  ],
+  "matrix_world": [
+   0.2346,
+   0.0,
+   0.7988,
+   -0.5588,
+   -0.7925,
+   0.1041,
+   0.2327,
+   -1.0428,
+   -0.0999,
+   -0.826,
+   0.0293,
+   0.0238,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_14"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0481,
+   0.0299,
+   0.0475
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0335,
+    -0.0234,
+    -0.0364
+   ],
+   "bbox_max": [
+    0.0358,
+    0.0198,
+    0.0321
+   ],
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0042,
+    0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_14"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_03.002",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -1.0411,
+   -0.022,
+   -1.0868
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.4106,
+   0.0,
+   0.9118,
+   0.0
+  ],
+  "scale": [
+   0.7054,
+   1.5004,
+   0.7054
+  ],
+  "dims": [
+   0.0489,
+   0.0648,
+   0.0483
+  ],
+  "matrix_world": [
+   -0.4676,
+   0.0,
+   0.5282,
+   -1.0411,
+   -0.5282,
+   -0.0,
+   -0.4676,
+   -1.0868,
+   0.0,
+   -1.5004,
+   0.0,
+   0.022,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_15"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0345,
+   0.0972,
+   0.0341
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0335,
+    -0.0234,
+    -0.0364
+   ],
+   "bbox_max": [
+    0.0358,
+    0.0198,
+    0.0321
+   ],
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0042,
+    0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_15"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_03.003",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.1098,
+   -0.1202,
+   -0.7288
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.3492,
+   0.3185,
+   0.8805,
+   0.0366
+  ],
+  "scale": [
+   1.1714,
+   1.1714,
+   1.1714
+  ],
+  "dims": [
+   0.0812,
+   0.0506,
+   0.0803
+  ],
+  "matrix_world": [
+   -0.6481,
+   0.627,
+   0.7477,
+   -0.1098,
+   -0.693,
+   0.3361,
+   -0.8826,
+   -0.7288,
+   -0.6869,
+   -0.9307,
+   0.185,
+   0.1202,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_16"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0952,
+   0.0592,
+   0.094
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0335,
+    -0.0234,
+    -0.0364
+   ],
+   "bbox_max": [
+    0.0358,
+    0.0198,
+    0.0321
+   ],
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0042,
+    0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_16"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_03.004",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.129,
+   -0.1595,
+   -0.6466
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.4289,
+   0.3472,
+   0.8077,
+   -0.2076
+  ],
+  "scale": [
+   0.8236,
+   0.8236,
+   0.8236
+  ],
+  "dims": [
+   0.0571,
+   0.0355,
+   0.0564
+  ],
+  "matrix_world": [
+   -0.322,
+   0.6085,
+   0.4519,
+   -0.129,
+   -0.6894,
+   -0.0309,
+   -0.4495,
+   -0.6466,
+   -0.3152,
+   -0.5541,
+   0.5215,
+   0.1595,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_17"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.047,
+   0.0293,
+   0.0465
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0335,
+    -0.0234,
+    -0.0364
+   ],
+   "bbox_max": [
+    0.0358,
+    0.0198,
+    0.0321
+   ],
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0042,
+    0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_17"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_03.005",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.1497,
+   -0.1291,
+   -0.6523
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.0697,
+   -0.3759,
+   -0.86,
+   -0.338
+  ],
+  "scale": [
+   0.8236,
+   0.9017,
+   0.8236
+  ],
+  "dims": [
+   0.0571,
+   0.0389,
+   0.0564
+  ],
+  "matrix_world": [
+   -0.5829,
+   0.6254,
+   0.1105,
+   -0.1497,
+   0.3081,
+   0.477,
+   -0.6273,
+   -0.6523,
+   -0.4936,
+   -0.4408,
+   -0.522,
+   0.1291,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_18"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.047,
+   0.0351,
+   0.0465
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0335,
+    -0.0234,
+    -0.0364
+   ],
+   "bbox_max": [
+    0.0358,
+    0.0198,
+    0.0321
+   ],
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0042,
+    0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_18"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_03.006",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.3245,
+   -0.1769,
+   0.483
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.9431,
+   0.2413,
+   0.1379,
+   -0.1827
+  ],
+  "scale": [
+   0.8236,
+   0.8236,
+   0.8236
+  ],
+  "dims": [
+   0.0571,
+   0.0355,
+   0.0564
+  ],
+  "matrix_world": [
+   0.7373,
+   0.3386,
+   0.1416,
+   -0.3245,
+   -0.2869,
+   0.3334,
+   0.6963,
+   0.483,
+   0.2289,
+   -0.6727,
+   0.4164,
+   0.1769,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_19"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.047,
+   0.0293,
+   0.0465
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0335,
+    -0.0234,
+    -0.0364
+   ],
+   "bbox_max": [
+    0.0358,
+    0.0198,
+    0.0321
+   ],
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0042,
+    0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_19"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_03.007",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.3465,
+   -0.1441,
+   0.4695
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.4412,
+   0.1255,
+   0.8761,
+   0.1487
+  ],
+  "scale": [
+   0.7174,
+   1.3373,
+   0.7174
+  ],
+  "dims": [
+   0.0498,
+   0.0577,
+   0.0492
+  ],
+  "matrix_world": [
+   -0.4156,
+   0.1186,
+   0.5813,
+   -0.3465,
+   -0.5278,
+   0.4965,
+   -0.4064,
+   0.4695,
+   -0.2518,
+   -1.236,
+   -0.1075,
+   0.1441,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_20"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0357,
+   0.0772,
+   0.0353
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0335,
+    -0.0234,
+    -0.0364
+   ],
+   "bbox_max": [
+    0.0358,
+    0.0198,
+    0.0321
+   ],
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0042,
+    0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_20"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_04",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.7027,
+   0.0157,
+   -0.3286
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.0223,
+   0.0,
+   -0.9998,
+   0.0
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.0612,
+   0.0305,
+   0.0469
+  ],
+  "matrix_world": [
+   -0.999,
+   0.0,
+   -0.0445,
+   -0.7027,
+   0.0445,
+   -0.0,
+   -0.999,
+   -0.3286,
+   -0.0,
+   -1.0,
+   0.0,
+   -0.0157,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_21"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0612,
+   0.0305,
+   0.0469
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0254,
+    -0.0161,
+    -0.025
+   ],
+   "bbox_max": [
+    0.0357,
+    0.0143,
+    0.0219
+   ],
+   "dims": [
+    0.0612,
+    0.0305,
+    0.0469
+   ],
+   "centroid": [
+    -0.0003,
+    -0.0029,
+    -0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_21"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_04.001",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.575,
+   -0.0185,
+   -1.0699
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.7114,
+   0.0446,
+   0.7,
+   0.0439
+  ],
+  "scale": [
+   0.8325,
+   0.8325,
+   0.8325
+  ],
+  "dims": [
+   0.0509,
+   0.0254,
+   0.039
+  ],
+  "matrix_world": [
+   0.0135,
+   -0.0,
+   0.8324,
+   -0.575,
+   -0.8259,
+   0.1041,
+   0.0134,
+   -1.0699,
+   -0.1041,
+   -0.826,
+   0.0017,
+   0.0185,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_22"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0424,
+   0.0211,
+   0.0325
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0254,
+    -0.0161,
+    -0.025
+   ],
+   "bbox_max": [
+    0.0357,
+    0.0143,
+    0.0219
+   ],
+   "dims": [
+    0.0612,
+    0.0305,
+    0.0469
+   ],
+   "centroid": [
+    -0.0003,
+    -0.0029,
+    -0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_22"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_04.002",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -1.0598,
+   -0.0119,
+   -1.1074
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.2844,
+   0.0,
+   0.9587,
+   0.0
+  ],
+  "scale": [
+   0.7054,
+   0.7054,
+   0.7054
+  ],
+  "dims": [
+   0.0431,
+   0.0215,
+   0.0331
+  ],
+  "matrix_world": [
+   -0.5913,
+   0.0,
+   0.3847,
+   -1.0598,
+   -0.3847,
+   -0.0,
+   -0.5913,
+   -1.1074,
+   0.0,
+   -0.7054,
+   0.0,
+   0.0119,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_23"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0304,
+   0.0152,
+   0.0233
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0254,
+    -0.0161,
+    -0.025
+   ],
+   "bbox_max": [
+    0.0357,
+    0.0143,
+    0.0219
+   ],
+   "dims": [
+    0.0612,
+    0.0305,
+    0.0469
+   ],
+   "centroid": [
+    -0.0003,
+    -0.0029,
+    -0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_23"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_04.003",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.1403,
+   -0.1,
+   -0.7232
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.1688,
+   0.3463,
+   0.8906,
+   0.2417
+  ],
+  "scale": [
+   0.9867,
+   0.9867,
+   0.9867
+  ],
+  "dims": [
+   0.0604,
+   0.0301,
+   0.0463
+  ],
+  "matrix_world": [
+   -0.6939,
+   0.5281,
+   0.4618,
+   -0.1403,
+   -0.1314,
+   0.5401,
+   -0.8152,
+   -0.7232,
+   -0.6891,
+   -0.6348,
+   -0.3095,
+   0.1,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_24"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0596,
+   0.0297,
+   0.0456
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0254,
+    -0.0161,
+    -0.025
+   ],
+   "bbox_max": [
+    0.0357,
+    0.0143,
+    0.0219
+   ],
+   "dims": [
+    0.0612,
+    0.0305,
+    0.0469
+   ],
+   "centroid": [
+    -0.0003,
+    -0.0029,
+    -0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_24"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_04.004",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.1721,
+   -0.1041,
+   -0.6612
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.4367,
+   0.3701,
+   0.7941,
+   -0.2043
+  ],
+  "scale": [
+   0.4187,
+   0.4187,
+   0.4187
+  ],
+  "dims": [
+   0.0256,
+   0.0128,
+   0.0196
+  ],
+  "matrix_world": [
+   -0.1443,
+   0.3208,
+   0.2271,
+   -0.1721,
+   -0.3537,
+   -0.0005,
+   -0.2241,
+   -0.6612,
+   -0.1714,
+   -0.269,
+   0.2712,
+   0.1041,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_25"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0107,
+   0.0053,
+   0.0082
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0254,
+    -0.0161,
+    -0.025
+   ],
+   "bbox_max": [
+    0.0357,
+    0.0143,
+    0.0219
+   ],
+   "dims": [
+    0.0612,
+    0.0305,
+    0.0469
+   ],
+   "centroid": [
+    -0.0003,
+    -0.0029,
+    -0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.025,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_25"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.6902,
+   0.0203,
+   -0.2578
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.9673,
+   0.2138,
+   0.0295,
+   -0.1336
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ],
+  "matrix_world": [
+   0.9626,
+   0.271,
+   -0.0,
+   -0.6902,
+   -0.1142,
+   0.4057,
+   0.9068,
+   -0.2578,
+   0.2457,
+   -0.8729,
+   0.4215,
+   -0.0203,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_26"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_26"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05.001",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.7,
+   0.0218,
+   -0.2417
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.4698,
+   0.1119,
+   0.8729,
+   0.0689
+  ],
+  "scale": [
+   0.8544,
+   0.8544,
+   0.8544
+  ],
+  "dims": [
+   0.0176,
+   0.0104,
+   0.0194
+  ],
+  "matrix_world": [
+   -0.4559,
+   0.1116,
+   0.714,
+   -0.7,
+   -0.6876,
+   0.1926,
+   -0.4691,
+   -0.2417,
+   -0.2222,
+   -0.8249,
+   -0.0129,
+   -0.0218,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_27"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.015,
+   0.0089,
+   0.0166
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_27"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05.002",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.8987,
+   0.0201,
+   -0.193
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.8861,
+   0.145,
+   0.4144,
+   0.1485
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ],
+  "matrix_world": [
+   0.6124,
+   -0.143,
+   0.7775,
+   -0.8987,
+   -0.6913,
+   0.3801,
+   0.6144,
+   -0.193,
+   -0.3835,
+   -0.9138,
+   0.1339,
+   -0.0201,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_28"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_28"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05.003",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.8958,
+   0.0186,
+   -0.1744
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.1062,
+   -0.1766,
+   0.9586,
+   0.1964
+  ],
+  "scale": [
+   0.8544,
+   0.8544,
+   0.8544
+  ],
+  "dims": [
+   0.0176,
+   0.0104,
+   0.0194
+  ],
+  "matrix_world": [
+   -0.7819,
+   -0.3249,
+   0.1146,
+   -0.8958,
+   -0.2331,
+   0.2897,
+   -0.7693,
+   -0.1744,
+   0.2536,
+   -0.7352,
+   -0.3537,
+   -0.0186,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_29"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.015,
+   0.0089,
+   0.0166
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_29"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05.004",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -1.2086,
+   0.0139,
+   -0.5236
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.6096,
+   0.084,
+   -0.7727,
+   0.1559
+  ],
+  "scale": [
+   1.0463,
+   1.0463,
+   1.0463
+  ],
+  "dims": [
+   0.0215,
+   0.0128,
+   0.0237
+  ],
+  "matrix_world": [
+   -0.2538,
+   -0.3346,
+   -0.9583,
+   -1.2086,
+   1.0131,
+   -0.1449,
+   -0.2177,
+   -0.5236,
+   -0.063,
+   -0.9807,
+   0.3592,
+   -0.0139,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_30"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0225,
+   0.0133,
+   0.0248
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_30"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05.005",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -1.2207,
+   0.0133,
+   -0.5391
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.984,
+   -0.1184,
+   0.1292,
+   0.0308
+  ],
+  "scale": [
+   0.894,
+   0.894,
+   0.894
+  ],
+  "dims": [
+   0.0184,
+   0.0109,
+   0.0203
+  ],
+  "matrix_world": [
+   0.8624,
+   -0.0816,
+   0.2209,
+   -1.2207,
+   -0.2339,
+   -0.2011,
+   0.8391,
+   -0.5391,
+   -0.0269,
+   -0.8672,
+   -0.2154,
+   -0.0133,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_31"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0164,
+   0.0097,
+   0.0181
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_31"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05.006",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.9785,
+   -0.0092,
+   -1.1031
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.6403,
+   0.2393,
+   -0.7256,
+   0.0793
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ],
+  "matrix_world": [
+   -0.0655,
+   -0.4488,
+   -0.8912,
+   -0.9785,
+   0.9671,
+   0.1914,
+   -0.1674,
+   -1.1031,
+   0.2457,
+   -0.8729,
+   0.4215,
+   0.0092,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_32"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_32"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05.007",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -0.9925,
+   -0.0076,
+   -1.1156
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.9718,
+   0.0184,
+   0.1958,
+   0.1301
+  ],
+  "scale": [
+   0.8544,
+   0.8544,
+   0.8544
+  ],
+  "dims": [
+   0.0176,
+   0.0104,
+   0.0194
+  ],
+  "matrix_world": [
+   0.76,
+   -0.2099,
+   0.3293,
+   -0.9925,
+   -0.3211,
+   0.0741,
+   0.7883,
+   -1.1156,
+   -0.2222,
+   -0.8249,
+   -0.0129,
+   0.0076,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_33"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.015,
+   0.0089,
+   0.0166
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_33"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05.008",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -1.3161,
+   -0.0242,
+   -0.8588
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.945,
+   0.1853,
+   0.2085,
+   -0.1709
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ],
+  "matrix_world": [
+   0.8547,
+   0.4003,
+   0.3306,
+   -1.3161,
+   -0.4573,
+   0.279,
+   0.8444,
+   -0.8588,
+   0.2457,
+   -0.8729,
+   0.4215,
+   0.0242,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_34"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_34"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05.009",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -1.3193,
+   -0.0227,
+   -0.8403
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.2997,
+   0.1227,
+   0.9449,
+   0.0469
+  ],
+  "scale": [
+   0.8544,
+   0.8544,
+   0.8544
+  ],
+  "dims": [
+   0.0176,
+   0.0104,
+   0.0194
+  ],
+  "matrix_world": [
+   -0.6752,
+   0.1741,
+   0.4938,
+   -1.3193,
+   -0.4741,
+   0.1386,
+   -0.6972,
+   -0.8403,
+   -0.2222,
+   -0.8249,
+   -0.0129,
+   0.0227,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_35"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.015,
+   0.0089,
+   0.0166
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_35"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "rock_05.010",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -1.3265,
+   -0.018,
+   -0.8561
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.5791,
+   0.0386,
+   -0.8144,
+   0.0031
+  ],
+  "scale": [
+   0.4192,
+   0.4192,
+   0.4192
+  ],
+  "dims": [
+   0.0086,
+   0.0051,
+   0.0095
+  ],
+  "matrix_world": [
+   -0.1368,
+   -0.0278,
+   -0.3953,
+   -1.3265,
+   0.3955,
+   0.0166,
+   -0.138,
+   -0.8561,
+   0.0248,
+   -0.4179,
+   0.0208,
+   0.018,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_36"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.0036,
+   0.0021,
+   0.004
+  ],
+  "mesh": {
+   "verts": 120,
+   "edges": 120,
+   "tris": 40,
+   "polys": 40,
+   "bbox_min": [
+    -0.0092,
+    -0.0062,
+    -0.0109
+   ],
+   "bbox_max": [
+    0.0114,
+    0.006,
+    0.0118
+   ],
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ],
+   "centroid": [
+    -0.0002,
+    -0.0012,
+    -0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 40
+   },
+   "smooth_fraction": 0.1,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_36"
+   ]
+  },
+  "evaluated": {
+   "verts": 120,
+   "tris": 40
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "sun",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   5.1048,
+   -1.2378,
+   1.0163
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "scale": [
+   -0.0858,
+   -0.0858,
+   -0.0858
+  ],
+  "dims": [
+   0.1633,
+   0.1717,
+   0.1717
+  ],
+  "matrix_world": [
+   -0.0858,
+   0.0,
+   0.0,
+   5.1048,
+   0.0,
+   0.0,
+   -0.0858,
+   1.0163,
+   0.0,
+   0.0858,
+   0.0,
+   1.2378,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_37"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.014,
+   0.0147,
+   0.0147
+  ],
+  "mesh": {
+   "verts": 240,
+   "edges": 240,
+   "tris": 80,
+   "polys": 80,
+   "bbox_min": [
+    -0.9511,
+    -1.0,
+    -1.0
+   ],
+   "bbox_max": [
+    0.9511,
+    1.0,
+    1.0
+   ],
+   "dims": [
+    1.9021,
+    2.0,
+    2.0
+   ],
+   "centroid": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 80
+   },
+   "smooth_fraction": 0.087,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_37"
+   ]
+  },
+  "evaluated": {
+   "verts": 240,
+   "tris": 80
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "tree.001",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -5.0027,
+   -0.6942,
+   -2.019
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.7071,
+   0.0,
+   0.0,
+   0.7071
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.5709,
+   1.1385,
+   0.6258
+  ],
+  "matrix_world": [
+   0.0,
+   -1.0,
+   0.0,
+   -5.0027,
+   -0.0,
+   -0.0,
+   1.0,
+   -2.019,
+   -1.0,
+   -0.0,
+   -0.0,
+   0.6942,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_38"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.5709,
+   1.1385,
+   0.6258
+  ],
+  "mesh": {
+   "verts": 1392,
+   "edges": 1392,
+   "tris": 464,
+   "polys": 464,
+   "bbox_min": [
+    -0.26,
+    -1.0998,
+    -0.3129
+   ],
+   "bbox_max": [
+    0.3109,
+    0.0388,
+    0.3128
+   ],
+   "dims": [
+    0.5709,
+    1.1385,
+    0.6258
+   ],
+   "centroid": [
+    0.0365,
+    -0.5156,
+    0.0001
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 464
+   },
+   "smooth_fraction": 0.062,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_38"
+   ]
+  },
+  "evaluated": {
+   "verts": 1392,
+   "tris": 464
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "tree.002",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -5.0168,
+   0.6582,
+   -2.0029
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.7071,
+   0.0,
+   0.0,
+   0.7071
+  ],
+  "scale": [
+   0.7194,
+   1.0,
+   0.7194
+  ],
+  "dims": [
+   0.5343,
+   1.2104,
+   0.4968
+  ],
+  "matrix_world": [
+   0.0,
+   -1.0,
+   0.0,
+   -5.0168,
+   -0.0,
+   -0.0,
+   0.7194,
+   -2.0029,
+   -0.7194,
+   -0.0,
+   -0.0,
+   -0.6582,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_39"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.3844,
+   1.2104,
+   0.3574
+  ],
+  "mesh": {
+   "verts": 1392,
+   "edges": 1392,
+   "tris": 464,
+   "polys": 464,
+   "bbox_min": [
+    -0.3544,
+    -1.1879,
+    -0.3656
+   ],
+   "bbox_max": [
+    0.3883,
+    0.0225,
+    0.325
+   ],
+   "dims": [
+    0.7427,
+    1.2104,
+    0.6906
+   ],
+   "centroid": [
+    0.0231,
+    -0.5644,
+    0.0007
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 464
+   },
+   "smooth_fraction": 0.067,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_39"
+   ]
+  },
+  "evaluated": {
+   "verts": 1392,
+   "tris": 464
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "tree.003",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   -5.0223,
+   0.0025,
+   -2.0198
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   0.7071,
+   0.0,
+   0.0,
+   0.7071
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   0.647,
+   1.2458,
+   0.6716
+  ],
+  "matrix_world": [
+   0.0,
+   -1.0,
+   0.0,
+   -5.0223,
+   -0.0,
+   -0.0,
+   1.0,
+   -2.0198,
+   -1.0,
+   -0.0,
+   -0.0,
+   -0.0025,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_40"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   0.647,
+   1.2458,
+   0.6716
+  ],
+  "mesh": {
+   "verts": 1392,
+   "edges": 1392,
+   "tris": 464,
+   "polys": 464,
+   "bbox_min": [
+    -0.3204,
+    -1.2236,
+    -0.3454
+   ],
+   "bbox_max": [
+    0.3265,
+    0.0223,
+    0.3262
+   ],
+   "dims": [
+    0.647,
+    1.2458,
+    0.6716
+   ],
+   "centroid": [
+    -0.016,
+    -0.5886,
+    -0.014
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 464
+   },
+   "smooth_fraction": 0.041,
+   "uv_layers": [
+    "UVMap"
+   ],
+   "material_slots": [
+    "Material_40"
+   ]
+  },
+  "evaluated": {
+   "verts": 1392,
+   "tris": 464
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ },
+ {
+  "name": "water",
+  "type": "MESH",
+  "parent": "Node_42",
+  "location": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_euler_deg": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "rotation_quaternion": [
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "scale": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "dims": [
+   2.5429,
+   0.0119,
+   2.5286
+  ],
+  "matrix_world": [
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   -0.0,
+   1.0,
+   0.0,
+   0.0,
+   -1.0,
+   -0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "collections": [
+   "Collection"
+  ],
+  "hide_render": false,
+  "hide_viewport": false,
+  "visible_in_render": true,
+  "materials": [
+   "Material_41"
+  ],
+  "modifiers": [],
+  "world_dims": [
+   2.5429,
+   0.0119,
+   2.5286
+  ],
+  "mesh": {
+   "verts": 866,
+   "edges": 2403,
+   "tris": 1538,
+   "polys": 1538,
+   "bbox_min": [
+    -1.2708,
+    0.0241,
+    -1.2636
+   ],
+   "bbox_max": [
+    1.2721,
+    0.0359,
+    1.265
+   ],
+   "dims": [
+    2.5429,
+    0.0119,
+    2.5286
+   ],
+   "centroid": [
+    -0.0889,
+    0.0299,
+    -0.0828
+   ],
+   "loose_verts": 0,
+   "ngon_histogram": {
+    "3": 1538
+   },
+   "smooth_fraction": 1.0,
+   "material_slots": [
+    "Material_41"
+   ]
+  },
+  "evaluated": {
+   "verts": 866,
+   "tris": 1538
+  },
+  "vertex_groups": [],
+  "shape_keys": [],
+  "particles": []
+ }
+]

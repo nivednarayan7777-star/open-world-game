@@ -1,0 +1,1168 @@
+[
+ {
+  "signature": "MESH|1392|464|(0.571, 1.139, 0.626)|('Material_38',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "tree.001"
+  ],
+  "sample": "tree.001",
+  "materials": [
+   "Material_38"
+  ],
+  "mesh": {
+   "verts": 1392,
+   "tris": 464,
+   "dims": [
+    0.5709,
+    1.1385,
+    0.6258
+   ]
+  },
+  "world_dims": [
+   0.5709,
+   1.1385,
+   0.6258
+  ]
+ },
+ {
+  "signature": "MESH|1392|464|(0.743, 1.21, 0.691)|('Material_39',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "tree.002"
+  ],
+  "sample": "tree.002",
+  "materials": [
+   "Material_39"
+  ],
+  "mesh": {
+   "verts": 1392,
+   "tris": 464,
+   "dims": [
+    0.7427,
+    1.2104,
+    0.6906
+   ]
+  },
+  "world_dims": [
+   0.3844,
+   1.2104,
+   0.3574
+  ]
+ },
+ {
+  "signature": "MESH|1392|464|(0.647, 1.246, 0.672)|('Material_40',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "tree.003"
+  ],
+  "sample": "tree.003",
+  "materials": [
+   "Material_40"
+  ],
+  "mesh": {
+   "verts": 1392,
+   "tris": 464,
+   "dims": [
+    0.647,
+    1.2458,
+    0.6716
+   ]
+  },
+  "world_dims": [
+   0.647,
+   1.2458,
+   0.6716
+  ]
+ },
+ {
+  "signature": "MESH|1280|2549|(2.752, 0.525, 2.5)|('Material_0',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "Landscape"
+  ],
+  "sample": "Landscape",
+  "materials": [
+   "Material_0"
+  ],
+  "mesh": {
+   "verts": 1280,
+   "tris": 2549,
+   "dims": [
+    2.7518,
+    0.5251,
+    2.5
+   ]
+  },
+  "world_dims": [
+   2.7518,
+   0.5251,
+   2.5
+  ]
+ },
+ {
+  "signature": "MESH|866|1538|(2.543, 0.012, 2.529)|('Material_41',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "water"
+  ],
+  "sample": "water",
+  "materials": [
+   "Material_41"
+  ],
+  "mesh": {
+   "verts": 866,
+   "tris": 1538,
+   "dims": [
+    2.5429,
+    0.0119,
+    2.5286
+   ]
+  },
+  "world_dims": [
+   2.5429,
+   0.0119,
+   2.5286
+  ]
+ },
+ {
+  "signature": "MESH|240|80|(1.902, 2.0, 2.0)|('Material_37',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "sun"
+  ],
+  "sample": "sun",
+  "materials": [
+   "Material_37"
+  ],
+  "mesh": {
+   "verts": 240,
+   "tris": 80,
+   "dims": [
+    1.9021,
+    2.0,
+    2.0
+   ]
+  },
+  "world_dims": [
+   0.014,
+   0.0147,
+   0.0147
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_1',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_01"
+  ],
+  "sample": "rock_01",
+  "materials": [
+   "Material_1"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ]
+  },
+  "world_dims": [
+   0.1285,
+   0.0575,
+   0.1351
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_2',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_01.001"
+  ],
+  "sample": "rock_01.001",
+  "materials": [
+   "Material_2"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ]
+  },
+  "world_dims": [
+   0.1178,
+   0.0786,
+   0.1238
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_3',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_01.002"
+  ],
+  "sample": "rock_01.002",
+  "materials": [
+   "Material_3"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ]
+  },
+  "world_dims": [
+   0.0415,
+   0.0445,
+   0.0437
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_4',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_01.003"
+  ],
+  "sample": "rock_01.003",
+  "materials": [
+   "Material_4"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ]
+  },
+  "world_dims": [
+   0.0574,
+   0.0614,
+   0.0603
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_5',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_01.004"
+  ],
+  "sample": "rock_01.004",
+  "materials": [
+   "Material_5"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ]
+  },
+  "world_dims": [
+   0.0149,
+   0.0159,
+   0.0156
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.129, 0.058, 0.135)|('Material_6',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_01.005"
+  ],
+  "sample": "rock_01.005",
+  "materials": [
+   "Material_6"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1285,
+    0.0575,
+    0.1351
+   ]
+  },
+  "world_dims": [
+   0.1285,
+   0.1286,
+   0.1351
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_7',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_02"
+  ],
+  "sample": "rock_02",
+  "materials": [
+   "Material_7"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ]
+  },
+  "world_dims": [
+   0.1033,
+   0.0596,
+   0.1046
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_8',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_02.001"
+  ],
+  "sample": "rock_02.001",
+  "materials": [
+   "Material_8"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ]
+  },
+  "world_dims": [
+   0.048,
+   0.0277,
+   0.0486
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_9',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_02.002"
+  ],
+  "sample": "rock_02.002",
+  "materials": [
+   "Material_9"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ]
+  },
+  "world_dims": [
+   0.048,
+   0.0277,
+   0.0486
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_10',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_02.003"
+  ],
+  "sample": "rock_02.003",
+  "materials": [
+   "Material_10"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ]
+  },
+  "world_dims": [
+   0.2475,
+   0.1428,
+   0.2507
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_11',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_02.004"
+  ],
+  "sample": "rock_02.004",
+  "materials": [
+   "Material_11"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ]
+  },
+  "world_dims": [
+   0.1033,
+   0.1687,
+   0.1046
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.103, 0.06, 0.105)|('Material_12',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_02.005"
+  ],
+  "sample": "rock_02.005",
+  "materials": [
+   "Material_12"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.1033,
+    0.0596,
+    0.1046
+   ]
+  },
+  "world_dims": [
+   0.1033,
+   0.1687,
+   0.1046
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_13',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_03"
+  ],
+  "sample": "rock_03",
+  "materials": [
+   "Material_13"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ]
+  },
+  "world_dims": [
+   0.0694,
+   0.0432,
+   0.0685
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_14',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_03.001"
+  ],
+  "sample": "rock_03.001",
+  "materials": [
+   "Material_14"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ]
+  },
+  "world_dims": [
+   0.0481,
+   0.0299,
+   0.0475
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_15',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_03.002"
+  ],
+  "sample": "rock_03.002",
+  "materials": [
+   "Material_15"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ]
+  },
+  "world_dims": [
+   0.0345,
+   0.0972,
+   0.0341
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_16',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_03.003"
+  ],
+  "sample": "rock_03.003",
+  "materials": [
+   "Material_16"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ]
+  },
+  "world_dims": [
+   0.0952,
+   0.0592,
+   0.094
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_17',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_03.004"
+  ],
+  "sample": "rock_03.004",
+  "materials": [
+   "Material_17"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ]
+  },
+  "world_dims": [
+   0.047,
+   0.0293,
+   0.0465
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_18',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_03.005"
+  ],
+  "sample": "rock_03.005",
+  "materials": [
+   "Material_18"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ]
+  },
+  "world_dims": [
+   0.047,
+   0.0351,
+   0.0465
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_19',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_03.006"
+  ],
+  "sample": "rock_03.006",
+  "materials": [
+   "Material_19"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ]
+  },
+  "world_dims": [
+   0.047,
+   0.0293,
+   0.0465
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.069, 0.043, 0.069)|('Material_20',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_03.007"
+  ],
+  "sample": "rock_03.007",
+  "materials": [
+   "Material_20"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0694,
+    0.0432,
+    0.0685
+   ]
+  },
+  "world_dims": [
+   0.0357,
+   0.0772,
+   0.0353
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.061, 0.03, 0.047)|('Material_21',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_04"
+  ],
+  "sample": "rock_04",
+  "materials": [
+   "Material_21"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0612,
+    0.0305,
+    0.0469
+   ]
+  },
+  "world_dims": [
+   0.0612,
+   0.0305,
+   0.0469
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.061, 0.03, 0.047)|('Material_22',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_04.001"
+  ],
+  "sample": "rock_04.001",
+  "materials": [
+   "Material_22"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0612,
+    0.0305,
+    0.0469
+   ]
+  },
+  "world_dims": [
+   0.0424,
+   0.0211,
+   0.0325
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.061, 0.03, 0.047)|('Material_23',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_04.002"
+  ],
+  "sample": "rock_04.002",
+  "materials": [
+   "Material_23"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0612,
+    0.0305,
+    0.0469
+   ]
+  },
+  "world_dims": [
+   0.0304,
+   0.0152,
+   0.0233
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.061, 0.03, 0.047)|('Material_24',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_04.003"
+  ],
+  "sample": "rock_04.003",
+  "materials": [
+   "Material_24"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0612,
+    0.0305,
+    0.0469
+   ]
+  },
+  "world_dims": [
+   0.0596,
+   0.0297,
+   0.0456
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.061, 0.03, 0.047)|('Material_25',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_04.004"
+  ],
+  "sample": "rock_04.004",
+  "materials": [
+   "Material_25"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0612,
+    0.0305,
+    0.0469
+   ]
+  },
+  "world_dims": [
+   0.0107,
+   0.0053,
+   0.0082
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_26',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05"
+  ],
+  "sample": "rock_05",
+  "materials": [
+   "Material_26"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_27',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05.001"
+  ],
+  "sample": "rock_05.001",
+  "materials": [
+   "Material_27"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.015,
+   0.0089,
+   0.0166
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_28',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05.002"
+  ],
+  "sample": "rock_05.002",
+  "materials": [
+   "Material_28"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_29',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05.003"
+  ],
+  "sample": "rock_05.003",
+  "materials": [
+   "Material_29"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.015,
+   0.0089,
+   0.0166
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_30',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05.004"
+  ],
+  "sample": "rock_05.004",
+  "materials": [
+   "Material_30"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.0225,
+   0.0133,
+   0.0248
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_31',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05.005"
+  ],
+  "sample": "rock_05.005",
+  "materials": [
+   "Material_31"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.0164,
+   0.0097,
+   0.0181
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_32',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05.006"
+  ],
+  "sample": "rock_05.006",
+  "materials": [
+   "Material_32"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_33',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05.007"
+  ],
+  "sample": "rock_05.007",
+  "materials": [
+   "Material_33"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.015,
+   0.0089,
+   0.0166
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_34',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05.008"
+  ],
+  "sample": "rock_05.008",
+  "materials": [
+   "Material_34"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.0206,
+   0.0122,
+   0.0227
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_35',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05.009"
+  ],
+  "sample": "rock_05.009",
+  "materials": [
+   "Material_35"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.015,
+   0.0089,
+   0.0166
+  ]
+ },
+ {
+  "signature": "MESH|120|40|(0.021, 0.012, 0.023)|('Material_36',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "rock_05.010"
+  ],
+  "sample": "rock_05.010",
+  "materials": [
+   "Material_36"
+  ],
+  "mesh": {
+   "verts": 120,
+   "tris": 40,
+   "dims": [
+    0.0206,
+    0.0122,
+    0.0227
+   ]
+  },
+  "world_dims": [
+   0.0036,
+   0.0021,
+   0.004
+  ]
+ },
+ {
+  "signature": "MESH|8|12|(2.0, 2.0, 2.0)|('Material',)",
+  "type": "MESH",
+  "count": 1,
+  "names": [
+   "Cube"
+  ],
+  "sample": "Cube",
+  "materials": [
+   "Material"
+  ],
+  "mesh": {
+   "verts": 8,
+   "tris": 12,
+   "dims": [
+    2.0,
+    2.0,
+    2.0
+   ]
+  },
+  "world_dims": [
+   2.0,
+   2.0,
+   2.0
+  ]
+ },
+ {
+  "signature": "CAMERA|None|None|()|()",
+  "type": "CAMERA",
+  "count": 1,
+  "names": [
+   "Camera"
+  ],
+  "sample": "Camera",
+  "materials": [],
+  "mesh": {
+   "verts": null,
+   "tris": null,
+   "dims": null
+  },
+  "world_dims": null
+ },
+ {
+  "signature": "LIGHT|None|None|()|()",
+  "type": "LIGHT",
+  "count": 1,
+  "names": [
+   "Light"
+  ],
+  "sample": "Light",
+  "materials": [],
+  "mesh": {
+   "verts": null,
+   "tris": null,
+   "dims": null
+  },
+  "world_dims": null
+ },
+ {
+  "signature": "EMPTY|None|None|()|()",
+  "type": "EMPTY",
+  "count": 1,
+  "names": [
+   "Node_42"
+  ],
+  "sample": "Node_42",
+  "materials": [],
+  "mesh": {
+   "verts": null,
+   "tris": null,
+   "dims": null
+  },
+  "world_dims": null
+ }
+]
