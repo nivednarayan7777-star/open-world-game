@@ -1,20 +1,29 @@
 /**
  * terrain.js — the ground of Keralam.
  *
- * This module is a straight port of the terrain + ground material from the
- * reference Blender scene "Hero Tree.blend" (Blender 2.93, EEVEE):
+ * This module is a port of the terrain + ground material from the reference
+ * Blender scene "Hero Tree.blend" (Blender 2.93, EEVEE), as read back out of
+ * the file itself (see probe/scene.json and probe/mat_material_001.json, and
+ * probe/view_groundtop.png for the look it produces):
  *
  *   • Geometry  — the scene's ground is a wide, gently rolling slab (a regular
  *     X/Y grid of ~0.7 m cells whose height only ever varies smoothly). No
- *     terraces, no hard creases: slopes stay inside a few degrees and every
- *     transition (coast, hill foot, lagoon rim) is a soft blend. That is what
- *     gives the diorama its calm, hand-placed look, so it is what we build here.
+ *     terraces, no hard creases: the whole slab is *smooth shaded*, so it reads
+ *     as one calm surface. Every transition (coast, hill foot, lagoon rim) is a
+ *     soft blend. That is what gives the diorama its calm, hand-placed look.
  *
- *   • Material  — one Principled BSDF, Roughness 1.0, Specular 0.0, driven by
- *     Musgrave(FBM) → ColorRamp with a B-spline blend over a three stop green
- *     ramp. The same recipe is reproduced per-pixel in the shader below:
- *     large soft patches of dark green ↔ bright yellow-green, plus a faint
- *     fine-grain speckle. Nothing else — the blend's ground has no textures.
+ *   • Material  — one Principled BSDF, Roughness 1.0, Specular IOR Level 0,
+ *     fed by exactly four nodes:
+ *
+ *         Texture Coordinate.Generated → Mapping
+ *            → Musgrave (FBM, Scale 8.5, Detail 1.6, Dimension 0.6)
+ *            → ColorRamp (stops 0.0 / 0.2909 / 0.8591, B_SPLINE)
+ *            → Base Color
+ *
+ *     The blend's ground carries no image textures at all: every bit of its
+ *     detail is that one green ramp. The same recipe runs per-pixel in the
+ *     shader below, over three scales at once so it survives being walked on,
+ *     and nothing else is added.
  *
  * The Blender colour stops are linear RGB, which is exactly the space three.js
  * vertex colours and shader colours live in, so they can be used verbatim.
@@ -46,8 +55,8 @@ export const MUSGRAVE = { scale: 8.5, detail: 1.6, dimension: 0.6, lacunarity: 2
  * while beaches, paddies and tea slopes still tell themselves apart.
  */
 export const GROUND_TINT = {
-  village: lin(0.0560, 0.3000, 0.0350),   // the blend's mid green, slightly cooled
-  lowland: lin(0.0740, 0.3250, 0.0420),   // backwater banks: a touch brighter
+  village: lin(0.0580, 0.3450, 0.0370),   // the blend's mid green, slightly cooled
+  lowland: lin(0.0780, 0.3650, 0.0440),   // backwater banks: a touch brighter
   slope: lin(0.0480, 0.2700, 0.0360),     // hill flanks: deeper green
   paddy: lin(0.1150, 0.3400, 0.0450),     // paddy: yellow-green, like the blend's light stop
   tea: lin(0.0520, 0.2700, 0.0480),       // tea slopes: fresh, cool green
@@ -278,23 +287,76 @@ float tMusgrave(vec2 p, float octaves, float lacunarity, float gain) {
 `;
 
 /**
+ * Albedo multiplier that takes the ramp's `mid` stop to one of its end stops,
+ * per channel — i.e. the ColorRamp itself, expressed as something a shader can
+ * mix in *linear* space (three.js vertex colours live there, so do Blender's).
+ *
+ * Blender's stops are much further apart than any sRGB space can show
+ * (light.red / mid.red ≈ 3.9), so the ratio is compressed by `k` and capped. A
+ * faithful-but-pedestrian version of the ramp's three greens is what we want
+ * anyway: the blend reads as one green field carrying two green patches.
+ */
+function rampRatio(stop, mid, k, cap = 1.75) {
+  const f = (a, b, kk) =>
+    Math.max(1 / cap, Math.min(cap, Math.pow(Math.max(a, 1e-4) / Math.max(b, 1e-4), kk)));
+  return new THREE.Color(
+    f(stop.r, mid.r, Array.isArray(k) ? k[0] : k),
+    f(stop.g, mid.g, Array.isArray(k) ? k[1] : k),
+    f(stop.b, mid.b, Array.isArray(k) ? k[2] : k)
+  );
+}
+
+/** The ramp's dark stop, as a multiplier on its mid stop (deeper, more saturated green). */
+export const RAMP_DARK_MUL = rampRatio(GRASS_RAMP.dark, GRASS_RAMP.mid, 0.95);
+/**
+ * The ramp's light stop, as a multiplier on its mid stop.
+ *
+ * Per channel, because the blend's stops are far more saturated than any real
+ * surface: its light stop is ×3.9 the mid stop in *red* alone, which as a plain
+ * ratio would light the patches orange. The exponent pulls each channel back
+ * into a believable spread while keeping the ramp's hue drift — the highlights
+ * stay yellow-green. `green` is what the eye reads as "how bright is this
+ * patch", so it gets the largest exponent of the three.
+ */
+export const RAMP_LIGHT_MUL = rampRatio(GRASS_RAMP.light, GRASS_RAMP.mid, [0.70, 1.66, 0.70]);
+/** The ColorRamp's stop positions in the blend, used as the shader's ramp knots. */
+export const GRASS_RAMP_STOPS = { dark: 0.0, mid: 0.2909, light: 0.8591 };
+
+/**
  * The ground material: MeshStandardMaterial (so it keeps shadows, fog and the
  * day/night rig) with the blend's Musgrave → ColorRamp recipe injected into
  * the albedo. Patches are computed in world space, so detail never repeats and
  * never stretches, and costs no texture memory.
+ *
+ * Shading is deliberately *smooth* by default: the blend's slab has no facets
+ * at all, just a wide green plane whose only detail is the colour. Flat shading
+ * would turn every noise bump into a hard grey facet, which is exactly what the
+ * reference does not look like.
  */
 export function terrainMaterial(opts = {}) {
   const {
     tint = null,              // flat albedo override (used for sand / paddy slabs)
-    patchScale = 0.022,       // ≈ 45 m broad zones
-    patchMid = 0.075,         // ≈ 13 m patches, the blend slab's main motif
-    patchContrast = 0.46,
-    dark = 0.62,              // albedo multiplier on the darkest patches
-    light = 1.20,             // …and on the brightest
-    fine = 0.42,              // fine mottle frequency (≈ 2.4 m)
+    patchScale = 0.05,        // ≈ 20 m washes
+    patchMid = 0.30,          // ≈ 3.3 m patches — the motif the reference shows
+    patchStrength = 1.0,      // 0 → plain green, 1 → full ramp contrast
+    // Levels adjustment. Our value-noise FBM is a tamer signal than Blender's
+    // Musgrave: across the map it spans ≈ 0.35 … 0.65 (p10 … p90), where the
+    // blend's Musgrave.Fac spans nearly 0 … 1. Feeding it to the ramp unstretched
+    // is what made the old meadow read as one flat green. Mapping the middle 80%
+    // of the noise onto the ramp's full range restores the reference's look — a
+    // mid green field carrying soft lighter patches — instead of a uniform wash.
+    // The percentile walk-through behind these two numbers is in tune.mjs.
+    levelLow = 0.40,
+    levelHigh = 0.70,
+    dark = RAMP_DARK_MUL,     // channel-wise multiplier on the darkest patches
+    light = RAMP_LIGHT_MUL,   // …and on the brightest
+    fine = 1.10,              // fine mottle frequency (≈ 0.9 m)
     fineAmount = 0.09,
-    flatShading = true,
+    flatShading = false,
   } = opts;
+
+  const darkMul = dark instanceof THREE.Color ? dark.clone() : new THREE.Color(dark);
+  const lightMul = light instanceof THREE.Color ? light.clone() : new THREE.Color(light);
 
   const mat = new THREE.MeshStandardMaterial({
     color: tint ? tint.clone() : new THREE.Color(0xffffff),
@@ -308,12 +370,16 @@ export function terrainMaterial(opts = {}) {
   const uniforms = {
     uPatchScale: { value: patchScale },
     uPatchMid: { value: patchMid },
-    uPatchContrast: { value: patchContrast },
-    uDark: { value: dark },
-    uLight: { value: light },
+    uPatchStrength: { value: patchStrength },
+    uLevelLow: { value: levelLow },
+    uLevelHigh: { value: levelHigh },
+    // The blend's ColorRamp stop positions, used verbatim.
+    uStopMid: { value: GRASS_RAMP_STOPS.mid },
+    uStopLight: { value: GRASS_RAMP_STOPS.light },
+    uDark: { value: darkMul },
+    uLight: { value: lightMul },
     uFineScale: { value: fine },
     uFineAmount: { value: fineAmount },
-    uWarm: { value: GRASS_RAMP.light.clone() },
   };
   mat.userData.uniforms = uniforms;
 
@@ -332,63 +398,75 @@ export function terrainMaterial(opts = {}) {
         varying vec3 vTerrPos;
         uniform float uPatchScale;
         uniform float uPatchMid;
-        uniform float uPatchContrast;
-        uniform float uDark;
-        uniform float uLight;
+        uniform float uPatchStrength;
+        uniform float uLevelLow;
+        uniform float uLevelHigh;
+        uniform float uStopMid;
+        uniform float uStopLight;
+        uniform vec3 uDark;
+        uniform vec3 uLight;
         uniform float uFineScale;
         uniform float uFineAmount;
-        uniform vec3 uWarm;
         ${GLSL_NOISE}`)
       .replace(
         "#include <color_fragment>",
         `#include <color_fragment>
         {
           vec2 tp = vTerrPos.xz;
-          // Musgrave(FBM) → ColorRamp at three scales: broad zones, the blend
-          // slab's 13 m patches, and a light close-range mottle. Every level is
-          // smoothstepped, so the greens always blend (B-spline feel) instead of
-          // banding like a hard ramp.
-          float m1 = smoothstep(0.34, 0.84, tMusgrave(tp * uPatchScale, 2.0, 2.0, 0.62));
-          float m2 = smoothstep(0.30, 0.86, tMusgrave(tp * uPatchMid, 2.0, 2.0, 0.62));
-          float m3 = smoothstep(0.30, 0.88, tMusgrave(tp * uFineScale, 2.0, 2.0, 0.62));
-          float m = clamp(0.52 * m1 + 0.31 * m2 + 0.17 * m3, 0.0, 1.0);
-          m = mix(0.5, m, uPatchContrast + 0.55);
-          diffuseColor.rgb *= mix(uDark, uLight, m);
-          // Bright patches lean yellow-green, exactly like the ramp's light stop.
-          diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * uWarm * 2.6, m * 0.24);
-          diffuseColor.rgb *= 1.0 + (m3 - 0.5) * uFineAmount * 2.0;
+          // Musgrave(FBM).Fac, summed over three scales: the broad zones, the
+          // blend slab's ~13 m patches (the scale that carries the recipe; the
+          // reference's tiling works out at 13.4 m × 8.7 m), and a light
+          // close-range mottle. Weights keep the sum normalised.
+          float f = 0.30 * tMusgrave(tp * uPatchScale, 2.0, 2.0, 0.62)
+                  + 0.55 * tMusgrave(tp * uPatchMid, 3.0, 2.0, 0.62)
+                  + 0.15 * tMusgrave(tp * uFineScale, 2.0, 2.0, 0.62);
+          f = smoothstep(uLevelLow, uLevelHigh, f);
+          // …read straight through the blend's ColorRamp (stops 0.0 / 0.2909 /
+          // 0.8591, B_SPLINE). Walking dark→mid→light in two smoothstepped legs
+          // keeps the B-spline's wide soft cores and means no patch can ever
+          // show a border. Ratios are per channel, from the blend's own stops.
+          vec3 gr = mix(uDark, vec3(1.0), smoothstep(0.0, uStopMid, f));
+          gr = mix(gr, uLight, smoothstep(uStopMid, uStopLight, f));
+          diffuseColor.rgb *= mix(vec3(1.0), gr, uPatchStrength);
+          diffuseColor.rgb *= 1.0 + (f - 0.5) * uFineAmount * 2.0;
         }`
       );
   };
-  mat.customProgramCacheKey = () => `keralam-terrain-${patchScale}-${patchContrast}-${dark}-${light}`;
+  mat.customProgramCacheKey =
+    () => `keralam-terrain-${patchScale}-${patchMid}-${patchStrength}-${fine}-${fineAmount}-${levelLow}-${levelHigh}`;
   return mat;
 }
 
 /* -------------------------------------------------------------- mesh build */
 
 /**
- * The ground slab: a regular X/Y grid like the blend's, with the vertex colour
- * carrying the biome tint and the material carrying the procedural greens.
+ * The ground slab: a regular X/Y grid like the blend's. The grid stays indexed
+ * so the normals are *averaged* across neighbouring quads — that is what gives
+ * the reference its smooth, faceted-only-by-the-noise surface — and the biome
+ * tint rides on the vertices, one colour per grid point, interpolated across
+ * every triangle.
+ *
+ * (Building it indexed also makes the world load roughly twice as fast as the
+ * old per-triangle version: one tint sample per vertex instead of one per
+ * triangle corner, and five times fewer vertices to normalise.)
  */
 export function buildGround(size, seg, heightFn, tintFn) {
-  let geo = new THREE.PlaneGeometry(size, size, seg, seg);
+  const geo = new THREE.PlaneGeometry(size, size, seg, seg);
   geo.rotateX(-Math.PI / 2);
+
   const p = geo.attributes.position;
-  for (let i = 0; i < p.count; i++) p.setY(i, heightFn(p.getX(i), p.getZ(i)));
-  geo = geo.toNonIndexed();
-  const pos = geo.attributes.position;
-  const colors = new Float32Array(pos.count * 3);
-  for (let i = 0; i < pos.count; i += 3) {
-    const x = (pos.getX(i) + pos.getX(i + 1) + pos.getX(i + 2)) / 3;
-    const z = (pos.getZ(i) + pos.getZ(i + 1) + pos.getZ(i + 2)) / 3;
-    const h = (pos.getY(i) + pos.getY(i + 1) + pos.getY(i + 2)) / 3;
+  const colors = new Float32Array(p.count * 3);
+  for (let i = 0; i < p.count; i++) {
+    const x = p.getX(i);
+    const z = p.getZ(i);
+    const h = heightFn(x, z);
+    p.setY(i, h);
     const c = tintFn(x, z, h);
-    for (let k = 0; k < 3; k++) {
-      colors[(i + k) * 3] = c.r;
-      colors[(i + k) * 3 + 1] = c.g;
-      colors[(i + k) * 3 + 2] = c.b;
-    }
+    colors[i * 3] = c.r;
+    colors[i * 3 + 1] = c.g;
+    colors[i * 3 + 2] = c.b;
   }
+  p.needsUpdate = true;
   geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
   geo.computeVertexNormals();
   return geo;

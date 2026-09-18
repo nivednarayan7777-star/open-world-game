@@ -1038,7 +1038,9 @@ export function buildWorld(scene, opts = {}) {
   const SEG = lite ? 84 : 132;
   const ground = new THREE.Mesh(
     buildGround(SIZE, SEG, heightAt, (x, z, h) => groundTint(x, z, CURRENT, h)),
-    terrainMaterial({ flatShading: true })
+    // Smooth shading, like the ground slab in the reference scene: the surface
+    // is one calm green plane and all of its detail is colour, not facets.
+    terrainMaterial({ flatShading: false })
   );
   ground.receiveShadow = true;
   ground.name = "ground";
@@ -1152,9 +1154,12 @@ export function buildWorld(scene, opts = {}) {
     root.add(tea);
   }
 
-  const grassGeo = new THREE.ConeGeometry(0.09, 0.52, 4);
-  grassGeo.translate(0, 0.26, 0);
-  const grassMat = new THREE.MeshLambertMaterial({ color: 0xa8d44a, flatShading: true, side: THREE.DoubleSide });
+  // Tufts of grass. Deliberately short and thin, and tinted from the same green
+  // family as the ground (the reference scene has no tall straw at all), so they
+  // read as extra texture on the meadow instead of a second, clashing surface.
+  const grassGeo = new THREE.ConeGeometry(0.055, 0.42, 3);
+  grassGeo.translate(0, 0.21, 0);
+  const grassMat = new THREE.MeshLambertMaterial({ color: 0x6fa63a, side: THREE.DoubleSide });
   grassMat.onBeforeCompile = (shader) => {
     shader.uniforms.uTime = extras.uTime;
     shader.uniforms.uPlayer = extras.uPlayer;
@@ -1194,6 +1199,7 @@ export function buildWorld(scene, opts = {}) {
   const grass = new THREE.InstancedMesh(grassGeo, grassMat, GR);
   grass.frustumCulled = false;
   const dummy = new THREE.Object3D();
+  const tmpCol = new THREE.Color();
   let gi = 0;
   for (let p = 0; p < patches && gi < GR; p++) {
     const cx = -90 + hash(p, 70) * 210;
@@ -1214,13 +1220,26 @@ export function buildWorld(scene, opts = {}) {
       dummy.position.set(x, h, z);
       dummy.rotation.y = hash(p * 80 + k, 74) * 6.2;
       dummy.rotation.z = (hash(p * 80 + k, 78) - 0.5) * 0.25;
-      const sc = 0.7 + hash(p * 80 + k, 75) * 1.15;
+      const sc = 0.55 + hash(p * 80 + k, 75) * 0.7;
       dummy.scale.set(sc * 0.85, sc * (0.9 + hash(k, 79) * 0.8), sc * 0.85);
       dummy.updateMatrix();
-      grass.setMatrixAt(gi++, dummy.matrix);
+      grass.setMatrixAt(gi, dummy.matrix);
+      // Per-tuft tint: mostly the meadow green, a few blades catching the light.
+      const gv = hash(p * 80 + k, 81);
+      grass.setColorAt(
+        gi,
+        tmpCol.setRGB(
+          0.72 + gv * 0.62,
+          0.92 + gv * 0.26,
+          0.70 + gv * 0.55,
+          THREE.LinearSRGBColorSpace
+        )
+      );
+      gi++;
     }
   }
   grass.count = gi;
+  if (grass.instanceColor) grass.instanceColor.needsUpdate = true;
   root.add(grass);
   extras.grass = grass;
 
