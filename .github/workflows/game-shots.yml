@@ -1,10 +1,21 @@
 name: game-shots
 
-# Manual only: this harness boots the game in headless Chromium and commits the
-# screenshots back to the branch it runs on. Run it from the Actions tab when
-# the ground changes; it never fires on its own.
+# Boots the game in headless Chromium and commits the screenshots back to the
+# branch it runs on, so the look can be checked without a browser.
+#
+# Two ways to run it — both end up in probe/shots/:
+#   * edit .github/shots-request.json and push (a request is a commit), or
+#   * Actions → game-shots → Run workflow.
 on:
   workflow_dispatch:
+    inputs:
+      districts:
+        description: Space-separated district ids to shoot (blank = the default set)
+        required: false
+        default: ""
+  push:
+    paths:
+      - ".github/shots-request.json"
 
 permissions:
   contents: write
@@ -41,6 +52,8 @@ jobs:
           curl -s -o /dev/null -w "server:%{http_code}\n" http://127.0.0.1:8080/ || true
 
       - name: Screenshot districts
+        env:
+          SHOTS_DISTRICTS: ${{ inputs.districts }}
         run: |
           set -o pipefail
           node .github/shots.mjs "$OUT_DIR" 2>&1 | tee "$OUT_DIR/shots.log" || echo "shots exit: $?"
