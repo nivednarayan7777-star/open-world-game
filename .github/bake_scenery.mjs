@@ -4,6 +4,12 @@
  * one hill slab with a lake, five rock shapes and three conifers) into the
  * compact data module the game loads.
  *
+ * Coordinate note: this file's data is Z-up (the lake sheet is 0.012 thin in z,
+ * the conifers are 1.14 tall in z), while three.js is Y-up. Everything is
+ * rotated to Y-up on the way in — (x, y, z) -> (x, z, -y), a proper rotation, so
+ * triangle winding is untouched — and every measurement below is then in the
+ * game's own axes: height is y, the ground plane is (x, z).
+ *
  * What it does, in order:
  *   1. reads the .glb (glTF binary: JSON chunk + BIN chunk, no textures)
  *   2. welds each mesh's vertices and applies its node matrix
@@ -90,6 +96,11 @@ function nodeMatrix(node) {
   ];
 }
 
+/** this file's Z-up data -> the game's Y-up world */
+function toYUp(p) {
+  return [p[0], p[2], -p[1]];
+}
+
 function applyMatrix(m, x, y, z) {
   return [
     m[0] * x + m[4] * y + m[8] * z + m[12],
@@ -166,18 +177,22 @@ function bboxOf(verts) {
   return { min, max };
 }
 
+/**
+ * A prop shape: its own height becomes 1 with its base at y = 0, so the game can
+ * say "this conifer is 9 metres tall" and just scale the shape by 9.
+ */
 function normalise(mesh, targetHeight = 1) {
   const bbox = bboxOf(mesh.verts);
-  const h = bbox.max[2] - bbox.min[2] || 1;
+  const h = bbox.max[1] - bbox.min[1] || 1;
   const k = targetHeight / h;
   const cx = (bbox.min[0] + bbox.max[0]) / 2;
-  const cy = (bbox.min[1] + bbox.max[1]) / 2;
-  const z0 = bbox.min[2];
+  const cz = (bbox.min[2] + bbox.max[2]) / 2;
+  const y0 = bbox.min[1];
   return {
-    verts: mesh.verts.map(([x, y, z]) => [(x - cx) * k, (y - cy) * k, (z - z0) * k]),
+    verts: mesh.verts.map(([x, y, z]) => [(x - cx) * k, (y - y0) * k, (z - cz) * k]),
     tris: mesh.tris,
     height: h,
-    footprint: [(bbox.max[0] - bbox.min[0]) * k, (bbox.max[1] - bbox.min[1]) * k],
+    footprint: [(bbox.max[0] - bbox.min[0]) * k, (bbox.max[2] - bbox.min[2]) * k],
     flat: mesh.flat,
   };
 }
@@ -260,7 +275,8 @@ function extendSkirt(slab, drop) {
   const tris = slab.tris.slice();
   for (const loop of loops) {
     const ring = loop.map((i) => {
-      verts.push([slab.verts[i][0], slab.verts[i][1], slab.verts[i][2] - drop]);
+      // glTF is Y-up: "down" is -y
+      verts.push([slab.verts[i][0], slab.verts[i][1] - drop, slab.verts[i][2]]);
       return verts.length - 1;
     });
     for (let i = 0; i < loop.length; i++) {
@@ -274,52 +290,51 @@ function extendSkirt(slab, drop) {
   return { verts, tris, loops, drop };
 }
 
-/** rasterise the top surface into a height field, then sample it */
+/**
+ * Rasterise the slab's top surface into a height field over (x, z), keeping the
+ * highest triangle per cell — that is the surface the game walks on.
+ */
 function bakeField(verts, tris, size, pad = 0.02) {
   const bbox = bboxOf(verts);
   const minX = bbox.min[0] - pad, maxX = bbox.max[0] + pad;
-  const minY = bbox.min[1] - pad, maxY = bbox.max[1] + pad;
+  const minZ = bbox.min[2] - pad, maxZ = bbox.max[2] + pad;
   const dx = (maxX - minX) / (size - 1);
-  const dy = (maxY - minY) / (size - 1);
+  const dz = (maxZ - minZ) / (size - 1);
   const field = new Float32Array(size * size).fill(NaN);
-  const gi = (x, y) => {
-    const i = Math.round((x - minX) / dx), j = Math.round((y - minY) / dy);
-    return i >= 0 && j >= 0 && i < size && j < size ? j * size + i : -1;
-  };
   for (let t = 0; t < tris.length; t += 3) {
     const p = [verts[tris[t]], verts[tris[t + 1]], verts[tris[t + 2]]];
     const x0 = Math.min(p[0][0], p[1][0], p[2][0]), x1 = Math.max(p[0][0], p[1][0], p[2][0]);
-    const y0 = Math.min(p[0][1], p[1][1], p[2][1]), y1 = Math.max(p[0][1], p[1][1], p[2][1]);
+    const z0 = Math.min(p[0][2], p[1][2], p[2][2]), z1 = Math.max(p[0][2], p[1][2], p[2][2]);
     const i0 = Math.max(0, Math.floor((x0 - minX) / dx) - 1), i1 = Math.min(size - 1, Math.ceil((x1 - minX) / dx) + 1);
-    const j0 = Math.max(0, Math.floor((y0 - minY) / dy) - 1), j1 = Math.min(size - 1, Math.ceil((y1 - minY) / dy) + 1);
-    const d = (p[1][1] - p[2][1]) * (p[0][0] - p[2][0]) + (p[2][0] - p[1][0]) * (p[0][1] - p[2][1]);
+    const j0 = Math.max(0, Math.floor((z0 - minZ) / dz) - 1), j1 = Math.min(size - 1, Math.ceil((z1 - minZ) / dz) + 1);
+    const d = (p[1][2] - p[2][2]) * (p[0][0] - p[2][0]) + (p[2][0] - p[1][0]) * (p[0][2] - p[2][2]);
     if (Math.abs(d) < 1e-12) continue;
     for (let j = j0; j <= j1; j++) {
       for (let i = i0; i <= i1; i++) {
-        const X = minX + i * dx, Y = minY + j * dy;
-        let l0 = ((p[1][1] - p[2][1]) * (X - p[2][0]) + (p[2][0] - p[1][0]) * (Y - p[2][1])) / d;
-        let l1 = ((p[2][1] - p[0][1]) * (X - p[2][0]) + (p[0][0] - p[2][0]) * (Y - p[2][1])) / d;
+        const X = minX + i * dx, Z = minZ + j * dz;
+        const l0 = ((p[1][2] - p[2][2]) * (X - p[2][0]) + (p[2][0] - p[1][0]) * (Z - p[2][2])) / d;
+        const l1 = ((p[2][2] - p[0][2]) * (X - p[2][0]) + (p[0][0] - p[2][0]) * (Z - p[2][2])) / d;
         const l2 = 1 - l0 - l1;
         if (l0 < -1e-6 || l1 < -1e-6 || l2 < -1e-6) continue;
-        const z = l0 * p[0][2] + l1 * p[1][2] + l2 * p[2][2];
+        const y = l0 * p[0][1] + l1 * p[1][1] + l2 * p[2][1];
         const at = j * size + i;
-        if (Number.isNaN(field[at]) || z > field[at]) field[at] = z;
+        if (Number.isNaN(field[at]) || y > field[at]) field[at] = y;
       }
     }
   }
-  return { field, size, minX, minY, dx, dy, minY2: minY, maxX, maxY };
+  return { field, size, minX, minZ, dx, dz };
 }
 
-function sampleField(f, x, y) {
+function sampleField(f, x, z) {
   const fi = (x - f.minX) / f.dx;
-  const fj = (y - f.minY) / f.dy;
+  const fj = (z - f.minZ) / f.dz;
   const i = Math.floor(fi), j = Math.floor(fj);
   if (i < 0 || j < 0 || i >= f.size - 1 || j >= f.size - 1) return NaN;
-  const tx = fi - i, ty = fj - j;
+  const tx = fi - i, tz = fj - j;
   const a = f.field[j * f.size + i], b = f.field[j * f.size + i + 1];
   const c = f.field[(j + 1) * f.size + i], d = f.field[(j + 1) * f.size + i + 1];
   if (Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c) || Number.isNaN(d)) return NaN;
-  return (a * (1 - tx) + b * tx) * (1 - ty) + (c * (1 - tx) + d * tx) * ty;
+  return (a * (1 - tx) + b * tx) * (1 - tz) + (c * (1 - tx) + d * tx) * tz;
 }
 
 /** keep only the water triangles that stand above the slab: the visible lake */
@@ -340,17 +355,17 @@ function clipLake(water, field) {
   let kept = 0;
   for (let t = 0; t < water.tris.length; t += 3) {
     const p = [water.verts[water.tris[t]], water.verts[water.tris[t + 1]], water.verts[water.tris[t + 2]]];
-    const cz = (p[0][2] + p[1][2] + p[2][2]) / 3;
-    const cx = (p[0][0] + p[1][0] + p[2][0]) / 3;
     const cy = (p[0][1] + p[1][1] + p[2][1]) / 3;
-    const ground = sampleField(field, cx, cy);
+    const cx = (p[0][0] + p[1][0] + p[2][0]) / 3;
+    const cz = (p[0][2] + p[1][2] + p[2][2]) / 3;
+    const ground = sampleField(field, cx, cz);
     if (Number.isNaN(ground)) continue;      // outside the island: open sea
     let above = 0;
     for (const q of p) {
-      const g = sampleField(field, q[0], q[1]);
-      if (!Number.isNaN(g) && q[2] > g + 0.004) above++;
+      const g = sampleField(field, q[0], q[2]);
+      if (!Number.isNaN(g) && q[1] > g + 0.004) above++;
     }
-    if (above < 3 && cz < ground + 0.004) continue;   // hidden under the hills
+    if (above < 3 && cy < ground + 0.004) continue;   // hidden under the hills
     tris.push(id(p[0]), id(p[1]), id(p[2]));
     kept++;
   }
@@ -371,9 +386,10 @@ for (const node of gltf.nodes) {
   const nrm = prim.attributes.NORMAL !== undefined ? readAccessor(gltf, bin, prim.attributes.NORMAL) : null;
   const localPoints = new Array(pos.count * 3);
   for (let i = 0; i < pos.count; i++) {
-    localPoints[i * 3] = pos.data[i * 3];
-    localPoints[i * 3 + 1] = pos.data[i * 3 + 1];
-    localPoints[i * 3 + 2] = pos.data[i * 3 + 2];
+    const p = toYUp([pos.data[i * 3], pos.data[i * 3 + 1], pos.data[i * 3 + 2]]);
+    localPoints[i * 3] = p[0];
+    localPoints[i * 3 + 1] = p[1];
+    localPoints[i * 3 + 2] = p[2];
   }
   let localIndices;
   if (prim.indices !== undefined) {
@@ -386,13 +402,13 @@ for (const node of gltf.nodes) {
   const points = new Array(pos.count * 3);
   const normals = nrm ? new Array(nrm.count * 3) : null;
   for (let i = 0; i < pos.count; i++) {
-    const [x, y, z] = applyMatrix(m, pos.data[i * 3], pos.data[i * 3 + 1], pos.data[i * 3 + 2]);
-    points[i * 3] = x; points[i * 3 + 1] = y; points[i * 3 + 2] = z;
+    const w = toYUp(applyMatrix(m, pos.data[i * 3], pos.data[i * 3 + 1], pos.data[i * 3 + 2]));
+    points[i * 3] = w[0]; points[i * 3 + 1] = w[1]; points[i * 3 + 2] = w[2];
     if (nrm) {
-      // rotate the normal (uniform scale in this file)
-      const [nx, ny, nz] = applyMatrix(m, nrm.data[i * 3], nrm.data[i * 3 + 1], nrm.data[i * 3 + 2]);
-      const l = Math.hypot(nx, ny, nz) || 1;
-      normals[i * 3] = nx / l; normals[i * 3 + 1] = ny / l; normals[i * 3 + 2] = nz / l;
+      // rotate the normal (uniform scale in this file), then take it to Y-up too
+      const n = toYUp(applyMatrix(m, nrm.data[i * 3], nrm.data[i * 3 + 1], nrm.data[i * 3 + 2]));
+      const l = Math.hypot(n[0], n[1], n[2]) || 1;
+      normals[i * 3] = n[0] / l; normals[i * 3 + 1] = n[1] / l; normals[i * 3 + 2] = n[2] / l;
     }
   }
   let indices;
@@ -429,8 +445,8 @@ for (const [name, local] of localMeshes) {
 log(`shapes after de-duplication: ${shapeGroups.size}`);
 for (const g of shapeGroups.values()) {
   const bbox = bboxOf(g.mesh.verts);
-  const dims = [bbox.max[0] - bbox.min[0], bbox.max[1] - bbox.min[1], bbox.max[2] - bbox.min[2]]
-    .map((v) => v.toFixed(3)).join(" x ");
+  const dims = [bbox.max[0] - bbox.min[0], bbox.max[2] - bbox.min[2], bbox.max[1] - bbox.min[1]]
+    .map((v) => v.toFixed(3)).join(" x ") + " (w x d x h)";
   log(`  ${(g.names[0] || "").padEnd(12)} x${String(g.names.length).padEnd(3)} verts=${g.mesh.verts.length} tris=${g.mesh.tris.length / 3} size=${dims} flat=${g.mesh.flat}`);
 }
 
@@ -438,36 +454,37 @@ for (const g of shapeGroups.values()) {
 const slabBBox = bboxOf(island.verts);
 const { loops, openEdges } = boundaryLoops(island.verts, island.tris);
 log(`slab: ${island.verts.length} verts, ${island.tris.length / 3} tris, ${openEdges} boundary edges in ${loops.length} loop(s)`);
-log(`slab footprint ${(slabBBox.max[0] - slabBBox.min[0]).toFixed(3)} x ${(slabBBox.max[1] - slabBBox.min[1]).toFixed(3)}, z ${slabBBox.min[2].toFixed(3)}..${slabBBox.max[2].toFixed(3)}`);
+log(`slab footprint ${(slabBBox.max[0] - slabBBox.min[0]).toFixed(3)} x ${(slabBBox.max[2] - slabBBox.min[2]).toFixed(3)}, height ${slabBBox.min[1].toFixed(3)}..${slabBBox.max[1].toFixed(3)}`);
 
 // rim height: the outline's z (median), and the outline radius profile
 const rimZ = (() => {
-  const zs = [];
-  for (const loop of loops) for (const i of loop) zs.push(island.verts[i][2]);
-  zs.sort((a, b) => a - b);
-  return zs[Math.floor(zs.length / 2)];
+  const ys = [];
+  for (const loop of loops) for (const i of loop) ys.push(island.verts[i][1]);
+  ys.sort((a, b) => a - b);
+  return ys[Math.floor(ys.length / 2)];
 })();
+// the ground plane's centre (x, z) — y is height
 const centre = [
   (slabBBox.min[0] + slabBBox.max[0]) / 2,
-  (slabBBox.min[1] + slabBBox.max[1]) / 2,
+  (slabBBox.min[2] + slabBBox.max[2]) / 2,
 ];
 // the rim polygon, centred, so the game knows exactly where the island ends
 const outline = (() => {
   const loop = loops.slice().sort((a, b) => b.length - a.length)[0] || [];
-  const pts = loop.map((i) => [island.verts[i][0] - centre[0], island.verts[i][1] - centre[1]]);
+  const pts = loop.map((i) => [island.verts[i][0] - centre[0], island.verts[i][2] - centre[1]]);
   const radii = pts.map((p) => Math.hypot(p[0], p[1]));
   return {
     pts: pts.map((p) => [+p[0].toFixed(4), +p[1].toFixed(4)]),
-    z: loop.map((i) => +island.verts[i][2].toFixed(4)),
+    z: loop.map((i) => +island.verts[i][1].toFixed(4)),
     mean: radii.reduce((a, b) => a + b, 0) / Math.max(1, radii.length),
     min: Math.min(...radii), max: Math.max(...radii),
   };
 })();
 log(`rim z ${rimZ.toFixed(3)}, outline ${outline.pts.length} points, radius ${outline.min.toFixed(3)}..${outline.max.toFixed(3)} (mean ${outline.mean.toFixed(3)})`);
 
-const skirtDrop = +(0.10 + (slabBBox.max[2] - rimZ)).toFixed(3);
+const skirtDrop = +(0.10 + (slabBBox.max[1] - rimZ)).toFixed(3);
 const skirted = extendSkirt(island, Math.max(skirtDrop, 0.25));
-log(`skirt: dropped ${Math.max(skirtDrop, 0.25)} (rim to peak is ${(slabBBox.max[2] - rimZ).toFixed(3)})`);
+log(`skirt: dropped ${Math.max(skirtDrop, 0.25)} (rim to peak is ${(slabBBox.max[1] - rimZ).toFixed(3)})`);
 
 const field = bakeField(skirted.verts, island.tris, 65, 0.02);
 let filled = 0;
@@ -476,11 +493,11 @@ log(`height field 65x65, ${filled} cells covered, spacing ${field.dx.toFixed(4)}
 
 // ---- the lake --------------------------------------------------------------
 const lake = clipLake(waterRaw, field);
-const lakeZ = waterRaw.verts.reduce((a, v) => a + v[2], 0) / waterRaw.verts.length;
+const lakeZ = waterRaw.verts.reduce((a, v) => a + v[1], 0) / waterRaw.verts.length;
 log(`lake: kept ${lake.kept} of ${waterRaw.tris.length / 3} water tris, surface z ${lakeZ.toFixed(4)}`);
 if (lake.verts.length) {
   const b = bboxOf(lake.verts);
-  log(`lake bbox x[${b.min[0].toFixed(3)} ${b.max[0].toFixed(3)}] y[${b.min[1].toFixed(3)} ${b.max[1].toFixed(3)}]`);
+  log(`lake bbox x[${b.min[0].toFixed(3)} ${b.max[0].toFixed(3)}] z[${b.min[2].toFixed(3)} ${b.max[2].toFixed(3)}]`);
 }
 
 // ---- pack ------------------------------------------------------------------
@@ -499,13 +516,13 @@ for (const g of shapeGroups.values()) {
 const fieldQ = (() => {
   const out = new Int16Array(field.size * field.size);
   const lim = 32767;
-  const scale = (slabBBox.max[2] - slabBBox.min[2] + 2) / (2 * lim);
-  const base = slabBBox.min[2] - 1;
+  const scale = (slabBBox.max[1] - slabBBox.min[1] + 2) / (2 * lim);
+  const base = slabBBox.min[1] - 1;
   field.field.forEach((v, i) => {
     out[i] = Number.isNaN(v) ? -32768 : Math.round((v - base) / scale - lim);
   });
   return {
-    base, scale, lim, size: field.size, minX: field.minX, minY: field.minY, dx: field.dx, dy: field.dy,
+    base, scale, lim, size: field.size, minX: field.minX, minZ: field.minZ, dx: field.dx, dz: field.dz,
     data: Buffer.from(out.buffer, out.byteOffset, out.byteLength).toString("base64"),
   };
 })();
@@ -513,10 +530,10 @@ const fieldQ = (() => {
 const islandPacked = {
   ...quantise(skirted),
   rimZ, lakeZ, skirtDrop: Math.max(skirtDrop, 0.25),
-  footprint: [slabBBox.max[0] - slabBBox.min[0], slabBBox.max[1] - slabBBox.min[1]],
+  footprint: [slabBBox.max[0] - slabBBox.min[0], slabBBox.max[2] - slabBBox.min[2]],
   centre, outline: outline.pts, outlineZ: outline.z, outlineMean: outline.mean,
   outlineRadius: [outline.min, outline.max],
-  peakZ: slabBBox.max[2], floorZ: slabBBox.min[2],
+  peakY: slabBBox.max[1], floorY: slabBBox.min[1],
   field: fieldQ,
   lake: lake.verts.length ? { ...quantise(lake), z: lakeZ } : null,
 };

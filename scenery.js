@@ -84,7 +84,7 @@ export function kitHeight(lx, lz) {
     FIELD = { ...f, z };
   }
   const fi = (lx - FIELD.minX) / FIELD.dx;
-  const fj = (lz - FIELD.minY) / FIELD.dy;
+  const fj = (lz - FIELD.minZ) / FIELD.dz;
   const i = Math.floor(fi), j = Math.floor(fj);
   if (i < 0 || j < 0 || i >= FIELD.size - 1 || j >= FIELD.size - 1) return NaN;
   const tx = fi - i, tz = fj - j;
@@ -94,12 +94,16 @@ export function kitHeight(lx, lz) {
   return (a * (1 - tx) + b * tx) * (1 - tz) + (c * (1 - tx) + d * tx) * tz;
 }
 
-/** what the baker measured off the kit, in kit units */
+/**
+ * What the baker measured off the kit, in kit units. Height is y (the game's
+ * up): the slab's rim sits at rimZ, its lake surface at lakeZ, its summit at
+ * peakY, and the slab is footprint units across.
+ */
 export const KIT_INFO = {
   rimZ: K.island.rimZ,
   lakeZ: K.island.lakeZ,
-  peakZ: K.island.peakZ,
-  floorZ: K.island.floorZ,
+  peakY: K.island.peakY,
+  floorY: K.island.floorY,
   footprint: K.island.footprint,
   outline: K.island.outline,
   outlineMean: K.island.outlineMean,
