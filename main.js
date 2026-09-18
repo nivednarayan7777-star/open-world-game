@@ -1477,4 +1477,68 @@ try {
 } catch (_) {}
 addEventListener("visibilitychange", () => { if (document.hidden) persist(); });
 addEventListener("pagehide", persist);
+
+/**
+ * Small hook for tooling and the browser console: jump around, set the hour,
+ * inspect the world. The screenshot harness in .github/shots.mjs uses it.
+ */
+window.__keralam = {
+  scene,
+  camera,
+  renderer,
+  get world() { return world; },
+  get state() { return state; },
+  get player() { return player; },
+  get yaw() { return yaw; },
+  setHour(h) { hour = h; },
+  setDistrict(id) { loadDistrict(id); },
+  look(y, p) { yaw = y; if (p != null) pitch = p; },
+  place(x, z) {
+    if (!world) return null;
+    player.x = x;
+    player.z = z;
+    player.y = surfaceY(x, z, world.docks);
+    me.position.set(player.x, player.y, player.z);
+    return player.y;
+  },
+  surfaceY: (x, z) => (world ? surfaceY(x, z, world.docks) : null),
+  /**
+   * Hide everything but the ground (used by the screenshot harness to take
+   * clean ground swatches for the comparison against the reference blend).
+   * Returns how many children were hidden.
+   */
+  debugGroundOnly(on = true) {
+    if (!world) return 0;
+    let n = 0;
+    // the player, the parked rides and the name plate live on the scene, not in
+    // the world root, so they are hidden separately
+    for (const o of [me, autoMesh, scooterMesh]) {
+      if (!o) continue;
+      if (on) {
+        if (!("__vis" in o.userData)) o.userData.__vis = o.visible;
+        o.visible = false;
+        n++;
+      } else if ("__vis" in o.userData) {
+        o.visible = o.userData.__vis;
+        delete o.userData.__vis;
+        n++;
+      }
+    }
+    for (const child of world.root.children) {
+      const keep = child.isLight || child.name === "ground" || child.name === "ground-edge" || child === world.water;
+      if (keep) continue;
+      if (on) {
+        if (!("__vis" in child.userData)) child.userData.__vis = child.visible;
+        child.visible = false;
+        n++;
+      } else if ("__vis" in child.userData) {
+        child.visible = child.userData.__vis;
+        delete child.userData.__vis;
+        n++;
+      }
+    }
+    return n;
+  },
+};
+
 loop();

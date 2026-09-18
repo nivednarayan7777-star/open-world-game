@@ -1,0 +1,105 @@
+{
+ "how": {
+  "reference_topdown": "view_groundtop.png",
+  "reference_perspective": [
+   "view_iso.png",
+   "view_close.png"
+  ],
+  "game_near": "probe/shots/ground-<district>-near.png",
+  "game_far": "probe/shots/ground-<district>-far.png"
+ },
+ "target": {
+  "hue_deg": "113-115 (just off pure green)",
+  "sat": "0.69-0.72",
+  "value": "0.55-0.63",
+  "blobs": "~1.26-1.39 soft patches, no hard borders",
+  "fine": "<= 3.5: the reference's ground carries almost no grain"
+ },
+ "near_sunlit": {
+  "reference": {
+   "hue_deg": 113.0,
+   "sat": 0.694,
+   "value": 0.63,
+   "blobs": 1.264,
+   "fine": 2.455,
+   "rgb_lit": [
+    62.8,
+    160.7,
+    49.5
+   ],
+   "samples": [
+    "probe/view_groundtop.png"
+   ]
+  },
+  "game": {
+   "hue_deg": 111.7,
+   "sat": 0.671,
+   "value": 0.618,
+   "blobs": 1.234,
+   "fine": 1.568,
+   "rgb_lit": [
+    68.4,
+    157.7,
+    52.9
+   ],
+   "samples": [
+    "probe/shots/ground-alpy-near.png",
+    "probe/shots/ground-ekm-near.png",
+    "probe/shots/ground-idk-near.png",
+    "probe/shots/ground-kkd-near.png",
+    "probe/shots/ground-pta-near.png"
+   ]
+  },
+  "delta_game_minus_reference": {
+   "hue_deg": -1.3,
+   "sat": -0.023,
+   "value": -0.012,
+   "blobs": -0.03,
+   "fine": -0.887
+  }
+ },
+ "far_sunlit": {
+  "reference": {
+   "hue_deg": 114.1,
+   "sat": 0.709,
+   "value": 0.585,
+   "blobs": 1.446,
+   "fine": 4.092,
+   "rgb_lit": [
+    54.6,
+    149.2,
+    43.9
+   ],
+   "samples": [
+    "probe/view_iso.png",
+    "probe/view_close.png"
+   ]
+  },
+  "game": {
+   "hue_deg": 112.9,
+   "sat": 0.712,
+   "value": 0.597,
+   "blobs": 1.278,
+   "fine": 1.541,
+   "rgb_lit": [
+    60.1,
+    152.3,
+    46.4
+   ],
+   "samples": [
+    "probe/shots/ground-alpy-far.png",
+    "probe/shots/ground-ekm-far.png",
+    "probe/shots/ground-idk-far.png",
+    "probe/shots/ground-kkd-far.png",
+    "probe/shots/ground-pta-far.png"
+   ]
+  },
+  "delta_game_minus_reference": {
+   "hue_deg": -1.2,
+   "sat": 0.003,
+   "value": 0.012,
+   "blobs": -0.168,
+   "fine": -2.551
+  }
+ }
+}

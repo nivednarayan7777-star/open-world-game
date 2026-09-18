@@ -1,0 +1,34 @@
+== strategy 1: curl usercontent ==
+curl exit: 0
+headers:
+HTTP/2 200 
+content-type: application/octet-stream
+x-guploader-uploadid: AJjja9afUizLdZvnqDGSUejD5A-h5g64BEIlao_VkeRuW9WeY4R7e-mpOPgAyAdqgoqge2k
+content-security-policy: sandbox
+content-security-policy: default-src 'none'
+content-security-policy: frame-ancestors 'none'
+x-content-security-policy: sandbox
+cross-origin-opener-policy: same-origin
+cross-origin-embedder-policy: require-corp
+cross-origin-resource-policy: same-site
+x-content-type-options: nosniff
+content-disposition: attachment; filename="Hero Tree.blend"
+access-control-allow-origin: *
+access-control-allow-credentials: false
+access-control-allow-headers: Accept, Accept-Language, Authorization, Cache-Control, Content-Disposition, Content-Encoding, Content-Language, Content-Length, Content-MD5, Content-Range, Content-Type, Date, developer-token, DPoP, financial-institution-id, X-Goog-Sn-Metadata, X-Goog-Sn-PatientId, GData-Version, google-cloud-resource-prefix, linked-customer-id, login-customer-id, login-account, linked-account, x-goog-request-params, Host, If-Match, If-Modified-Since, If-None-Match, If-Unmodified-Since, Origin, OriginToken, Pragma, Range, request-id, Signature, Signature-Agent, Signature-Input, Slug, Transfer-Encoding, User-Agent, hotrod-board-name, hotrod-chrome-cpu-model, hotrod-chrome-processors, Want-Digest, X-Ad-Manager-Impersonation, x-chrome-connected, X-ClientDetails, X-Client-Pctx, X-Client-Version, x-debug-settings-metadata, X-Firebase-AppId, X-Firebase-AppVersion, X-Firebase-Locale, X-Goog-Firebase-Installations-Auth, X-Firebase-Client, X-Firebase-Client-Log-Type, X-Firebase-GMPID, X-Firebase-Auth-Token, X-Firebase-AppCheck, X-Firebase-RC-Fetch-Type, X-Firebase-Token, X-Goog-Drive-Client-Version, X-Goog-Drive-Resource-Keys, X-GData-Client, X-GData-Key, X-GoogApps-Allowed-Domains, X-Goog-AdX-Buyer-Impersonation, X-Goog-Api-Client, X-Goog-Visibilities, X-Goog-AuthUser, X-Google-EOM, x-goog-ext-124712974-jspb, x-goog-ext-467253834-jspb, x-goog-ext-353267353-bin, x-goog-ext-353267353-jspb, x-goog-ext-251363160-jspb, X-Restricted-Content-Limit, x-goog-ext-259736195-jspb, x-goog-ext-477772811-jspb, x-goog-ext-359275022-bin, x-goog-ext-328800237-jspb, x-goog-ext-198889211-bin, x-goog-ext-202735639-bin, x-goog-ext-223261916-bin, x-goog-ext-223435598-bin, x-goog-ext-233818517-bin, x-goog-ext-202964622-bin, X-Goog-PageId, X-Goog-Encode-Response-If-Executable, X-Goog-Correlation-Id, X-Goog-Request-Info, X-Goog-Request-Reason, X-Goog-Request-Time, X-Goog-Experiments, x-goog-iam-authority-selector, x-goog-iam-authorization-token, X-Goog-Spatula, X-Goog-Travel-Bgr, X-Goog-Travel-Settings, X-Goog-Upload-Command, X-Goog-Upload-Content-Disposition, X-Goog-Upload-Content-Length, X-Goog-Upload-Content-Type, X-Goog-Upload-File-Name, X-Goog-Upload-Header-Content-Encoding, X-Goog-Upload-Header-Content-Length, X-Goog-Upload-Header-Content-Type, X-Goog-Upload-Header-Transfer-Encoding, X-Goog-Upload-Offset, X-Goog-Upload-Protocol, x-goog-user-project, X-Goog-Visitor-Id, X-Goog-FieldMask, X-Google-Project-Override, x-goog-maps-api-salt, x-goog-maps-api-signature, x-goog-maps-client-id, X-Goog-Api-Key, x-goog-spanner-database-role, X-HTTP-Method-Override, X-JavaScript-User-Agent, X-Pan-Versionid, X-Proxied-User-IP, X-Origin, X-Referer, X-Requested-With, X-Stadia-Client-Context, X-Upload-Content-Length, X-Upload-Content-Type, X-Use-Alt-Service, X-Use-HTTP-Status-Code-Override, X-Ios-Bundle-Identifier, X-Places-Ios-Sdk, X-Android-Package, X-Android-Cert, X-Places-Android-Sdk, X-Goog-Maps-Ios-Uuid, X-Goog-Maps-Android-Uuid, X-Ariane-Xsrf-Token, X-A2A-Extensions, A2A-Extensions, A2A-Version, X-YouTube-Bootstrap-Logged-In, X-Youtube-Client-Name, X-Youtube-Client-Version, X-Youtube-Finch-Config-Data, X-Youtube-Finch-Hash-Data, X-YouTube-Lava-Device-Context, X-YouTube-VVT, X-YouTube-Page-CL, X-YouTube-Page-Label, X-YouTube-Page-Timestamp, X-Compass-Routing-Destination, x-framework-xsrf-token, X-Goog-Meeting-ABR, X-Goog-Meeting-Botguardid, X-Goog-Meeting-Bot-Info, X-Goog-Meeting-ClientInfo, X-Goog-Meeting-ClientVersion, X-Goog-Meeting-Debugid, X-Goog-Meeting-Identifier, X-Goog-Meeting-Interop-Cohorts, X-Goog-Meeting-Interop-Type, X-Goog-Meeting-OidcIdToken, X-Goog-Meeting-RtcClient, X-Goog-Meeting-StartSource, X-Goog-Meeting-Token, X-Goog-Meeting-Viewer-Token, X-Goog-Healthcare-Audit-First-Party-Application-Access, Prefer, X-Client-Data, x-sdm-id-token, X-Sfdc-Authorization, MIME-Version, Content-Transfer-Encoding, X-Earth-Engine-App-ID-Token, X-Earth-Engine-Computation-Profile, X-Earth-Engine-Computation-Profiling, X-Play-Console-Experiments-Override, X-Play-Console-Session-Id, x-tab-id, x-alkali-account-key, x-alkali-application-key, x-alkali-auth-apps-namespace, x-alkali-auth-entities-namespace, x-alkali-auth-entity, x-alkali-client-locale, EES-S7E-MODE, cast-device-capabilities, X-Server-Timeout, x-foyer-client-environment, x-goog-greenenergyuserappservice-metadata, x-goog-sherlog-context, X-Server-Token, X-WebChannel-Content-Type, x-rfui-request-context, X-Workflow-Client, X-Tenant-Scope, x-goog-nest-jwt, X-Cloud-Trace-Context, traceparent, x-goog-chat-space-id, x-goog-pan-request-context, X-AppInt-Credentials, X-Iceberg-Access-Delegation, x-goog-firestore-api-requester, x-Goog-Ws-AgentId, x-impersonate-sid, X-Goog-Gemini-Enterprise-SidePanel
+access-control-allow-methods: GET,HEAD,OPTIONS
+accept-ranges: bytes
+content-length: 42160348
+last-modified: Thu, 17 Sep 2026 16:01:02 GMT
+date: Fri, 18 Sep 2026 14:43:17 GMT
+expires: Fri, 18 Sep 2026 14:43:17 GMT
+cache-control: private, max-age=0
+x-goog-hash: crc32c=8KqYUg==
+server: UploadServer
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+--- check /tmp/blend/source.blend ---
+-rw-r--r-- 1 runner runner 42160348 Sep 18 14:43 /tmp/blend/source.blend
+type: Blender3D, saved as 64-bits little endian with version 2.93
+head bytes: 0000000   B   L   E   N   D   E   R   -   v   2   9   3   R   E   N   D 0000020 
+VERDICT: valid .blend

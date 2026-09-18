@@ -1,0 +1,195 @@
+{
+ "name": "Material.001",
+ "nodes": [
+  {
+   "type": "RGB",
+   "name": "RGB"
+  },
+  {
+   "type": "OUTPUT_MATERIAL",
+   "name": "Material Output",
+   "Displacement": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Thickness": 0.0
+  },
+  {
+   "type": "BSDF_PRINCIPLED",
+   "name": "Principled BSDF",
+   "Base Color": [
+    0.8,
+    0.8,
+    0.8,
+    1.0
+   ],
+   "Metallic": 0.0,
+   "Roughness": 1.0,
+   "IOR": 1.45,
+   "Alpha": 1.0,
+   "Normal": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Weight": 0.0,
+   "Subsurface Weight": 0.0,
+   "Subsurface Radius": [
+    1.0,
+    0.2,
+    0.1
+   ],
+   "Subsurface Scale": 0.05,
+   "Subsurface IOR": 1.4,
+   "Subsurface Anisotropy": 0.0,
+   "Specular IOR Level": 0.0,
+   "Specular Tint": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "Anisotropic": 0.0,
+   "Anisotropic Rotation": 0.0,
+   "Tangent": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Transmission Weight": 0.0,
+   "Coat Weight": 0.0,
+   "Coat Roughness": 0.03,
+   "Coat IOR": 1.5,
+   "Coat Tint": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "Coat Normal": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Sheen Weight": 0.0,
+   "Sheen Roughness": 0.5,
+   "Sheen Tint": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "Emission Color": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "Emission Strength": 1.0
+  },
+  {
+   "type": "VALTORGB",
+   "name": "ColorRamp",
+   "Fac": 0.5,
+   "stops": [
+    {
+     "pos": 0.0,
+     "color": [
+      0.0212,
+      0.305,
+      0.0137,
+      1.0
+     ]
+    },
+    {
+     "pos": 0.2909,
+     "color": [
+      0.0595,
+      0.4397,
+      0.0409,
+      1.0
+     ]
+    },
+    {
+     "pos": 0.8591,
+     "color": [
+      0.2346,
+      0.5149,
+      0.0513,
+      1.0
+     ]
+    }
+   ],
+   "interpolation": "B_SPLINE"
+  },
+  {
+   "type": "TEX_MUSGRAVE",
+   "name": "Musgrave Texture",
+   "musgrave_type": "FBM",
+   "Vector": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "W": 0.0,
+   "Scale": 8.5,
+   "Detail": 1.6,
+   "Dimension": 0.6,
+   "Lacunarity": 2.0,
+   "Offset": 0.0,
+   "Gain": 1.0
+  },
+  {
+   "type": "MAPPING",
+   "name": "Mapping",
+   "Vector": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Location": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Rotation": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "vector_type": "POINT"
+  },
+  {
+   "type": "TEX_COORD",
+   "name": "Texture Coordinate"
+  }
+ ],
+ "links": [
+  [
+   "ColorRamp.Color",
+   "Principled BSDF.Base Color"
+  ],
+  [
+   "Principled BSDF.BSDF",
+   "Material Output.Surface"
+  ],
+  [
+   "Musgrave Texture.Fac",
+   "ColorRamp.Fac"
+  ],
+  [
+   "Mapping.Vector",
+   "Musgrave Texture.Vector"
+  ],
+  [
+   "Texture Coordinate.Generated",
+   "Mapping.Vector"
+  ]
+ ]
+}

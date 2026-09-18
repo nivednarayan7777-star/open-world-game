@@ -1,0 +1,25 @@
+shot probe/shots/ekm-spawn.png {"district":"district","x":-74,"y":1.99,"z":12,"objects":4}
+shot probe/shots/ekm-inland.png {"district":"district","x":20,"y":2.56,"z":20,"objects":4}
+shot probe/shots/ekm-beach.png {"district":"district","x":-100,"y":-2.82,"z":10,"objects":4}
+swatch probe/shots/ground-ekm-near.png
+swatch probe/shots/ground-ekm-far.png
+shot probe/shots/alpy-spawn.png {"district":"district","x":-70,"y":2.77,"z":8,"objects":4}
+shot probe/shots/alpy-backwater.png {"district":"district","x":-40,"y":-0.64,"z":-30,"objects":4}
+swatch probe/shots/ground-alpy-near.png
+swatch probe/shots/ground-alpy-far.png
+shot probe/shots/pta-spawn.png {"district":"district","x":8,"y":3.12,"z":4,"objects":4}
+shot probe/shots/pta-midland.png {"district":"district","x":40,"y":3.29,"z":0,"objects":4}
+swatch probe/shots/ground-pta-near.png
+swatch probe/shots/ground-pta-far.png
+shot probe/shots/idk-spawn.png {"district":"district","x":24,"y":9.14,"z":0,"objects":4}
+shot probe/shots/idk-slopes.png {"district":"district","x":60,"y":12.72,"z":10,"objects":4}
+shot probe/shots/idk-ridge.png {"district":"district","x":120,"y":23.16,"z":30,"objects":4}
+swatch probe/shots/ground-idk-near.png
+swatch probe/shots/ground-idk-far.png
+shot probe/shots/kkd-spawn.png {"district":"district","x":-72,"y":2.23,"z":8,"objects":4}
+shot probe/shots/kkd-hills.png {"district":"district","x":50,"y":2.53,"z":40,"objects":4}
+swatch probe/shots/ground-kkd-near.png
+swatch probe/shots/ground-kkd-far.png
+errors: [
+  '[console] Failed to load resource: the server responded with a status of 404 (Not Found)'
+]

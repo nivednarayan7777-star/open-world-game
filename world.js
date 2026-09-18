@@ -1,6 +1,29 @@
 import * as THREE from "three";
 import { shared } from "./tex.js";
 import { DISTRICTS, getDistrict, roadsFor } from "./districts.js";
+import {
+  WATER as T_WATER,
+  SIZE as T_SIZE,
+  GROUND_TINT,
+  EDGE_TINT,
+  GRASS_RAMP,
+  blendGrade,
+  shapeHeight,
+  groundTint,
+  terrainMaterial,
+  buildGround,
+  buildSkirt,
+} from "./terrain.js";
+
+/**
+ * Ground cover keeps the ground's own greens. In the reference scene the grass
+ * and bushes sit in exactly the same green family as the slab under them — they
+ * read as texture on the meadow, never as a second, yellower surface. These are
+ * the blend's own ColorRamp stops, taken through the same render grade the
+ * ground palette gets (see terrain.js → BLEND_GRADE).
+ */
+const GRASS_GREEN = blendGrade(GRASS_RAMP.dark.clone().lerp(GRASS_RAMP.mid, 0.6));
+const BUSH_GREEN = blendGrade(GRASS_RAMP.dark.clone().lerp(GRASS_RAMP.mid, 0.25));
 
 function SM(color, kind, extra = {}) {
   const T = shared();
@@ -21,8 +44,18 @@ function SM(color, kind, extra = {}) {
   });
 }
 
-export const WATER = 0.42;
-export const SIZE = 420;
+export const WATER = T_WATER;
+export const SIZE = T_SIZE;
+
+/**
+ * Scatter helper: deterministic per-coordinate randomness, used to place
+ * trees, clouds, tea bushes and the like. (The terrain's own noise lives in
+ * terrain.js — this is the cheap "one number per coordinate" hash.)
+ */
+function hash(x, z) {
+  const n = Math.sin(x * 127.1 + z * 311.7) * 43758.5453123;
+  return n - Math.floor(n);
+}
 
 export let CURRENT = DISTRICTS[6];
 export let LANDMARKS = [];
@@ -37,74 +70,8 @@ export function setDistrict(id) {
   return CURRENT;
 }
 
-function hash(x, z) {
-  const n = Math.sin(x * 127.1 + z * 311.7) * 43758.5453123;
-  return n - Math.floor(n);
-}
-function noise(x, z) {
-  const ix = Math.floor(x), iz = Math.floor(z);
-  const fx = x - ix, fz = z - iz;
-  const ux = fx * fx * (3 - 2 * fx);
-  const uz = fz * fz * (3 - 2 * fz);
-  const a = hash(ix, iz), b = hash(ix + 1, iz);
-  const c = hash(ix, iz + 1), d = hash(ix + 1, iz + 1);
-  return a + (b - a) * ux + (c - a) * uz + (a - b - c + d) * ux * uz;
-}
-function fbm(x, z) {
-  return noise(x, z) + 0.5 * noise(x * 2, z * 2) + 0.25 * noise(x * 4, z * 4) + 0.125 * noise(x * 8, z * 8);
-}
-
 export function heightAt(x, z) {
-  const seed = CURRENT?.seed || 0;
-  const kind = CURRENT?.kind || "coastal";
-  const n = fbm(x * 0.012 + seed, z * 0.012);
-  const n2 = fbm(x * 0.04 + 30 + seed, z * 0.04);
-
-  if (kind === "highland") {
-    let h = 6.2 + n * 4.5 + n2 * 1.8;
-    if (x > 16) h += ((x - 16) / 150) * (9 + n * 7);
-    const step = 2.4;
-    const k = Math.floor(h / step);
-    return k * step + (h - k * step) * 0.28;
-  }
-
-  const shore = -98 + (n - 0.5) * 16 + Math.sin(z * 0.018 + seed) * 12;
-  const distInland = x - shore;
-  const lagoonX = -50 + Math.sin(z * 0.028 + seed) * 16;
-  const lagoon =
-    Math.exp(-((x - lagoonX) * (x - lagoonX)) / (kind === "backwater" ? 480 : 620)) *
-    (kind === "backwater" ? 0.85 : 0.45) *
-    (0.5 + 0.5 * Math.abs(Math.sin(z * 0.016)));
-
-  let hills = 0;
-  const hillStart = kind === "midland" ? 36 : 48;
-  if (x > hillStart) {
-    const t = (x - hillStart) / 140;
-    hills = t * ((kind === "midland" ? 10 : 16) + n * 14 + n2 * 7);
-    const step = 2.4;
-    const k = Math.floor(hills / step);
-    hills = k * step + (hills - k * step) * 0.28;
-  }
-
-  const north = z > 100 ? ((z - 100) / 90) * (5 + n * 4) : 0;
-  let h = 1.35 + n * 2.2 + n2 * 0.7 + hills + north;
-  h -= lagoon * (kind === "backwater" ? 6.2 : 4.4);
-
-  if (kind === "midland") {
-    if (distInland < -30) h = Math.min(h, distInland * 0.08 - 0.4);
-    else if (distInland < 10) {
-      const t = (distInland + 30) / 40;
-      h = h * t + 0.7 * (1 - t);
-    }
-    return h;
-  }
-
-  if (distInland < 0) h = Math.min(h, distInland * 0.14 - 1.8);
-  else if (distInland < 20) {
-    const t = distInland / 20;
-    h = h * t + 0.55 * (1 - t);
-  }
-  return h;
+  return shapeHeight(x, z, CURRENT);
 }
 
 export function biomeAt(x, z) {
@@ -713,7 +680,7 @@ function stalls(root, x, z, colliders) {
 }
 
 function paddyPatch(root, x, z) {
-  const paddyMat = new THREE.MeshLambertMaterial({ color: 0x6fa83c });
+  const paddyMat = terrainMaterial({ tint: GROUND_TINT.paddy, flatShading: false, patchStrength: 0.35 });
   const waterPaddy = new THREE.MeshLambertMaterial({ color: 0x4a9aaa, transparent: true, opacity: 0.55 });
   for (let i = 0; i < 6; i++) {
     const px = x + (i % 3) * 12;
@@ -758,7 +725,7 @@ function addJob(root, jobs, id, x, z) {
 }
 
 function sandBeach(root, x, z) {
-  const sandM = new THREE.MeshLambertMaterial({ color: 0xf6e4b4 });
+  const sandM = terrainMaterial({ tint: GROUND_TINT.beach, flatShading: false, patchStrength: 0.3 });
   for (let i = 0; i < 4; i++) {
     const zz = z - 12 + i * 10;
     const sand = new THREE.Mesh(new THREE.PlaneGeometry(16, 12), sandM);
@@ -905,40 +872,26 @@ export function buildWorld(scene, opts = {}) {
   root.add(clouds);
   extras.clouds = clouds;
 
-  const SEG = lite ? 56 : 72;
-  let geo = new THREE.PlaneGeometry(SIZE, SIZE, SEG, SEG);
-  geo.rotateX(-Math.PI / 2);
-  const p0 = geo.attributes.position;
-  for (let i = 0; i < p0.count; i++) p0.setY(i, heightAt(p0.getX(i), p0.getZ(i)));
-  geo = geo.toNonIndexed();
-  const pos = geo.attributes.position;
-  const colors = new Float32Array(pos.count * 3);
-  const c = new THREE.Color();
-  for (let i = 0; i < pos.count; i += 3) {
-    const x = (pos.getX(i) + pos.getX(i + 1) + pos.getX(i + 2)) / 3;
-    const z = (pos.getZ(i) + pos.getZ(i + 1) + pos.getZ(i + 2)) / 3;
-    const h = heightAt(x, z);
-    const b = biomeAt(x, z);
-    if (b === "sea") c.set(0xa8d060);
-    else if (b === "beach") c.set(0xf2e4b8);
-    else if (b === "backwater") c.set(0xb4d85c);
-    else if (b === "tea") c.set(0x9ec848);
-    else if (b === "forest") c.set(0x86b844);
-    else if (b === "paddy") c.set(0xd0e46a);
-    else c.set(0xc2dc5e);
-    const v = (hash(Math.floor(x * 0.22 + z * 0.07), Math.floor(z * 0.22)) - 0.5);
-    c.offsetHSL(v * 0.015, v * 0.04, v * 0.045);
-    if (h < WATER + 0.25 && b !== "sea") c.lerp(new THREE.Color(0xd4c48a), 0.25);
-    for (let k = 0; k < 3; k++) {
-      colors[(i + k) * 3] = c.r;
-      colors[(i + k) * 3 + 1] = c.g;
-      colors[(i + k) * 3 + 2] = c.b;
-    }
-  }
-  geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-  const ground = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true }));
+  const SEG = lite ? 84 : 132;
+  const ground = new THREE.Mesh(
+    buildGround(SIZE, SEG, heightAt, (x, z, h) => groundTint(x, z, CURRENT, h)),
+    // Smooth shading, like the ground slab in the reference scene: the surface
+    // is one calm green plane and all of its detail is colour, not facets.
+    terrainMaterial({ flatShading: false })
+  );
   ground.receiveShadow = true;
+  ground.name = "ground";
   root.add(ground);
+
+  // The slab edge, like the side of the ground in the reference scene: the map
+  // is a finished piece of land sitting in the sea, not an infinitely thin plane.
+  const skirt = new THREE.Mesh(
+    buildSkirt(SIZE, lite ? 40 : 72, heightAt, EDGE_TINT),
+    new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide })
+  );
+  skirt.receiveShadow = true;
+  skirt.name = "ground-edge";
+  root.add(skirt);
 
   extras.uTime = { value: 0 };
   extras.uPlayer = { value: new THREE.Vector3() };
@@ -1017,7 +970,7 @@ export function buildWorld(scene, opts = {}) {
   if (wantTea) {
     const teaGeo = new THREE.SphereGeometry(0.7, 6, 4);
     teaGeo.scale(1.3, 0.55, 1.1);
-    const teaMat = new THREE.MeshLambertMaterial({ color: 0x3d8c28 });
+    const teaMat = new THREE.MeshLambertMaterial({ color: BUSH_GREEN });
     const teaCount = lite ? 160 : 360;
     const tea = new THREE.InstancedMesh(teaGeo, teaMat, teaCount);
     tea.castShadow = true;
@@ -1038,9 +991,12 @@ export function buildWorld(scene, opts = {}) {
     root.add(tea);
   }
 
-  const grassGeo = new THREE.ConeGeometry(0.09, 0.52, 4);
-  grassGeo.translate(0, 0.26, 0);
-  const grassMat = new THREE.MeshLambertMaterial({ color: 0xa8d44a, flatShading: true, side: THREE.DoubleSide });
+  // Tufts of grass. Deliberately short and thin, and tinted from the same green
+  // family as the ground (the reference scene has no tall straw at all), so they
+  // read as extra texture on the meadow instead of a second, clashing surface.
+  const grassGeo = new THREE.ConeGeometry(0.055, 0.42, 3);
+  grassGeo.translate(0, 0.21, 0);
+  const grassMat = new THREE.MeshLambertMaterial({ color: GRASS_GREEN, side: THREE.DoubleSide });
   grassMat.onBeforeCompile = (shader) => {
     shader.uniforms.uTime = extras.uTime;
     shader.uniforms.uPlayer = extras.uPlayer;
@@ -1080,6 +1036,7 @@ export function buildWorld(scene, opts = {}) {
   const grass = new THREE.InstancedMesh(grassGeo, grassMat, GR);
   grass.frustumCulled = false;
   const dummy = new THREE.Object3D();
+  const tmpCol = new THREE.Color();
   let gi = 0;
   for (let p = 0; p < patches && gi < GR; p++) {
     const cx = -90 + hash(p, 70) * 210;
@@ -1100,13 +1057,27 @@ export function buildWorld(scene, opts = {}) {
       dummy.position.set(x, h, z);
       dummy.rotation.y = hash(p * 80 + k, 74) * 6.2;
       dummy.rotation.z = (hash(p * 80 + k, 78) - 0.5) * 0.25;
-      const sc = 0.7 + hash(p * 80 + k, 75) * 1.15;
+      const sc = 0.55 + hash(p * 80 + k, 75) * 0.7;
       dummy.scale.set(sc * 0.85, sc * (0.9 + hash(k, 79) * 0.8), sc * 0.85);
       dummy.updateMatrix();
-      grass.setMatrixAt(gi++, dummy.matrix);
+      grass.setMatrixAt(gi, dummy.matrix);
+      // Per-tuft tint: mostly the meadow green, a few blades catching the light.
+      const gv = hash(p * 80 + k, 81);
+      // red stays under green at every step, so a tuft can never turn straw
+      grass.setColorAt(
+        gi,
+        tmpCol.setRGB(
+          0.80 + gv * 0.35,
+          0.94 + gv * 0.20,
+          0.78 + gv * 0.32,
+          THREE.LinearSRGBColorSpace
+        )
+      );
+      gi++;
     }
   }
   grass.count = gi;
+  if (grass.instanceColor) grass.instanceColor.needsUpdate = true;
   root.add(grass);
   extras.grass = grass;
 

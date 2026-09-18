@@ -1,0 +1,59 @@
+name: game-shots
+
+# Manual only: this harness boots the game in headless Chromium and commits the
+# screenshots back to the branch it runs on. Run it from the Actions tab when
+# the ground changes; it never fires on its own.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      BRANCH: ${{ github.ref_name }}
+      OUT_DIR: probe/shots
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install game deps
+        run: npm install --no-audit --no-fund 2>&1 | tail -5
+
+      - name: Install Playwright + Chromium
+        run: |
+          set -x
+          npm i --no-save playwright@1.49.1 2>&1 | tail -5
+          npx --no-install playwright install --with-deps chromium 2>&1 | tail -20
+          node -e "console.log('playwright', require('playwright/package.json').version)"
+
+      - name: Start game server
+        run: |
+          mkdir -p "$OUT_DIR"
+          (node server.js > /tmp/server.log 2>&1 &)
+          sleep 3
+          curl -s -o /dev/null -w "server:%{http_code}\n" http://127.0.0.1:8080/ || true
+
+      - name: Screenshot districts
+        run: |
+          set -o pipefail
+          node .github/shots.mjs "$OUT_DIR" 2>&1 | tee "$OUT_DIR/shots.log" || echo "shots exit: $?"
+
+      - name: Compare ground against the reference blend
+        if: always()
+        run: |
+          python3 -m pip install --quiet --break-system-packages numpy pillow 2>/dev/null \
+            || python3 -m pip install --quiet numpy pillow
+          python3 .github/compare_ground.py probe probe/shots | tee probe/shots/ground_report.txt
+
+      - name: Publish shots
+        if: always()
+        run: |
+          cp /tmp/server.log "$OUT_DIR/server.log" 2>/dev/null || true
+          bash .github/publish_shots.sh
