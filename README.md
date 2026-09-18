@@ -98,3 +98,41 @@ screenshotted headlessly, so "does it match?" is a measurement, not an opinion:
 
 Latest run: the game's ground renders at hue 113–115°, saturation 0.69, blob
 contrast ~1.2 against the reference's 113–114°, 0.69–0.71 and ~1.26–1.45.
+
+## The scenery kit (islands, rocks, conifers)
+
+A second reference file — a low-poly scenery kit the project owner supplied
+(`Low Poly Scenery Hills and Lake.glb`) — is part of the terrain now:
+
+- **What it holds.** A slab of land 2.75 × 2.5 units with a hill (0.53 units
+  tall) and a bowl holding a lake, five shapes of rock (40 flat-shaded triangles
+  each, mirrored and scaled into the 36 boulders the kit ships) and three
+  conifers (464 triangles each). Every shape is faceted, which is the kit's
+  whole character. The file also carries a stray default cube and a star-shaped
+  "sun", which the baker drops.
+- **How it gets in.** `.github/bake_scenery.mjs` reads the `.glb` (glTF binary:
+  JSON chunk + BIN chunk, no textures), welds the vertices, de-duplicates the
+  shapes, replaces the slab's paper-thin skirt with a deep one, clips the kit's
+  sheet of sea down to the lake actually visible in the bowl, bakes a 65 × 65
+  height field of the slab, quantises everything to int16 and writes
+  `scenery-data.js` (68 KB, committed — the game never fetches anything).
+  The file measures height in z (the lake sheet is 0.012 thick there, the
+  conifers are 1.14 tall there), so the baker rotates it into the game's Y-up
+  axes, `(x, y, z) → (x, z, −y)`, before it measures anything.
+- **How it is placed.** `scenery.js` rebuilds the geometry and `world.js` seats
+  it: each district is given up to two islands — off the beach in coastal and
+  backwater districts, on the slopes in the highlands — chosen from candidates
+  that clear the district's own places, with the same placement every build.
+  The surrounding terrain is *blended* up to each island's rim, so the slab is
+  buried rather than floating: no seam, no step, and the hill simply rises out
+  of the ground. The island's own height field then takes over underfoot, so the
+  hill is walkable and the lake is a pool you can swim in (it joins `fishSpots`,
+  so the game's fishing and swimming already work there).
+- **And on the ground itself.** The kit's rocks and conifers are scattered
+  across every district as well — boulders on banks and hillsides, conifers in
+  stands above the village, never in the water, on a road or in a lake.
+
+Painted with the game's own ground palette, so an island reads as part of
+Keralam's terrain rather than a model dropped on it: green on the hill, sand at
+the waterline, the lake bed darker, the kit's grey on steep faces, and the
+conifers' own dark-to-light tiers.

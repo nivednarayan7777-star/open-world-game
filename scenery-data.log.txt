@@ -2,19 +2,19 @@ source probe/model/source.glb
   sha256 c8ff55586365d2862795a91a0da377a20edb6674de799dcc80e1e8f4811d408f
   42 meshes: Landscape, rock_01, rock_01.001, rock_01.002, rock_01.003, rock_01.004, rock_01.005, rock_02, rock_02.001, rock_02.002, rock_02.003, rock_02.004, rock_02.005, rock_03, rock_03.001, rock_03.002, rock_03.003, rock_03.004, rock_03.005, rock_03.006, rock_03.007, rock_04, rock_04.001, rock_04.002, rock_04.003, rock_04.004, rock_05, rock_05.001, rock_05.002, rock_05.003, rock_05.004, rock_05.005, rock_05.006, rock_05.007, rock_05.008, rock_05.009, rock_05.010, sun, tree.001, tree.002, tree.003, water
 shapes after de-duplication: 8
-  rock_01      x6   verts=26 tris=40 size=0.129 x 0.135 x 0.057 flat=true
-  rock_02      x6   verts=26 tris=40 size=0.103 x 0.105 x 0.060 flat=true
-  rock_03      x8   verts=26 tris=40 size=0.069 x 0.069 x 0.043 flat=true
-  rock_04      x5   verts=26 tris=40 size=0.061 x 0.047 x 0.030 flat=true
-  rock_05      x11  verts=26 tris=40 size=0.021 x 0.023 x 0.012 flat=true
-  tree.001     x1   verts=241 tris=464 size=0.571 x 0.626 x 1.139 flat=true
-  tree.002     x1   verts=241 tris=464 size=0.743 x 0.691 x 1.210 flat=true
-  tree.003     x1   verts=241 tris=464 size=0.647 x 0.672 x 1.246 flat=true
+  rock_01      x6   verts=26 tris=40 size=0.129 x 0.135 x 0.057 (w x d x h) flat=true
+  rock_02      x6   verts=26 tris=40 size=0.103 x 0.105 x 0.060 (w x d x h) flat=true
+  rock_03      x8   verts=26 tris=40 size=0.069 x 0.069 x 0.043 (w x d x h) flat=true
+  rock_04      x5   verts=26 tris=40 size=0.061 x 0.047 x 0.030 (w x d x h) flat=true
+  rock_05      x11  verts=26 tris=40 size=0.021 x 0.023 x 0.012 (w x d x h) flat=true
+  tree.001     x1   verts=241 tris=464 size=0.571 x 0.626 x 1.139 (w x d x h) flat=true
+  tree.002     x1   verts=241 tris=464 size=0.743 x 0.691 x 1.210 (w x d x h) flat=true
+  tree.003     x1   verts=241 tris=464 size=0.647 x 0.672 x 1.246 (w x d x h) flat=true
 slab: 1280 verts, 2550 tris, 8 boundary edges in 1 loop(s)
-slab footprint 2.752 x 2.500, z -0.104..0.421
+slab footprint 2.752 x 2.500, height -0.104..0.421
 rim z -0.000, outline 8 points, radius 1.258..1.859 (mean 1.559)
 skirt: dropped 0.521 (rim to peak is 0.421)
 height field 65x65, 3828 cells covered, spacing 0.0436
 lake: kept 206 of 1538 water tris, surface z -0.0299
-lake bbox x[-1.150 0.933] y[-0.598 0.981]
+lake bbox x[-1.150 0.933] z[-0.981 0.598]
 wrote scenery-data.js (67.5 KB)
