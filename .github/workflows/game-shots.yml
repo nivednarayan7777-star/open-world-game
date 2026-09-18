@@ -1,0 +1,51 @@
+name: game-shots
+
+on:
+  push:
+    paths:
+      - ".github/**"
+      - "world.js"
+      - "terrain.js"
+      - "main.js"
+      - "tex.js"
+      - "tile.js"
+      - "style.css"
+      - "index.html"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      BRANCH: arena/01a0b25d-open-world-game
+      OUT_DIR: probe/shots
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright + Chromium
+        run: |
+          npm i --no-save playwright@1.49.1
+          npx --yes playwright@1.49.1 install --with-deps chromium
+
+      - name: Start game server
+        run: |
+          npm install --no-audit --no-fund
+          (node server.js > /tmp/server.log 2>&1 &)
+          sleep 3
+          curl -s -o /dev/null -w "server:%{http_code}\n" http://127.0.0.1:8080/
+
+      - name: Screenshot districts
+        continue-on-error: true
+        run: node .github/shots.mjs "$OUT_DIR"
+
+      - name: Publish shots
+        if: always()
+        run: bash .github/publish_shots.sh

@@ -1,6 +1,16 @@
 import * as THREE from "three";
 import { shared } from "./tex.js";
 import { DISTRICTS, getDistrict, roadsFor } from "./districts.js";
+import {
+  WATER as T_WATER,
+  SIZE as T_SIZE,
+  GROUND_TINT,
+  EDGE_TINT,
+  shapeHeight,
+  terrainMaterial,
+  buildGround,
+  buildSkirt,
+} from "./terrain.js";
 
 function SM(color, kind, extra = {}) {
   const T = shared();
@@ -21,8 +31,18 @@ function SM(color, kind, extra = {}) {
   });
 }
 
-export const WATER = 0.42;
-export const SIZE = 420;
+export const WATER = T_WATER;
+export const SIZE = T_SIZE;
+
+/**
+ * Scatter helper: deterministic per-coordinate randomness, used to place
+ * trees, clouds, tea bushes and the like. (The terrain's own noise lives in
+ * terrain.js — this is the cheap "one number per coordinate" hash.)
+ */
+function hash(x, z) {
+  const n = Math.sin(x * 127.1 + z * 311.7) * 43758.5453123;
+  return n - Math.floor(n);
+}
 
 export let CURRENT = DISTRICTS[6];
 export let LANDMARKS = [];
@@ -37,74 +57,8 @@ export function setDistrict(id) {
   return CURRENT;
 }
 
-function hash(x, z) {
-  const n = Math.sin(x * 127.1 + z * 311.7) * 43758.5453123;
-  return n - Math.floor(n);
-}
-function noise(x, z) {
-  const ix = Math.floor(x), iz = Math.floor(z);
-  const fx = x - ix, fz = z - iz;
-  const ux = fx * fx * (3 - 2 * fx);
-  const uz = fz * fz * (3 - 2 * fz);
-  const a = hash(ix, iz), b = hash(ix + 1, iz);
-  const c = hash(ix, iz + 1), d = hash(ix + 1, iz + 1);
-  return a + (b - a) * ux + (c - a) * uz + (a - b - c + d) * ux * uz;
-}
-function fbm(x, z) {
-  return noise(x, z) + 0.5 * noise(x * 2, z * 2) + 0.25 * noise(x * 4, z * 4) + 0.125 * noise(x * 8, z * 8);
-}
-
 export function heightAt(x, z) {
-  const seed = CURRENT?.seed || 0;
-  const kind = CURRENT?.kind || "coastal";
-  const n = fbm(x * 0.012 + seed, z * 0.012);
-  const n2 = fbm(x * 0.04 + 30 + seed, z * 0.04);
-
-  if (kind === "highland") {
-    let h = 6.2 + n * 4.5 + n2 * 1.8;
-    if (x > 16) h += ((x - 16) / 150) * (9 + n * 7);
-    const step = 2.4;
-    const k = Math.floor(h / step);
-    return k * step + (h - k * step) * 0.28;
-  }
-
-  const shore = -98 + (n - 0.5) * 16 + Math.sin(z * 0.018 + seed) * 12;
-  const distInland = x - shore;
-  const lagoonX = -50 + Math.sin(z * 0.028 + seed) * 16;
-  const lagoon =
-    Math.exp(-((x - lagoonX) * (x - lagoonX)) / (kind === "backwater" ? 480 : 620)) *
-    (kind === "backwater" ? 0.85 : 0.45) *
-    (0.5 + 0.5 * Math.abs(Math.sin(z * 0.016)));
-
-  let hills = 0;
-  const hillStart = kind === "midland" ? 36 : 48;
-  if (x > hillStart) {
-    const t = (x - hillStart) / 140;
-    hills = t * ((kind === "midland" ? 10 : 16) + n * 14 + n2 * 7);
-    const step = 2.4;
-    const k = Math.floor(hills / step);
-    hills = k * step + (hills - k * step) * 0.28;
-  }
-
-  const north = z > 100 ? ((z - 100) / 90) * (5 + n * 4) : 0;
-  let h = 1.35 + n * 2.2 + n2 * 0.7 + hills + north;
-  h -= lagoon * (kind === "backwater" ? 6.2 : 4.4);
-
-  if (kind === "midland") {
-    if (distInland < -30) h = Math.min(h, distInland * 0.08 - 0.4);
-    else if (distInland < 10) {
-      const t = (distInland + 30) / 40;
-      h = h * t + 0.7 * (1 - t);
-    }
-    return h;
-  }
-
-  if (distInland < 0) h = Math.min(h, distInland * 0.14 - 1.8);
-  else if (distInland < 20) {
-    const t = distInland / 20;
-    h = h * t + 0.55 * (1 - t);
-  }
-  return h;
+  return shapeHeight(x, z, CURRENT);
 }
 
 export function biomeAt(x, z) {
@@ -888,7 +842,7 @@ function stalls(root, x, z, colliders) {
 }
 
 function paddyPatch(root, x, z) {
-  const paddyMat = new THREE.MeshLambertMaterial({ color: 0x6fa83c });
+  const paddyMat = terrainMaterial({ tint: GROUND_TINT.paddy, flatShading: false });
   const waterPaddy = new THREE.MeshLambertMaterial({ color: 0x4a9aaa, transparent: true, opacity: 0.55 });
   for (let i = 0; i < 6; i++) {
     const px = x + (i % 3) * 12;
@@ -933,7 +887,7 @@ function addJob(root, jobs, id, x, z) {
 }
 
 function sandBeach(root, x, z) {
-  const sandM = new THREE.MeshLambertMaterial({ color: 0xf6e4b4 });
+  const sandM = terrainMaterial({ tint: GROUND_TINT.beach, flatShading: false });
   for (let i = 0; i < 4; i++) {
     const zz = z - 12 + i * 10;
     const sand = new THREE.Mesh(new THREE.PlaneGeometry(16, 12), sandM);
@@ -1080,40 +1034,24 @@ export function buildWorld(scene, opts = {}) {
   root.add(clouds);
   extras.clouds = clouds;
 
-  const SEG = lite ? 56 : 72;
-  let geo = new THREE.PlaneGeometry(SIZE, SIZE, SEG, SEG);
-  geo.rotateX(-Math.PI / 2);
-  const p0 = geo.attributes.position;
-  for (let i = 0; i < p0.count; i++) p0.setY(i, heightAt(p0.getX(i), p0.getZ(i)));
-  geo = geo.toNonIndexed();
-  const pos = geo.attributes.position;
-  const colors = new Float32Array(pos.count * 3);
-  const c = new THREE.Color();
-  for (let i = 0; i < pos.count; i += 3) {
-    const x = (pos.getX(i) + pos.getX(i + 1) + pos.getX(i + 2)) / 3;
-    const z = (pos.getZ(i) + pos.getZ(i + 1) + pos.getZ(i + 2)) / 3;
-    const h = heightAt(x, z);
-    const b = biomeAt(x, z);
-    if (b === "sea") c.set(0xa8d060);
-    else if (b === "beach") c.set(0xf2e4b8);
-    else if (b === "backwater") c.set(0xb4d85c);
-    else if (b === "tea") c.set(0x9ec848);
-    else if (b === "forest") c.set(0x86b844);
-    else if (b === "paddy") c.set(0xd0e46a);
-    else c.set(0xc2dc5e);
-    const v = (hash(Math.floor(x * 0.22 + z * 0.07), Math.floor(z * 0.22)) - 0.5);
-    c.offsetHSL(v * 0.015, v * 0.04, v * 0.045);
-    if (h < WATER + 0.25 && b !== "sea") c.lerp(new THREE.Color(0xd4c48a), 0.25);
-    for (let k = 0; k < 3; k++) {
-      colors[(i + k) * 3] = c.r;
-      colors[(i + k) * 3 + 1] = c.g;
-      colors[(i + k) * 3 + 2] = c.b;
-    }
-  }
-  geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-  const ground = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true }));
+  const SEG = lite ? 84 : 132;
+  const ground = new THREE.Mesh(
+    buildGround(SIZE, SEG, heightAt, (x, z) => GROUND_TINT[biomeAt(x, z)] || GROUND_TINT.village),
+    terrainMaterial({ flatShading: true })
+  );
   ground.receiveShadow = true;
+  ground.name = "ground";
   root.add(ground);
+
+  // The slab edge, like the side of the ground in the reference scene: the map
+  // is a finished piece of land sitting in the sea, not an infinitely thin plane.
+  const skirt = new THREE.Mesh(
+    buildSkirt(SIZE, lite ? 40 : 72, heightAt, EDGE_TINT),
+    new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide })
+  );
+  skirt.receiveShadow = true;
+  skirt.name = "ground-edge";
+  root.add(skirt);
 
   extras.uTime = { value: 0 };
   extras.uPlayer = { value: new THREE.Vector3() };

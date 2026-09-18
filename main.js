@@ -1477,4 +1477,31 @@ try {
 } catch (_) {}
 addEventListener("visibilitychange", () => { if (document.hidden) persist(); });
 addEventListener("pagehide", persist);
+
+/**
+ * Small hook for tooling and the browser console: jump around, set the hour,
+ * inspect the world. The screenshot harness in .github/shots.mjs uses it.
+ */
+window.__keralam = {
+  scene,
+  camera,
+  renderer,
+  get world() { return world; },
+  get state() { return state; },
+  get player() { return player; },
+  get yaw() { return yaw; },
+  setHour(h) { hour = h; },
+  setDistrict(id) { loadDistrict(id); },
+  look(y, p) { yaw = y; if (p != null) pitch = p; },
+  place(x, z) {
+    if (!world) return null;
+    player.x = x;
+    player.z = z;
+    player.y = surfaceY(x, z, world.docks);
+    me.position.set(player.x, player.y, player.z);
+    return player.y;
+  },
+  surfaceY: (x, z) => (world ? surfaceY(x, z, world.docks) : null),
+};
+
 loop();
