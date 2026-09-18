@@ -1113,43 +1113,7 @@ export function buildWorld(scene, opts = {}) {
   geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
   const ground = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true }));
   ground.receiveShadow = true;
-  ground.name = "low-poly terrain";
   root.add(ground);
-
-  // A shallow water table gives the terrain a readable shoreline instead of leaving
-  // the low parts of the heightfield looking like painted grass. The reference
-  // scene is low-poly, so keep the surface deliberately calm and faceted.
-  const waterGeo = new THREE.PlaneGeometry(SIZE * 0.92, SIZE * 0.92, lite ? 12 : 20);
-  waterGeo.rotateX(-Math.PI / 2);
-  const waterMat = new THREE.MeshLambertMaterial({
-    color: 0x3b9aa0, transparent: true, opacity: 0.76,
-    depthWrite: false, side: THREE.DoubleSide,
-  });
-  const waterSurface = new THREE.Mesh(waterGeo, waterMat);
-  waterSurface.position.y = WATER + 0.015;
-  waterSurface.name = "coastal water surface";
-  waterSurface.receiveShadow = true;
-  root.add(waterSurface);
-
-  // Broad, warm dirt ribbons make the ground read as a walkable open-world
-  // landscape and echo the hand-built paths in the supplied Blender scene.
-  const roadMat = new THREE.MeshLambertMaterial({ color: 0x9a754b, roughness: 1, side: THREE.DoubleSide });
-  for (const path of ROADS) {
-    for (let ri = 0; ri < path.length - 1; ri++) {
-      const [ax, az] = path[ri], [bx, bz] = path[ri + 1];
-      const dx = bx - ax, dz = bz - az;
-      const len = Math.hypot(dx, dz);
-      if (len < 0.5) continue;
-      const road = new THREE.Mesh(new THREE.PlaneGeometry(len, 5.2), roadMat);
-      road.rotation.x = -Math.PI / 2;
-      road.rotation.z = -Math.atan2(dz, dx);
-      const mx = (ax + bx) * 0.5, mz = (az + bz) * 0.5;
-      road.position.set(mx, Math.max(heightAt(mx, mz), WATER) + 0.035, mz);
-      road.name = "earth path";
-      road.receiveShadow = true;
-      root.add(road);
-    }
-  }
 
   extras.uTime = { value: 0 };
   extras.uPlayer = { value: new THREE.Vector3() };
@@ -1320,36 +1284,6 @@ export function buildWorld(scene, opts = {}) {
   grass.count = gi;
   root.add(grass);
   extras.grass = grass;
-
-  // Sparse faceted stones break up the large terrain mesh and add scale to
-  // slopes without the cost of another texture or a large imported asset.
-  const rockGeo = new THREE.IcosahedronGeometry(0.72, 0);
-  const rockMat = new THREE.MeshLambertMaterial({ color: 0x766b55, flatShading: true, roughness: 1 });
-  const rockCount = lite ? 42 : 86;
-  const rocks = new THREE.InstancedMesh(rockGeo, rockMat, rockCount);
-  rocks.castShadow = true;
-  rocks.receiveShadow = true;
-  const rockDummy = new THREE.Object3D();
-  let rockPlaced = 0;
-  for (let i = 0; i < rockCount * 8 && rockPlaced < rockCount; i++) {
-    const x = -135 + hash(i, 91) * 285;
-    const z = -175 + hash(i, 92) * 345;
-    const h = heightAt(x, z);
-    const b = biomeAt(x, z);
-    if (h < WATER + 0.7 || b === "sea" || b === "paddy" || onRoad(x, z)) continue;
-    if (CURRENT.places.some((pl) => Math.hypot(x - pl.x, z - pl.z) < (pl.r || 10))) continue;
-    const slope = Math.hypot(heightAt(x + 1, z) - heightAt(x - 1, z), heightAt(x, z + 1) - heightAt(x, z - 1));
-    if (slope > 2.8) continue;
-    const s = 0.35 + hash(i, 93) * 0.95;
-    rockDummy.position.set(x, h + s * 0.34, z);
-    rockDummy.rotation.set(hash(i, 94) * 0.5, hash(i, 95) * 6.28, hash(i, 96) * 0.35);
-    rockDummy.scale.set(s * 1.25, s * (0.65 + hash(i, 97) * 0.5), s);
-    rockDummy.updateMatrix();
-    rocks.setMatrixAt(rockPlaced++, rockDummy.matrix);
-  }
-  rocks.count = rockPlaced;
-  root.add(rocks);
-  extras.rocks = rocks;
 
   for (const p of CURRENT.places) {
     try {
