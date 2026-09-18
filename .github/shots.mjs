@@ -37,6 +37,18 @@ const SHOTS = [
     ["spawn", null, null, 0.35, -0.18],
     ["hills", 50, 40, 2.6, 0.04],
   ]],
+  ["kollam", [
+    ["spawn", null, null, 0.35, -0.18],
+    ["backwater", -30, -20, 1.9, -0.05],
+  ]],
+  ["tsr", [
+    ["spawn", null, null, 0.35, -0.18],
+    ["inland", 60, -40, 3.6, 0.0],
+  ]],
+  ["wyd", [
+    ["spawn", null, null, 0.35, -0.18],
+    ["highland", 40, -30, 2.4, 0.06],
+  ]],
 ];
 
 const notes = [];
@@ -127,7 +139,8 @@ for (const [district, views] of SHOTS) {
         console.log("skip (underwater)", tag, label, JSON.stringify(placed));
         continue;
       }
-      await page.waitForTimeout(800);
+      // the camera eases toward the player; let it arrive before the shot
+      await page.waitForTimeout(1800);
       const file = path.join(OUT, `${tag}-${label}.png`);
       await page.screenshot({ path: file });
       const info = await page.evaluate(() => {
