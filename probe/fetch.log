@@ -3,7 +3,7 @@ curl exit: 0
 headers:
 HTTP/2 200 
 content-type: application/octet-stream
-x-guploader-uploadid: AJjja9ZZ3pz2D4_hwQk68eOSkXyjh--fg8snOS5gseCi4zkHY5PvDWwy2DJv2eoh06oWvfhcnw020EU
+x-guploader-uploadid: AJjja9b-z8qsHNgw1vjp1ifwJkHk1zNEPvJpRYg7nEDNmPThn06Zt00laN2chi9AZyvi8xWX
 content-security-policy: sandbox
 content-security-policy: default-src 'none'
 content-security-policy: frame-ancestors 'none'
@@ -20,15 +20,15 @@ access-control-allow-methods: GET,HEAD,OPTIONS
 accept-ranges: bytes
 content-length: 42160348
 last-modified: Thu, 17 Sep 2026 16:01:02 GMT
-date: Fri, 18 Sep 2026 02:54:13 GMT
-expires: Fri, 18 Sep 2026 02:54:13 GMT
+date: Fri, 18 Sep 2026 03:13:42 GMT
+expires: Fri, 18 Sep 2026 03:13:42 GMT
 cache-control: private, max-age=0
 x-goog-hash: crc32c=8KqYUg==
 server: UploadServer
 alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
 
 --- check /tmp/blend/source.blend ---
--rw-r--r-- 1 runner runner 42160348 Sep 18 02:54 /tmp/blend/source.blend
+-rw-r--r-- 1 runner runner 42160348 Sep 18 03:13 /tmp/blend/source.blend
 type: Blender3D, saved as 64-bits little endian with version 2.93
 head bytes: 0000000   B   L   E   N   D   E   R   -   v   2   9   3   R   E   N   D 0000020 
 VERDICT: valid .blend
