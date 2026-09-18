@@ -2,24 +2,24 @@ shot probe/shots/ekm-spawn.png {"district":"district","x":-74,"y":2.4,"z":12,"ob
 shot probe/shots/ekm-inland.png {"district":"district","x":20,"y":3.24,"z":20,"objects":4}
 shot probe/shots/ekm-beach.png {"district":"district","x":-100,"y":-3.71,"z":10,"objects":4}
 skip (underwater) ekm-island0 east {"y":-7.154025077688771,"water":0.42}
-shot probe/shots/ekm-island0-on.png {"x":-169.2,"y":4.69,"z":-35.6}
+shot probe/shots/ekm-island0-on.png {"x":-169.2,"y":4.68,"z":-35.6}
 skip (underwater) ekm-island0 north {"y":-10.721808839645805,"water":0.42}
 swatch probe/shots/ground-ekm-near.png
 swatch probe/shots/ground-ekm-far.png
 shot probe/shots/alpy-spawn.png {"district":"district","x":-70,"y":2.59,"z":8,"objects":4}
 shot probe/shots/alpy-backwater.png {"district":"district","x":-40,"y":0.26,"z":-30,"objects":4}
 skip (underwater) alpy-island0 east {"y":-10.361854144992995,"water":0.42}
-shot probe/shots/alpy-island0-on.png {"x":-171.6,"y":4.85,"z":-60.4}
+shot probe/shots/alpy-island0-on.png {"x":-171.6,"y":4.96,"z":-60.4}
 skip (underwater) alpy-island0 north {"y":-14.549882718550807,"water":0.42}
 skip (underwater) alpy-island1 east {"y":-2.9409681795878777,"water":0.42}
-shot probe/shots/alpy-island1-on.png {"x":-147.6,"y":4.9,"z":102}
+shot probe/shots/alpy-island1-on.png {"x":-147.6,"y":4.57,"z":102}
 skip (underwater) alpy-island1 north {"y":-7.852220380691712,"water":0.42}
 swatch probe/shots/ground-alpy-near.png
 swatch probe/shots/ground-alpy-far.png
 shot probe/shots/pta-spawn.png {"district":"district","x":8,"y":4.98,"z":4,"objects":4}
 shot probe/shots/pta-midland.png {"district":"district","x":40,"y":4.64,"z":0,"objects":4}
 shot probe/shots/pta-island0-east.png {"x":-82.9,"y":3.05,"z":16}
-shot probe/shots/pta-island0-on.png {"x":-120.1,"y":5.88,"z":16}
+shot probe/shots/pta-island0-on.png {"x":-120.1,"y":5.32,"z":16}
 skip (underwater) pta-island0 north {"y":-3.311902561813879,"water":0.42}
 swatch probe/shots/ground-pta-near.png
 swatch probe/shots/ground-pta-far.png
@@ -27,23 +27,53 @@ shot probe/shots/idk-spawn.png {"district":"district","x":24,"y":12.27,"z":0,"ob
 shot probe/shots/idk-slopes.png {"district":"district","x":60,"y":14.71,"z":10,"objects":4}
 shot probe/shots/idk-ridge.png {"district":"district","x":120,"y":24.36,"z":30,"objects":4}
 shot probe/shots/idk-island0-east.png {"x":-105.9,"y":12.57,"z":-6}
-shot probe/shots/idk-island0-on.png {"x":-143.1,"y":5.88,"z":-6}
+shot probe/shots/idk-island0-on.png {"x":-143.1,"y":5.75,"z":-6}
 shot probe/shots/idk-island0-north.png {"x":-143.1,"y":10.07,"z":-45.2}
 shot probe/shots/idk-island1-east.png {"x":167.5,"y":31.69,"z":128}
-shot probe/shots/idk-island1-on.png {"x":126,"y":28.99,"z":128}
+shot probe/shots/idk-island1-on.png {"x":126,"y":28.69,"z":128}
 shot probe/shots/idk-island1-north.png {"x":126,"y":26.56,"z":84.5}
 swatch probe/shots/ground-idk-near.png
 swatch probe/shots/ground-idk-far.png
 shot probe/shots/kkd-spawn.png {"district":"district","x":-72,"y":2.11,"z":8,"objects":4}
 shot probe/shots/kkd-hills.png {"district":"district","x":50,"y":4.86,"z":40,"objects":4}
 skip (underwater) kkd-island0 east {"y":-6.07053025895614,"water":0.42}
-shot probe/shots/kkd-island0-on.png {"x":-164.9,"y":4.83,"z":-94}
+shot probe/shots/kkd-island0-on.png {"x":-164.9,"y":4.68,"z":-94}
 skip (underwater) kkd-island0 north {"y":-9.740352742278992,"water":0.42}
 skip (underwater) kkd-island1 east {"y":-4.656569470761455,"water":0.42}
-shot probe/shots/kkd-island1-on.png {"x":-140.9,"y":4.35,"z":144}
+shot probe/shots/kkd-island1-on.png {"x":-140.9,"y":4.12,"z":144}
 skip (underwater) kkd-island1 north {"y":-9.97488382715951,"water":0.42}
 swatch probe/shots/ground-kkd-near.png
 swatch probe/shots/ground-kkd-far.png
+shot probe/shots/kollam-spawn.png {"district":"district","x":-64,"y":2.91,"z":6,"objects":4}
+shot probe/shots/kollam-backwater.png {"district":"district","x":-30,"y":1.18,"z":-20,"objects":4}
+skip (underwater) kollam-island0 east {"y":-7.189164548254012,"water":0.42}
+shot probe/shots/kollam-island0-on.png {"x":-162,"y":4.96,"z":-51.2}
+skip (underwater) kollam-island0 north {"y":-11.846829199325732,"water":0.42}
+skip (underwater) kollam-island1 east {"y":-4.020949663530299,"water":0.42}
+shot probe/shots/kollam-island1-on.png {"x":-138,"y":4.21,"z":86}
+skip (underwater) kollam-island1 north {"y":-9.937357679680142,"water":0.42}
+swatch probe/shots/ground-kollam-near.png
+swatch probe/shots/ground-kollam-far.png
+shot probe/shots/tsr-spawn.png {"district":"district","x":4,"y":3.66,"z":8,"objects":4}
+shot probe/shots/tsr-inland.png {"district":"district","x":60,"y":9.69,"z":-40,"objects":4}
+shot probe/shots/tsr-island0-east.png {"x":167.3,"y":33.27,"z":-121}
+shot probe/shots/tsr-island0-on.png {"x":121.5,"y":26.46,"z":-121}
+shot probe/shots/tsr-island0-north.png {"x":121.5,"y":18.55,"z":-168.8}
+shot probe/shots/tsr-island1-east.png {"x":200.5,"y":48.63,"z":121.2}
+shot probe/shots/tsr-island1-on.png {"x":150.4,"y":36.8,"z":121.2}
+shot probe/shots/tsr-island1-north.png {"x":150.4,"y":31.22,"z":69.1}
+swatch probe/shots/ground-tsr-near.png
+swatch probe/shots/ground-tsr-far.png
+shot probe/shots/wyd-spawn.png {"district":"district","x":18,"y":10.05,"z":4,"objects":4}
+shot probe/shots/wyd-highland.png {"district":"district","x":40,"y":10.26,"z":-30,"objects":4}
+shot probe/shots/wyd-island0-east.png {"x":192.6,"y":36.06,"z":103}
+shot probe/shots/wyd-island0-on.png {"x":146.8,"y":34.34,"z":103}
+shot probe/shots/wyd-island0-north.png {"x":146.8,"y":26.88,"z":55.2}
+shot probe/shots/wyd-island1-east.png {"x":159.5,"y":26.8,"z":-166.4}
+shot probe/shots/wyd-island1-on.png {"x":120.2,"y":24.02,"z":-166.4}
+shot probe/shots/wyd-island1-north.png {"x":120.2,"y":22.23,"z":-207.7}
+swatch probe/shots/ground-wyd-near.png
+swatch probe/shots/ground-wyd-far.png
 errors: [
   '[console] Failed to load resource: the server responded with a status of 404 (Not Found)'
 ]

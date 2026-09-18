@@ -32,30 +32,33 @@
    ]
   },
   "game": {
-   "hue_deg": 65.1,
-   "sat": 0.394,
-   "value": 0.873,
-   "blobs": 1.01,
-   "fine": 1.066,
+   "hue_deg": 64.8,
+   "sat": 0.384,
+   "value": 0.875,
+   "blobs": 1.009,
+   "fine": 1.055,
    "rgb_lit": [
-    214.9,
-    222.5,
-    135.2
+    216.2,
+    223.1,
+    137.7
    ],
    "samples": [
     "probe/shots/ground-alpy-near.png",
     "probe/shots/ground-ekm-near.png",
     "probe/shots/ground-idk-near.png",
     "probe/shots/ground-kkd-near.png",
-    "probe/shots/ground-pta-near.png"
+    "probe/shots/ground-kollam-near.png",
+    "probe/shots/ground-pta-near.png",
+    "probe/shots/ground-tsr-near.png",
+    "probe/shots/ground-wyd-near.png"
    ]
   },
   "delta_game_minus_reference": {
-   "hue_deg": -47.9,
-   "sat": -0.3,
-   "value": 0.243,
-   "blobs": -0.254,
-   "fine": -1.389
+   "hue_deg": -48.2,
+   "sat": -0.31,
+   "value": 0.245,
+   "blobs": -0.255,
+   "fine": -1.4
   }
  },
  "far_sunlit": {
@@ -76,30 +79,33 @@
    ]
   },
   "game": {
-   "hue_deg": 64.8,
-   "sat": 0.392,
-   "value": 0.874,
-   "blobs": 1.005,
-   "fine": 1.013,
+   "hue_deg": 64.6,
+   "sat": 0.383,
+   "value": 0.877,
+   "blobs": 1.003,
+   "fine": 1.018,
    "rgb_lit": [
-    215.4,
-    222.7,
-    135.7
+    217.0,
+    223.4,
+    138.2
    ],
    "samples": [
     "probe/shots/ground-alpy-far.png",
     "probe/shots/ground-ekm-far.png",
     "probe/shots/ground-idk-far.png",
     "probe/shots/ground-kkd-far.png",
-    "probe/shots/ground-pta-far.png"
+    "probe/shots/ground-kollam-far.png",
+    "probe/shots/ground-pta-far.png",
+    "probe/shots/ground-tsr-far.png",
+    "probe/shots/ground-wyd-far.png"
    ]
   },
   "delta_game_minus_reference": {
-   "hue_deg": -49.3,
-   "sat": -0.317,
-   "value": 0.289,
-   "blobs": -0.441,
-   "fine": -3.079
+   "hue_deg": -49.5,
+   "sat": -0.326,
+   "value": 0.292,
+   "blobs": -0.443,
+   "fine": -3.074
   }
  }
 }
