@@ -1,6 +1,4 @@
-"""Probe a .blend file: report scene contents, sample the ground heightmap,
-bake a material map, render preview images and emit everything as base64/JSON
-on stdout so it can be read back from a GitHub Actions log."""
+"""Probe v2: dump ground meshes, material recipes, statistics and renders."""
 
 import base64
 import json
@@ -11,262 +9,282 @@ import traceback
 import bpy
 from mathutils import Vector
 
-OUT = "/tmp/blend"
+OUT = "/tmp/blendout"
 os.makedirs(OUT, exist_ok=True)
-
-BUDGET = 7_000_000  # characters of base64 we are willing to print
 printed = {"n": 0}
+BUDGET = 6_000_000
 
 
-def emit_marker(name, payload):
+def emit(name, payload):
     print("===%s_BEGIN===" % name)
     print(payload)
     print("===%s_END===" % name)
 
 
-def emit_b64(name, path, limit=2_500_000):
+def emit_b64(name, path, limit=1_500_000):
     try:
-        with open(path, "rb") as fh:
-            data = fh.read()
+        data = open(path, "rb").read()
     except Exception as exc:  # noqa: BLE001
         print("MISSING %s %s" % (name, exc))
         return
     b64 = base64.b64encode(data).decode("ascii")
     if printed["n"] + len(b64) > BUDGET:
-        print("SKIPPED %s (%d bytes, budget)" % (name, len(data)))
+        print("SKIPPED %s" % name)
         return
     printed["n"] += len(b64)
-    emit_marker(name, b64)
-    print("EMITTED %s %d bytes raw / %d base64" % (name, len(data), len(b64)))
+    emit(name, b64)
+    print("EMITTED %s %d bytes" % (name, len(data)))
 
 
-def world_verts(obj):
+def node_dump(mat):
+    """Full parameter dump of a node tree, enough to reimplement it."""
+    out = {"name": mat.name, "nodes": [], "links": []}
+    if not mat.use_nodes:
+        return out
+    nt = mat.node_tree
+    for n in nt.nodes:
+        item = {"type": n.type, "name": n.name}
+        if n.type in {"TEX_MUSGRAVE", "TEX_NOISE", "TEX_VORONOI"}:
+            for key in ("noise_dimensions", "musgrave_type", "voronoi_dimensions", "feature"):
+                if hasattr(n, key):
+                    item[key] = str(getattr(n, key))
+        for sock in n.inputs:
+            try:
+                val = sock.default_value
+            except Exception:  # noqa: BLE001
+                continue
+            if hasattr(val, "__len__") and not isinstance(val, str):
+                item[sock.name] = [round(float(v), 4) for v in val]
+            elif isinstance(val, (int, float, bool)):
+                item[sock.name] = round(float(val), 4) if isinstance(val, float) else val
+            elif isinstance(val, str):
+                item[sock.name] = val
+            elif hasattr(val, "name"):
+                item[sock.name] = val.name
+        if n.type == "VALTORGB":
+            item["stops"] = [
+                {"pos": round(e.position, 4), "color": [round(c, 4) for c in e.color]}
+                for e in n.color_ramp.elements
+            ]
+            item["interpolation"] = n.color_ramp.interpolation
+        if n.type == "MAPPING":
+            item["vector_type"] = n.vector_type
+        if n.type == "TEX_IMAGE" and n.image:
+            item["image"] = n.image.name
+        out["nodes"].append(item)
+    for l in nt.links:
+        out["links"].append([
+            "%s.%s" % (l.from_node.name, l.from_socket.name),
+            "%s.%s" % (l.to_node.name, l.to_socket.name),
+        ])
+    return out
+
+
+def mesh_to_grid(obj):
+    """If the mesh is a regular X/Y grid, return (xs, ys, heights[iy][ix])."""
     mw = obj.matrix_world
-    return [mw @ v.co for v in obj.data.vertices]
+    pts = [mw @ v.co for v in obj.data.vertices]
+    xs = sorted({round(p.x, 4) for p in pts})
+    ys = sorted({round(p.y, 4) for p in pts})
+    if len(xs) * len(ys) != len(pts):
+        return None
+    xi = {v: i for i, v in enumerate(xs)}
+    yi = {v: i for i, v in enumerate(ys)}
+    grid = [[None] * len(xs) for _ in ys]
+    for p in pts:
+        grid[yi[round(p.y, 4)]][xi[round(p.x, 4)]] = p.z
+    if any(h is None for row in grid for h in row):
+        return None
+    return xs, ys, grid
 
 
-def report():
-    scene = bpy.context.scene
+def emit_grid(obj, step=1):
+    g = mesh_to_grid(obj)
+    if not g:
+        return None
+    xs, ys, grid = g
+    out_xs, out_ys, out_h = xs[::step], ys[::step], [row[::step] for row in grid[::step]]
+    flats = [h for row in out_h for h in row]
     data = {
-        "blender": bpy.app.version_string,
-        "scene": scene.name,
-        "unit_scale": scene.unit_settings.scale_length,
-        "render_engine": scene.render.engine,
-        "collections": [c.name for c in bpy.data.collections],
-        "objects": [],
-        "materials": [],
-        "images": [],
-    }
-
-    for obj in bpy.data.objects:
-        info = {
-            "name": obj.name,
-            "type": obj.type,
-            "parent": obj.parent.name if obj.parent else None,
-            "loc": [round(v, 4) for v in obj.location],
-            "scale": [round(v, 4) for v in obj.scale],
-        }
-        if obj.type == "MESH":
-            me = obj.data
-            vs = world_verts(obj)
-            if vs:
-                xs = [v.x for v in vs]
-                ys = [v.y for v in vs]
-                zs = [v.z for v in vs]
-                info["bbox_min"] = [round(min(xs), 3), round(min(ys), 3), round(min(zs), 3)]
-                info["bbox_max"] = [round(max(xs), 3), round(max(ys), 3), round(max(zs), 3)]
-            info["verts"] = len(me.vertices)
-            info["polys"] = len(me.polygons)
-            info["materials"] = [m.name if m else None for m in me.materials]
-            info["uv_layers"] = [l.name for l in me.uv_layers]
-            info["color_attrs"] = [a.name for a in getattr(me, "color_attributes", [])]
-            info["modifiers"] = [m.type for m in obj.modifiers]
-            info["shade_smooth"] = bool(me.polygons) and me.polygons[0].use_smooth
-        data["objects"].append(info)
-
-    for mat in bpy.data.materials:
-        m = {"name": mat.name, "use_nodes": mat.use_nodes, "blend": mat.blend_method}
-        try:
-            if mat.use_nodes:
-                bsdf = next((n for n in mat.node_tree.nodes if n.type == "BSDF_PRINCIPLED"), None)
-                if bsdf:
-                    m["base_color"] = [round(c, 3) for c in bsdf.inputs["Base Color"].default_value]
-                    m["roughness"] = round(float(bsdf.inputs["Roughness"].default_value), 3)
-                    for key in ("Metallic", "Alpha", "Transmission Weight", "Transmission"):
-                        if key in bsdf.inputs:
-                            m["_".join(key.lower().split())] = round(float(bsdf.inputs[key].default_value), 3)
-                            break
-                    tex = []
-                    for node in mat.node_tree.nodes:
-                        if node.type == "TEX_IMAGE" and node.image:
-                            tex.append(node.image.name)
-                    m["textures"] = tex
-                    m["nodes"] = sorted({n.type for n in mat.node_tree.nodes})
-        except Exception as exc:  # noqa: BLE001
-            m["error"] = str(exc)
-        data["materials"].append(m)
-
-    for img in bpy.data.images:
-        data["images"].append({
-            "name": img.name,
-            "size": [img.size[0], img.size[1]],
-            "packed": bool(img.packed_file),
-            "file": img.filepath,
-            "source": img.source,
-        })
-
-    emit_marker("REPORT", json.dumps(data, indent=1))
-
-
-def pick_ground():
-    best = None
-    best_score = -1
-    for obj in bpy.data.objects:
-        if obj.type != "MESH" or not obj.data.polygons:
-            continue
-        vs = world_verts(obj)
-        if len(vs) < 4:
-            continue
-        xs = [v.x for v in vs]
-        ys = [v.y for v in vs]
-        area = (max(xs) - min(xs)) * (max(ys) - min(ys))
-        score = area * math.log(len(vs) + 2)
-        # prefer big, dense, flat-ish meshes = terrain
-        if score > best_score:
-            best_score = score
-            best = obj
-    return best
-
-
-def sample_grid(obj, n=129):
-    from mathutils.bvhtree import BVHTree
-
-    vs = world_verts(obj)
-    polys = [tuple(p.vertices) for p in obj.data.polygons]
-    mat_of_poly = [p.material_index for p in obj.data.polygons]
-    bvh = BVHTree.FromPolygons(vs, polys, all_triangles=False)
-
-    xs = [v.x for v in vs]
-    ys = [v.y for v in vs]
-    zs = [v.z for v in vs]
-    minx, maxx = min(xs), max(xs)
-    miny, maxy = min(ys), max(ys)
-    top = max(zs) + 5.0
-
-    heights = []
-    mats = []
-    for j in range(n):
-        row_h = []
-        row_m = []
-        ty = miny + (maxy - miny) * j / (n - 1)
-        for i in range(n):
-            tx = minx + (maxx - minx) * i / (n - 1)
-            hit = bvh.ray_cast(Vector((tx, ty, top)), Vector((0, 0, -1)), 10000.0)
-            if hit[0] is None:
-                row_h.append(None)
-                row_m.append(-1)
-            else:
-                row_h.append(round(hit[0].z, 3))
-                pi = hit[3]
-                row_m.append(mat_of_poly[pi] if pi is not None and pi < len(mat_of_poly) else -1)
-        heights.append(row_h)
-        mats.append(row_m)
-
-    minh = min(h for row in heights for h in row if h is not None)
-    maxh = max(h for row in heights for h in row if h is not None)
-    grid = {
         "object": obj.name,
-        "n": n,
-        "bounds": [round(minx, 3), round(miny, 3), round(maxx, 3), round(maxy, 3)],
-        "min_z": round(minh, 3),
-        "max_z": round(maxh, 3),
-        "materials": [m.name if m else None for m in obj.data.materials],
-        "heights": heights,
-        "material_index": mats,
+        "material": [m.name if m else None for m in obj.data.materials],
+        "size": [len(out_xs), len(out_ys)],
+        "span": [round(out_xs[-1] - out_xs[0], 3), round(out_ys[-1] - out_ys[0], 3)],
+        "spacing": round(out_xs[1] - out_xs[0], 4),
+        "min_z": round(min(flats), 3),
+        "max_z": round(max(flats), 3),
+        "mean_z": round(sum(flats) / len(flats), 3),
+        "xs": [round(v, 3) for v in out_xs],
+        "ys": [round(v, 3) for v in out_ys],
+        "heights": [[round(h, 3) for h in row] for row in out_h],
     }
-    emit_marker("GRID", json.dumps(grid))
-    return grid
+    emit("GRID_%s" % obj.name.upper().replace(".", "_"), json.dumps(data))
+    return data
 
 
-def setup_light_and_world(grid):
-    scene = bpy.context.scene
+def stats(grid):
+    """Roughness statistics: slope distribution, valley/ridge character."""
+    hs = [h for row in grid for h in row]
+    n = len(grid)
+    sl = []
+    for j in range(1, n - 1):
+        for i in range(1, n - 1):
+            dx = grid[j][i + 1] - grid[j][i - 1]
+            dy = grid[j + 1][i] - grid[j - 1][i]
+            sl.append(math.hypot(dx, dy) / 2.0)
+    sl.sort()
+    return {
+        "slope_median": round(sl[len(sl) // 2], 4),
+        "slope_p90": round(sl[int(len(sl) * 0.9)], 4),
+        "slope_max": round(sl[-1], 4),
+        "flat_fraction": round(sum(1 for s in sl if s < 0.05) / len(sl), 3),
+    }
+
+
+def scene_info():
+    sc = bpy.context.scene
+    info = {
+        "collections": {c.name: [o.name for o in c.objects] for c in bpy.data.collections},
+        "unit": {"scale": sc.unit_settings.scale_length, "system": sc.unit_settings.system},
+        "world": None,
+        "sun": None,
+        "camera": None,
+        "fog": {
+            "type": sc.world.mist_settings.type if sc.world else None,
+            "depth": sc.world.mist_settings.depth if sc.world else None,
+            "start": sc.world.mist_settings.start if sc.world else None,
+        },
+    }
+    w = sc.world
+    if w and w.use_nodes:
+        bg = w.node_tree.nodes.get("Background")
+        if bg:
+            info["world"] = {
+                "color": [round(c, 4) for c in bg.inputs[0].default_value],
+                "strength": round(float(bg.inputs[1].default_value), 3),
+            }
+    for o in bpy.data.objects:
+        if o.type == "LIGHT":
+            info["sun"] = {
+                "name": o.name, "kind": o.data.type, "energy": o.data.energy,
+                "color": [round(c, 3) for c in o.data.color],
+                "rotation": [round(math.degrees(a), 2) for a in o.rotation_euler],
+                "angle": round(math.radians(o.data.angle) if hasattr(o.data, "angle") else 0, 4),
+            }
+        if o.type == "CAMERA":
+            info["camera"] = {
+                "name": o.name, "lens": o.data.lens, "type": o.data.type,
+                "loc": [round(v, 3) for v in o.location],
+                "rotation": [round(math.degrees(a), 2) for a in o.rotation_euler],
+            }
+    emit("SCENE", json.dumps(info, indent=1))
+
+
+def render_views():
+    sc = bpy.context.scene
+    sc.render.engine = "CYCLES"
+    sc.cycles.device = "CPU"
+    sc.cycles.samples = 48
+    sc.cycles.use_denoising = False
+    sc.cycles.max_bounces = 4
+    sc.render.resolution_x = 720
+    sc.render.resolution_y = 460
+    sc.render.image_settings.file_format = "PNG"
     if not any(o.type == "LIGHT" for o in bpy.data.objects):
         sun = bpy.data.objects.new("probe_sun", bpy.data.lights.new("probe_sun", "SUN"))
         sun.data.energy = 4.0
         sun.rotation_euler = (math.radians(52), 0, math.radians(35))
-        scene.collection.objects.link(sun)
-    world = scene.world or bpy.data.worlds.new("probe_world")
-    scene.world = world
-    world.use_nodes = True
-    bg = world.node_tree.nodes.get("Background")
+        sc.collection.objects.link(sun)
+    if sc.world is None:
+        sc.world = bpy.data.worlds.new("probe_world")
+    sc.world.use_nodes = True
+    bg = sc.world.node_tree.nodes.get("Background")
     if bg:
         bg.inputs[0].default_value = (0.62, 0.78, 0.92, 1.0)
-        bg.inputs[1].default_value = 1.0
-
-
-def render_views(grid):
-    scene = bpy.context.scene
-    try:
-        scene.render.engine = "CYCLES"
-        scene.cycles.device = "CPU"
-        scene.cycles.samples = 24
-        scene.cycles.use_denoising = True
-    except Exception:  # noqa: BLE001
-        scene.render.engine = "BLENDER_WORKBENCH"
-    scene.render.resolution_x = 640
-    scene.render.resolution_y = 400
-    scene.render.resolution_percentage = 100
-    scene.render.image_settings.file_format = "PNG"
-    scene.render.film_transparent = False
-
-    minx, miny, maxx, maxy = grid["bounds"]
-    cx, cy = (minx + maxx) / 2.0, (miny + maxy) / 2.0
-    span = max(maxx - minx, maxy - miny)
 
     cam_data = bpy.data.cameras.new("probe_cam")
     cam = bpy.data.objects.new("probe_cam", cam_data)
-    scene.collection.objects.link(cam)
-    scene.camera = cam
+    sc.collection.objects.link(cam)
+    sc.camera = cam
+
+    # Frame the ground meshes.
+    pts = []
+    for o in bpy.data.objects:
+        if o.type == "MESH" and o.name.startswith("ground"):
+            pts += [o.matrix_world @ v.co for v in o.data.vertices]
+    if not pts:
+        pts = [Vector((0, 0, 0)), Vector((1, 1, 1))]
+    xs = [p.x for p in pts]
+    ys = [p.y for p in pts]
+    zs = [p.z for p in pts]
+    cx, cy = (min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2
+    span = max(max(xs) - min(xs), max(ys) - min(ys))
+    top = max(zs)
+    target = Vector((cx, cy, (min(zs) + top) / 2))
 
     views = [
-        ("TOP", "ORTHO", (cx, cy, max(grid["max_z"] + span, 10)), (0, 0, 0), span * 1.05),
-        ("ISO", "PERSP", (cx - span * 0.75, cy - span * 0.75, grid["max_z"] + span * 0.55), None, 0),
-        ("LOW", "PERSP", (cx + span * 0.62, cy - span * 0.62, grid["min_z"] + span * 0.10), None, 0),
+        ("TOP", "ORTHO", (cx, cy, top + span), (0, 0, 0), span * 1.15),
+        ("ISO", "PERSP", (cx - span * 0.8, cy - span * 0.8, top + span * 0.5), None, 0),
+        ("LOW", "PERSP", (cx + span * 0.7, cy - span * 0.55, top + span * 0.06), None, 0),
+        ("HERO", "PERSP", (cx - span * 0.25, cy - span * 0.95, top + span * 0.22), None, 0),
     ]
-    target = Vector((cx, cy, (grid["min_z"] + grid["max_z"]) / 2.0))
     for name, kind, loc, rot, ortho in views:
         cam_data.type = kind
+        cam_data.lens = 42
         if kind == "ORTHO":
             cam_data.ortho_scale = ortho
             cam.rotation_euler = rot
         else:
-            direction = target - Vector(loc)
-            cam.rotation_euler = direction.to_track_quat("-Z", "Y").to_euler()
+            d = target - Vector(loc)
+            cam.rotation_euler = d.to_track_quat("-Z", "Y").to_euler()
         cam.location = loc
         path = os.path.join(OUT, "view_%s.png" % name.lower())
-        scene.render.filepath = path
+        sc.render.filepath = path
         try:
             bpy.ops.render.render(write_still=True)
-            emit_b64("VIEW_" + name, path, limit=1_200_000)
+            emit_b64("VIEW_" + name, path)
         except Exception as exc:  # noqa: BLE001
             print("RENDER_FAIL %s %s" % (name, exc))
             traceback.print_exc()
 
 
 def main():
-    report()
-    grid = None
     try:
-        ground = pick_ground()
-        print("GROUND_PICK %s" % (ground.name if ground else None))
-        if ground:
-            grid = sample_grid(ground, n=129)
+        scene_info()
     except Exception:  # noqa: BLE001
         traceback.print_exc()
+
+    wanted = sorted(
+        o.name for o in bpy.data.objects
+        if o.type == "MESH" and (o.name.startswith("ground") or "terrain" in o.name.lower())
+    )
+    print("GROUND_OBJECTS %s" % wanted)
+
+    mats = set()
+    for name in wanted:
+        obj = bpy.data.objects[name]
+        for m in obj.data.materials:
+            if m:
+                mats.add(m.name)
+    for name in wanted:
+        obj = bpy.data.objects[name]
+        try:
+            step = max(1, int(round(len(obj.data.vertices) ** 0.5 / 130)))
+            g = emit_grid(obj, step)
+            if g:
+                print("STATS %s %s" % (name, json.dumps(stats(g["heights"]))))
+        except Exception:  # noqa: BLE001
+            traceback.print_exc()
+
+    for name in sorted(mats):
+        try:
+            emit("MAT_%s" % name.upper().replace(".", "_"),
+                 json.dumps(node_dump(bpy.data.materials[name]), indent=1))
+        except Exception:  # noqa: BLE001
+            traceback.print_exc()
+
     try:
-        setup_light_and_world(grid or {"bounds": [0, 0, 1, 1], "min_z": 0, "max_z": 1})
-        if grid:
-            render_views(grid)
+        render_views()
     except Exception:  # noqa: BLE001
         traceback.print_exc()
     print("PROBE_DONE")
