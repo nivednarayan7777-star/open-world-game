@@ -1,8 +1,103 @@
 {
- "notes": [],
+ "notes": [
+  {
+   "file": "probe/shots/ekm-spawn.png",
+   "district": "district",
+   "x": -74,
+   "y": 1.99,
+   "z": 12,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/ekm-inland.png",
+   "district": "district",
+   "x": 20,
+   "y": 2.56,
+   "z": 20,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/ekm-beach.png",
+   "district": "district",
+   "x": -100,
+   "y": -2.82,
+   "z": 10,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/alpy-spawn.png",
+   "district": "district",
+   "x": -70,
+   "y": 2.77,
+   "z": 8,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/alpy-backwater.png",
+   "district": "district",
+   "x": -40,
+   "y": -0.64,
+   "z": -30,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/pta-spawn.png",
+   "district": "district",
+   "x": 8,
+   "y": 3.12,
+   "z": 4,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/pta-midland.png",
+   "district": "district",
+   "x": 40,
+   "y": 3.29,
+   "z": 0,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/idk-spawn.png",
+   "district": "district",
+   "x": 24,
+   "y": 9.14,
+   "z": 0,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/idk-slopes.png",
+   "district": "district",
+   "x": 60,
+   "y": 12.72,
+   "z": 10,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/idk-ridge.png",
+   "district": "district",
+   "x": 120,
+   "y": 23.16,
+   "z": 30,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/kkd-spawn.png",
+   "district": "district",
+   "x": -72,
+   "y": 2.23,
+   "z": 8,
+   "objects": 4
+  },
+  {
+   "file": "probe/shots/kkd-hills.png",
+   "district": "district",
+   "x": 50,
+   "y": 2.53,
+   "z": 40,
+   "objects": 4
+  }
+ ],
  "errors": [
-  "[console] Failed to load resource: the server responded with a status of 404 (Not Found)",
-  "[console] ReferenceError: patchMid is not defined\n    at terrainMaterial (http://127.0.0.1:8080/terrain.js:309:25)\n    at buildWorld (http://127.0.0.1:8080/world.js:1041:5)\n    at bootWorld (http://127.0.0.1:8080/main.js:910:11)\n    at enterGame (http://127.0.0.1:8080/main.js:1433:5)\n    at HTMLFormElement.<anonymous> (http://127.0.0.1:8080/main.js:1469:3)",
-  "FATAL page.waitForFunction: Timeout 120000ms exceeded.\n    at /home/runner/work/open-world-game/open-world-game/.github/shots.mjs:67:12"
+  "[console] Failed to load resource: the server responded with a status of 404 (Not Found)"
  ]
 }
