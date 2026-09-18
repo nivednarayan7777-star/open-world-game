@@ -1037,7 +1037,7 @@ export function buildWorld(scene, opts = {}) {
 
   const SEG = lite ? 84 : 132;
   const ground = new THREE.Mesh(
-    buildGround(SIZE, SEG, heightAt, (x, z) => groundTint(x, z, CURRENT)),
+    buildGround(SIZE, SEG, heightAt, (x, z, h) => groundTint(x, z, CURRENT, h)),
     terrainMaterial({ flatShading: true })
   );
   ground.receiveShadow = true;

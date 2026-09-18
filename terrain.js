@@ -73,10 +73,10 @@ function smoothstep01(e0, e1, x) {
  * with hard borders — so every weight here is a smoothstep of height or
  * position, and the result feeds the shader, which adds the mottling on top.
  */
-export function groundTint(x, z, district) {
+export function groundTint(x, z, district, height = null) {
   const kind = district?.kind || "coastal";
   const seed = district?.seed || 0;
-  const h = shapeHeight(x, z, district);
+  const h = height == null ? shapeHeight(x, z, district) : height;
   const c = GROUND_TINT.village.clone();
 
   // Slopes and higher ground run deeper green, valleys stay bright.
@@ -381,7 +381,8 @@ export function buildGround(size, seg, heightFn, tintFn) {
   for (let i = 0; i < pos.count; i += 3) {
     const x = (pos.getX(i) + pos.getX(i + 1) + pos.getX(i + 2)) / 3;
     const z = (pos.getZ(i) + pos.getZ(i + 1) + pos.getZ(i + 2)) / 3;
-    const c = tintFn(x, z);
+    const h = (pos.getY(i) + pos.getY(i + 1) + pos.getY(i + 2)) / 3;
+    const c = tintFn(x, z, h);
     for (let k = 0; k < 3; k++) {
       colors[(i + k) * 3] = c.r;
       colors[(i + k) * 3 + 1] = c.g;
