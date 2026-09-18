@@ -1122,6 +1122,7 @@ export function buildWorld(scene, opts = {}) {
   geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
   const ground = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true }));
   ground.receiveShadow = true;
+  ground.name = "ground";
   root.add(ground);
 
   /* ---- the owner's scenery kit -------------------------------------------
