@@ -92,13 +92,13 @@ const RAW_TINT = {
  * With the grade applied the game's ground lands on the reference's numbers —
  * a deep, saturated green carrying soft blobs, not a bright yellow-green wash.
  *
- * The exact multipliers come from one measured round trip: at sat 1.18 /
- * val 0.82 the game rendered at hue 116–117°, sat 0.64–0.67, value 0.66–0.68
- * (probe/shots/ground_report.json), i.e. the grade over-delivered the hue
- * rotation by ~3° and under-delivered saturation by ~0.05 and value by ~0.07.
- * These numbers are that measurement, subtracted out.
+ * The multipliers come from two measured round trips, not from taste: each run
+ * reports the game's rendered ground next to the reference's in
+ * probe/shots/ground_report.json, and these numbers are what that report said
+ * was still missing (hue 3° then 2° too yellow, saturation 0.05 light, value
+ * 0.07 too bright when the first grade landed).
  */
-export const BLEND_GRADE = { hueShift: 0.0250, sat: 1.26, val: 0.785 };
+export const BLEND_GRADE = { hueShift: 0.0111, sat: 1.27, val: 0.72 };
 
 /**
  * Pre-compensate a colour for Keralam's warm-light + ACES pipeline so that it

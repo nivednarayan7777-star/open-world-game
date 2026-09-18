@@ -61,3 +61,40 @@ Each person types a **name** on the title screen. That name keeps their save.
 
 **Phone:** left stick walk · drag to look · Act / Jump / Run  
 **Computer:** WASD · mouse look · E act · Tab menu · 1 walk · 2 scooter · 3 auto
+
+## Terrain and ground
+
+The ground is a port of the reference Blender scene the game was styled after
+(a `.blend` the project owner supplied): a wide, gently rolling slab of smooth
+shading whose entire look comes from one material —
+
+    Texture Coordinate.Generated → Mapping
+      → Musgrave (FBM, Scale 8.5, Detail 1.6, Dimension 0.6)
+      → ColorRamp (B-spline, stops 0.0 / 0.2909 / 0.8591)
+      → Principled BSDF (Roughness 1.0, Specular IOR Level 0)
+
+No image textures at all: every bit of detail is that one green ramp, painted
+as soft ~13 m blobs. `terrain.js` carries that recipe — the ramp's stops, the
+Musgrave settings, the height shape and the shader that re-runs the recipe per
+pixel in world space — and `world.js` builds the slab, its skirt, the grass and
+the tea bushes from it. The blend's colours are used verbatim, then passed
+through `BLEND_GRADE`: Keralam's warm sun + warm hemisphere + ACES tone mapping
+render greens brighter and yellower than Blender's Cycles, so the palette is
+pre-compensated for that measured shift.
+
+### Checking the ground against the reference
+
+The reference scene can be re-read straight out of the file, and the game can be
+screenshotted headlessly, so "does it match?" is a measurement, not an opinion:
+
+- `blend-probe` (Actions, or `bash .github/run_probe.sh` after
+  `.github/fetch_blend.sh`) downloads the `.blend`, dumps its scene and node
+  graphs into `probe/*.json` and renders it from several angles.
+- `game-shots` (Actions) boots the game in headless Chromium, walks the
+  districts, and takes ground swatches with every prop hidden.
+- `.github/compare_ground.py` then compares the two sets of numbers (hue,
+  saturation, value, patch contrast) and writes
+  `probe/shots/ground_report.json`.
+
+Latest run: the game's ground renders at hue 113–115°, saturation 0.69, blob
+contrast ~1.2 against the reference's 113–114°, 0.69–0.71 and ~1.26–1.45.
