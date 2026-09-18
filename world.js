@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { loadTerrainModel } from "./terrain_model_loader.js";
 import { shared } from "./tex.js";
 import { DISTRICTS, getDistrict, roadsFor } from "./districts.js";
 
@@ -858,6 +859,17 @@ export function buildWorld(scene, opts = {}) {
   const root = new THREE.Group();
   root.name = "district";
   scene.add(root);
+
+  // Load glTF terrain / rock model (terrain_model.glb) when available
+  loadTerrainModel(scene, root, ({ landscape, rockClones }) => {
+    if (landscape) {
+      // Landscape replaces / overlays shader ground
+      console.log("Terrain model landscape loaded:", landscape.name);
+    }
+    if (rockClones) {
+      console.log("Scattered rock instances:", rockClones.length);
+    }
+  });
 
   const shops = [];
   const jobs = [];
