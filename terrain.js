@@ -76,9 +76,10 @@ const RAW_TINT = {
  * probe (Cycles) against the game's screenshots, both masked to green-dominant,
  * sunlit pixels:
  *
- *   reference (probe/view_groundtop.png, view_iso.png)   hue 113–115°
- *                                                        sat 0.69–0.72
- *                                                        value 0.55–0.63
+ *   reference (view_groundtop.png / view_iso.png / view_close.png)
+ *                                                        hue 113–114°
+ *                                                        sat 0.69–0.71
+ *                                                        value 0.59–0.63
  *   game before this grade (probe/shots/*.png)           hue  98–108°
  *                                                        sat 0.55–0.59
  *                                                        value 0.73–0.76
@@ -87,11 +88,17 @@ const RAW_TINT = {
  * rig*. Keralam is lit by a warm sun (0xffe6b0) and a warm hemisphere
  * (0xfff4dc), then finished with ACES, which lifts mid tones and pulls greens
  * towards yellow. So the palette is pre-compensated by that measured shift:
- * greens rotate 12° away from yellow, saturation goes up 18%, value down 18%.
+ * greens rotate 12° away from yellow, saturation goes up, value comes down.
  * With the grade applied the game's ground lands on the reference's numbers —
  * a deep, saturated green carrying soft blobs, not a bright yellow-green wash.
+ *
+ * The exact multipliers come from one measured round trip: at sat 1.18 /
+ * val 0.82 the game rendered at hue 116–117°, sat 0.64–0.67, value 0.66–0.68
+ * (probe/shots/ground_report.json), i.e. the grade over-delivered the hue
+ * rotation by ~3° and under-delivered saturation by ~0.05 and value by ~0.07.
+ * These numbers are that measurement, subtracted out.
  */
-export const BLEND_GRADE = { hueShift: 0.0333, sat: 1.18, val: 0.82 };
+export const BLEND_GRADE = { hueShift: 0.0250, sat: 1.26, val: 0.785 };
 
 /**
  * Pre-compensate a colour for Keralam's warm-light + ACES pipeline so that it

@@ -1510,6 +1510,20 @@ window.__keralam = {
   debugGroundOnly(on = true) {
     if (!world) return 0;
     let n = 0;
+    // the player, the parked rides and the name plate live on the scene, not in
+    // the world root, so they are hidden separately
+    for (const o of [me, autoMesh, scooterMesh]) {
+      if (!o) continue;
+      if (on) {
+        if (!("__vis" in o.userData)) o.userData.__vis = o.visible;
+        o.visible = false;
+        n++;
+      } else if ("__vis" in o.userData) {
+        o.visible = o.userData.__vis;
+        delete o.userData.__vis;
+        n++;
+      }
+    }
     for (const child of world.root.children) {
       const keep = child.isLight || child.name === "ground" || child.name === "ground-edge" || child === world.water;
       if (keep) continue;
