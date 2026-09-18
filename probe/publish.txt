@@ -1,19 +1,19 @@
-run: 35301153192  https://github.com/nivednarayan7777-star/open-world-game/actions/runs/35301153192
-date: Fri Sep 18 03:09:49 UTC 2026
+run: 35302399779  https://github.com/nivednarayan7777-star/open-world-game/actions/runs/35302399779
+date: Fri Sep 18 03:24:50 UTC 2026
 files:
-total 5288
-drwxr-xr-x 2 runner runner    4096 Sep 18 03:09 .
-drwxr-xr-x 5 runner runner    4096 Sep 18 02:54 ..
--rw-r--r-- 1 runner runner    8566 Sep 18 03:09 blender_stdout.txt
--rw-r--r-- 1 runner runner    6036 Sep 18 02:54 fetch.log
--rw-r--r-- 1 runner runner   45785 Sep 18 02:55 install.log
--rw-r--r-- 1 runner runner    2644 Sep 18 03:09 mat_material_001.json
--rw-r--r-- 1 runner runner 3054927 Sep 18 03:09 probe.log
--rw-r--r-- 1 runner runner     142 Sep 18 03:09 publish.txt
--rw-r--r-- 1 runner runner    1419 Sep 18 03:09 scene.json
--rw-r--r-- 1 runner runner  463783 Sep 18 03:09 view_close.png
--rw-r--r-- 1 runner runner  412487 Sep 18 03:09 view_groundtop.png
--rw-r--r-- 1 runner runner  328163 Sep 18 03:09 view_hero.png
--rw-r--r-- 1 runner runner  354504 Sep 18 03:09 view_iso.png
--rw-r--r-- 1 runner runner  320188 Sep 18 03:09 view_low.png
--rw-r--r-- 1 runner runner  375221 Sep 18 03:09 view_top.png
+total 4960
+drwxr-xr-x 2 runner runner    4096 Sep 18 03:13 .
+drwxr-xr-x 5 runner runner    4096 Sep 18 03:13 ..
+-rw-r--r-- 1 runner runner    8571 Sep 18 03:24 blender_stdout.txt
+-rw-r--r-- 1 runner runner    6029 Sep 18 03:13 fetch.log
+-rw-r--r-- 1 runner runner   45785 Sep 18 03:14 install.log
+-rw-r--r-- 1 runner runner    2644 Sep 18 03:24 mat_material_001.json
+-rw-r--r-- 1 runner runner 3054204 Sep 18 03:24 probe.log
+-rw-r--r-- 1 runner runner     142 Sep 18 03:24 publish.txt
+-rw-r--r-- 1 runner runner    1419 Sep 18 03:24 scene.json
+-rw-r--r-- 1 runner runner  463788 Sep 18 03:24 view_close.png
+-rw-r--r-- 1 runner runner  412435 Sep 18 03:24 view_groundtop.png
+-rw-r--r-- 1 runner runner       0 Sep 18 03:24 view_hero.png
+-rw-r--r-- 1 runner runner  350285 Sep 18 03:24 view_iso.png
+-rw-r--r-- 1 runner runner  320188 Sep 18 03:24 view_low.png
+-rw-r--r-- 1 runner runner  375221 Sep 18 03:24 view_top.png
