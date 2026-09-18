@@ -107,10 +107,12 @@ for (const [district, views] of SHOTS) {
   });
   for (const [n, isl] of islands.entries()) {
     const tag = `${district}-island${n}`;
+    // Approach from the landward side and from the seaward side of z, so the
+    // camera is always inside the map (the islands sit out near the edge).
     const views = [
-      ["east", isl.x + isl.radius + 7, isl.z, null],     // looking west at the hill
-      ["on", isl.x, isl.z, null],                        // standing on it
-      ["sea", isl.x - isl.radius - 9, isl.z, null],      // looking east, from the sea
+      ["east", isl.x + isl.radius + 7, isl.z, null],     // from the land, looking waterward
+      ["on", isl.x, isl.z, null],                        // standing on the island
+      ["north", isl.x, isl.z - isl.radius - 9, null],    // from the sea, looking back
     ];
     for (const [label, px, pz, _] of views) {
       const placed = await page.evaluate(([x, z, cx, cz, on]) => {
