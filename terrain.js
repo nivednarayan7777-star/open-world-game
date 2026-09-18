@@ -433,8 +433,16 @@ export function terrainMaterial(opts = {}) {
     // of the noise onto the ramp's full range restores the reference's look — a
     // mid green field carrying soft lighter patches — instead of a uniform wash.
     // The percentile walk-through behind these two numbers is in tune.mjs.
-    levelLow = 0.40,
-    levelHigh = 0.70,
+    levelLow = 0.42,
+    levelHigh = 0.66,
+    // The blend's ramp reaches its light stop almost only at the top of the
+    // Musgrave range, which is what makes its light patches read as separate
+    // blobs on a mid-green field. Spreading that leg over the ramp's whole
+    // 0.29 … 0.86 span (as an earlier version did) washes the blobs into one
+    // soft cloud; windowing it is what restores the reference's crisp patches.
+    // Both windows were set by the blob contrast the comparison reports.
+    rampLow = 0.44,
+    rampHigh = 0.78,
     dark = RAMP_DARK_MUL,     // channel-wise multiplier on the darkest patches
     light = RAMP_LIGHT_MUL,   // …and on the brightest
     fine = 0.90,              // fine mottle frequency (≈ 1.1 m)
@@ -467,7 +475,8 @@ export function terrainMaterial(opts = {}) {
     uLevelHigh: { value: levelHigh },
     // The blend's ColorRamp stop positions, used verbatim.
     uStopMid: { value: GRASS_RAMP_STOPS.mid },
-    uStopLight: { value: GRASS_RAMP_STOPS.light },
+    uRampLow: { value: rampLow },
+    uRampHigh: { value: rampHigh },
     uDark: { value: darkMul },
     uLight: { value: lightMul },
     uFineScale: { value: fine },
@@ -494,7 +503,8 @@ export function terrainMaterial(opts = {}) {
         uniform float uLevelLow;
         uniform float uLevelHigh;
         uniform float uStopMid;
-        uniform float uStopLight;
+        uniform float uRampLow;
+        uniform float uRampHigh;
         uniform vec3 uDark;
         uniform vec3 uLight;
         uniform float uFineScale;
@@ -518,14 +528,14 @@ export function terrainMaterial(opts = {}) {
           // keeps the B-spline's wide soft cores and means no patch can ever
           // show a border. Ratios are per channel, from the blend's own stops.
           vec3 gr = mix(uDark, vec3(1.0), smoothstep(0.0, uStopMid, f));
-          gr = mix(gr, uLight, smoothstep(uStopMid, uStopLight, f));
+          gr = mix(gr, uLight, smoothstep(uRampLow, uRampHigh, f));
           diffuseColor.rgb *= mix(vec3(1.0), gr, uPatchStrength);
           diffuseColor.rgb *= 1.0 + (f - 0.5) * uFineAmount * 2.0;
         }`
       );
   };
   mat.customProgramCacheKey =
-    () => `keralam-terrain-${patchScale}-${patchMid}-${patchStrength}-${fine}-${fineAmount}-${levelLow}-${levelHigh}`;
+    () => `keralam-terrain-${patchScale}-${patchMid}-${patchStrength}-${fine}-${fineAmount}-${levelLow}-${levelHigh}-${rampLow}-${rampHigh}`;
   return mat;
 }
 
