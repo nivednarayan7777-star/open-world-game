@@ -1,8 +1,8 @@
 {
   "blend_id": "1_lDEoRHZ3hbZD7YBjWaXbwW0SZxpmIoH",
-  "out_dir": "probe/model",
-  "probe_script": ".github/model_probe.py",
+  "out_dir": "probe/kit",
+  "probe_script": ".github/kit_probe.py",
   "blender": "latest",
-  "requested": "2026-09-18 (retry: Blender 5 cycles API, keep the .glb, capture vertex colours)",
+  "requested": "2026-09-18 (kit close-ups: island, hill facets, trees planted)",
   "note": "New reference file the owner shared: read it, port the models in it onto the game's ground and terrain."
 }

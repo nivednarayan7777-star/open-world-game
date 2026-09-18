@@ -21,7 +21,7 @@ fi
 if [ "${SRC##*.}" = "blend" ]; then
   CMD=(blender -b "$SRC" -noaudio --python .github/model_probe.py)
 else
-  CMD=(blender -b -noaudio --python .github/model_probe.py -- "$SRC")
+  CMD=(blender -b -noaudio --python "${PROBE_SCRIPT:-.github/model_probe.py}" -- "$SRC")
 fi
 
 echo "running: ${CMD[*]}" | tee -a "$LOG"
