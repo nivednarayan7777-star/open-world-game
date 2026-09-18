@@ -1505,6 +1505,8 @@ window.__keralam = {
     return player.y;
   },
   surfaceY: (x, z) => (world ? surfaceY(x, z, world.docks) : null),
+  get start() { return (CURRENT && CURRENT.start) || { x: 0, z: 0 }; },
+  WATER,
   /**
    * Hide everything but the ground (used by the screenshot harness to take
    * clean ground swatches for the comparison against the reference blend).

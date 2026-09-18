@@ -81,27 +81,30 @@ function planIslands() {
   // inland ones on the rise — a highland district gets its massif on the slopes.
   const sea = (dx, dz, scale) => ({ x: shore + dx, z: start.z + dz, scale, sea: true });
   const slots = [];
+  // The scale is the kit's own: at 1 kit unit = 14 m the slab is a 39 m knoll
+  // with 7 m of hill on it, its hillocks are a metre across and its shore ring is
+  // a few metres wide — the proportions the kit was modelled at.
   if (kind === "highland") {
     slots.push(
-      { x: 116 + seed * 4, z: 26 + seed * 10, scale: 26 },
-      { x: 74 + seed * 6, z: -74 - seed * 12, scale: 20 },
-      sea(-36, -6, 17), sea(-80, 34, 15),
-      { x: 150 - seed * 6, z: 96 + seed * 8, scale: 22 },
+      { x: 116 + seed * 4, z: 26 + seed * 10, scale: 18 },
+      { x: 74 + seed * 6, z: -74 - seed * 12, scale: 15 },
+      sea(-36, -6, 14), sea(-80, 34, 12),
+      { x: 150 - seed * 6, z: 96 + seed * 8, scale: 16 },
     );
   } else if (kind === "midland") {
     slots.push(
-      { x: 96 + seed * 5, z: -70 - seed * 10, scale: 22 },
-      sea(-32, 12, 18),
-      { x: 130 + seed * 4, z: 60 + seed * 12, scale: 24 },
-      sea(-74, -30, 15),
+      { x: 96 + seed * 5, z: -70 - seed * 10, scale: 18 },
+      sea(-32, 12, 14),
+      { x: 130 + seed * 4, z: 60 + seed * 12, scale: 20 },
+      sea(-74, -30, 12),
     );
   } else {
     // coastal and backwater: the kit's home, out in the sea
     slots.push(
-      sea(-30, 10 + seed * 4, 20),
-      sea(-76, -46 - seed * 8, 15),
-      sea(-52, 66 + seed * 10, 17),
-      sea(-108, 22 - seed * 10, 13),
+      sea(-30, 10 + seed * 4, 14),
+      sea(-76, -46 - seed * 8, 12),
+      sea(-52, 66 + seed * 10, 13),
+      sea(-108, 22 - seed * 10, 11),
     );
   }
 
@@ -1205,7 +1208,7 @@ export function buildWorld(scene, opts = {}) {
       const shape = Math.floor(hash(i, 53) * trees.length) % trees.length;
       const im = treeMeshes[shape];
       if (im.count >= perTree) continue;
-      const size = 6 + hash(i, 54) * 6;                        // metres
+      const size = 5.5 + hash(i, 54) * 5;                      // metres
       dummy.position.set(x, h - 0.25, z);
       dummy.rotation.set(0, hash(i, 55) * 6.283, 0);
       dummy.scale.setScalar(size);

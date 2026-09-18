@@ -71,6 +71,10 @@ await page.waitForTimeout(2500);
 for (const [district, views] of SHOTS) {
   await page.evaluate((id) => window.__keralam.setDistrict(id), district);
   await page.waitForTimeout(2000);
+  const [startX, startZ] = await page.evaluate(() => {
+    const s = window.__keralam.start || { x: 0, z: 0 };
+    return [s.x, s.z];
+  });
   for (const [label, x, z, yaw, pitch] of views) {
     await page.evaluate(([px, pz, y, p]) => {
       const k = window.__keralam;
@@ -109,12 +113,18 @@ for (const [district, views] of SHOTS) {
       ["sea", isl.x - isl.radius - 9, isl.z, null],      // looking east, from the sea
     ];
     for (const [label, px, pz, _] of views) {
-      await page.evaluate(([x, z, cx, cz, on]) => {
+      const placed = await page.evaluate(([x, z, cx, cz, on]) => {
         const k = window.__keralam;
-        k.place(x, z);
-        // face the island's middle: the game's yaw is atan2(dx, dz)
         k.look(Math.atan2(cx - x, cz - z), on ? 0.02 : -0.06);
+        const y = k.place(x, z);
+        // The sea view can land in deep water off the map's edge, where the
+        // camera sits under the sea floor; report the height so it can be skipped.
+        return { y, water: k.WATER ?? 0.42 };
       }, [px, pz, isl.x, isl.z, label === "on"]);
+      if (placed.y != null && placed.y < placed.water - 0.4) {
+        console.log("skip (underwater)", tag, label, JSON.stringify(placed));
+        continue;
+      }
       await page.waitForTimeout(800);
       const file = path.join(OUT, `${tag}-${label}.png`);
       await page.screenshot({ path: file });
@@ -138,10 +148,13 @@ for (const [district, views] of SHOTS) {
   //           perspective views: the ~13 m blob pattern of the ramp.
   await page.evaluate((id) => window.__keralam.setDistrict(id), district);
   await page.waitForTimeout(1200);
-  await page.evaluate(([px, pz]) => {
+  await page.evaluate(([px, pz, sx, sz]) => {
     const k = window.__keralam;
+    // Always re-seat the player for the swatches: the island shots above leave
+    // them on the island, and a swatch taken from there measures the sea.
     if (px != null) k.place(px, pz);
-  }, views[0][1] != null ? [views[0][1], views[0][2]] : [null, null]);
+    else k.place(sx, sz);
+  }, [views[0][1], views[0][2], startX, startZ]);
   await page.evaluate(() => window.__keralam.debugGroundOnly(true));
   const CLIP = { x: 240, y: 100, width: 800, height: 560 };
   for (const [tag, pitch] of [["near", -1.35], ["far", -0.32]]) {

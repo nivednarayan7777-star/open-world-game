@@ -302,7 +302,7 @@ export function kitIsland(spec, opts = {}) {
     if (Number.isNaN(kz) || kz < 0.07) continue;                 // the hill, not the bank
     const shape = trees[Math.floor(h2(i + seed, 17.1) * trees.length) % trees.length];
     const m = new THREE.Mesh(shape.geo, treeMat);
-    const height = 6.5 + h2(i + seed, 19.3) * 4.5;               // metres
+    const height = 5.5 + h2(i + seed, 19.3) * 4;                 // metres
     m.scale.setScalar(height / scale);
     m.position.set(lx, kz - 0.03, lz);
     m.rotation.y = h2(i + seed, 23.9) * 6.283;
