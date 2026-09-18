@@ -92,13 +92,16 @@ const RAW_TINT = {
  * With the grade applied the game's ground lands on the reference's numbers —
  * a deep, saturated green carrying soft blobs, not a bright yellow-green wash.
  *
- * The multipliers come from two measured round trips, not from taste: each run
- * reports the game's rendered ground next to the reference's in
- * probe/shots/ground_report.json, and these numbers are what that report said
- * was still missing (hue 3° then 2° too yellow, saturation 0.05 light, value
- * 0.07 too bright when the first grade landed).
+ * These are measured numbers, not taste. Each run reports the game's rendered
+ * ground next to the reference's in probe/shots/ground_report.json, and the
+ * grade has been walked in one step at a time from that report: the first
+ * version came out 3° yellow with the saturation 0.05 light and the value 0.07
+ * bright, and the leafy lift in `LEAFY` pulls the hue back towards yellow
+ * again, which the extra 2.8° here cancels out. Where it stands: hue 111–113°
+ * against the reference's 113–114°, saturation 0.69–0.72 against 0.69–0.71,
+ * value 0.60–0.61 against 0.59–0.63.
  */
-export const BLEND_GRADE = { hueShift: 0.0111, sat: 1.20, val: 0.72 };
+export const BLEND_GRADE = { hueShift: 0.0189, sat: 1.20, val: 0.72 };
 
 /**
  * Greens are lifted in red and blue, per the blend's own albedo.
