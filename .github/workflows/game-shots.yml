@@ -8,7 +8,6 @@ on:
       - "terrain.js"
       - "main.js"
       - "tex.js"
-      - "tile.js"
       - "style.css"
       - "index.html"
   workflow_dispatch:
@@ -30,22 +29,30 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Install game deps
+        run: npm install --no-audit --no-fund 2>&1 | tail -5
+
       - name: Install Playwright + Chromium
         run: |
-          npm i --no-save playwright@1.49.1
-          npx --yes playwright@1.49.1 install --with-deps chromium
+          set -x
+          npm i --no-save playwright@1.49.1 2>&1 | tail -5
+          npx --no-install playwright install --with-deps chromium 2>&1 | tail -20
+          node -e "console.log('playwright', require('playwright/package.json').version)"
 
       - name: Start game server
         run: |
-          npm install --no-audit --no-fund
+          mkdir -p "$OUT_DIR"
           (node server.js > /tmp/server.log 2>&1 &)
           sleep 3
-          curl -s -o /dev/null -w "server:%{http_code}\n" http://127.0.0.1:8080/
+          curl -s -o /dev/null -w "server:%{http_code}\n" http://127.0.0.1:8080/ || true
 
       - name: Screenshot districts
-        continue-on-error: true
-        run: node .github/shots.mjs "$OUT_DIR"
+        run: |
+          set -o pipefail
+          node .github/shots.mjs "$OUT_DIR" 2>&1 | tee "$OUT_DIR/shots.log" || echo "shots exit: $?"
 
       - name: Publish shots
         if: always()
-        run: bash .github/publish_shots.sh
+        run: |
+          cp /tmp/server.log "$OUT_DIR/server.log" 2>/dev/null || true
+          bash .github/publish_shots.sh

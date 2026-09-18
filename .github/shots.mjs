@@ -39,7 +39,11 @@ const SHOTS = [
   ]],
 ];
 
-const browser = await chromium.launch({
+const notes = [];
+const errors = [];
+let browser = null;
+try {
+browser = await chromium.launch({
   args: [
     "--no-sandbox",
     "--use-gl=angle",
@@ -50,7 +54,6 @@ const browser = await chromium.launch({
   ],
 });
 const page = await browser.newPage({ viewport: { width: 1280, height: 760 } });
-const errors = [];
 page.on("console", (m) => {
   const t = m.text();
   if (m.type() === "error" || /error|exception/i.test(t)) errors.push(`[console] ${t}`);
@@ -65,7 +68,6 @@ await page.waitForFunction(() => window.__keralam?.state === "play", null, { tim
 // let the first district finish loading + a few animation frames
 await page.waitForTimeout(2500);
 
-const notes = [];
 for (const [district, views] of SHOTS) {
   await page.evaluate((id) => window.__keralam.setDistrict(id), district);
   await page.waitForTimeout(2000);
@@ -93,6 +95,11 @@ for (const [district, views] of SHOTS) {
   }
 }
 
-fs.writeFileSync(path.join(OUT, "report.json"), JSON.stringify({ notes, errors }, null, 1));
-console.log("errors:", errors.slice(0, 20));
-await browser.close();
+} catch (err) {
+  errors.push("FATAL " + (err && err.stack || err));
+  console.error("FATAL", err);
+} finally {
+  fs.writeFileSync(path.join(OUT, "report.json"), JSON.stringify({ notes, errors }, null, 1));
+  console.log("errors:", errors.slice(0, 20));
+  if (browser) await browser.close().catch(() => {});
+}
