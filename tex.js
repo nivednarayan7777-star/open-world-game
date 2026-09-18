@@ -297,128 +297,9 @@ export function mcAtlas() {
   return map;
 }
 
-/** Max-quality repeating ground: 512 albedo + height-derived normal + roughness. */
-export function groundMaps() {
-  const size = 512;
-  const hgt = new Float32Array(size * size);
-  for (let y = 0; y < size; y++) {
-    for (let x = 0; x < size; x++) {
-      const n = (Math.sin(x * 0.073) * Math.sin(y * 0.061) + 1) * 0.5;
-      const n2 = (Math.sin(x * 0.31 + y * 0.19) * Math.sin(y * 0.27) + 1) * 0.5;
-      const n3 = ((x * 19 + y * 47) % 23) / 23;
-      const n4 = (Math.sin(x * 1.17) * Math.cos(y * 1.09) + 1) * 0.5;
-      hgt[y * size + x] = n * 0.38 + n2 * 0.28 + n3 * 0.18 + n4 * 0.16;
-    }
-  }
-
-  const albedo = document.createElement("canvas");
-  albedo.width = albedo.height = size;
-  const ag = albedo.getContext("2d");
-  const aimg = ag.createImageData(size, size);
-  const ad = aimg.data;
-  for (let i = 0; i < size * size; i++) {
-    const h = hgt[i];
-    const x = i % size, y = (i / size) | 0;
-    const speck = ((x * 13 + y * 29) % 11) / 11;
-    const r = 198 + h * 42 + speck * 10;
-    const g = 210 + h * 38 + speck * 6;
-    const b = 168 + h * 28;
-    ad[i * 4] = Math.min(255, r);
-    ad[i * 4 + 1] = Math.min(255, g);
-    ad[i * 4 + 2] = Math.min(255, b);
-    ad[i * 4 + 3] = 255;
-  }
-  ag.putImageData(aimg, 0, 0);
-  for (let i = 0; i < 14000; i++) {
-    const x = (i * 47 + 13) % size;
-    const y = (i * 89 + 31) % size;
-    const hh = 3 + (i % 9);
-    ag.strokeStyle = `rgba(${36 + (i % 40)},${110 + (i % 70)},${28 + (i % 20)},0.38)`;
-    ag.lineWidth = 1;
-    ag.beginPath();
-    ag.moveTo(x, y);
-    ag.lineTo(x + ((i % 5) - 2), y - hh);
-    ag.stroke();
-  }
-  ag.fillStyle = "rgba(90, 70, 40, 0.18)";
-  for (let i = 0; i < 900; i++) {
-    ag.fillRect((i * 53) % size, (i * 97) % size, 1 + (i % 2), 1);
-  }
-  ag.fillStyle = "rgba(220, 80, 70, 0.28)";
-  for (let i = 0; i < 80; i++) {
-    ag.beginPath();
-    ag.arc((i * 71) % size, (i * 113) % size, 1.2, 0, 6.3);
-    ag.fill();
-  }
-
-  const map = new THREE.CanvasTexture(albedo);
-  map.wrapS = map.wrapT = THREE.RepeatWrapping;
-  map.repeat.set(140, 140);
-  map.anisotropy = 16;
-  map.colorSpace = THREE.SRGBColorSpace;
-  map.minFilter = THREE.LinearMipmapLinearFilter;
-  map.magFilter = THREE.LinearFilter;
-  map.generateMipmaps = true;
-  map.needsUpdate = true;
-
-  const nc = document.createElement("canvas");
-  nc.width = nc.height = size;
-  const ng = nc.getContext("2d");
-  const nimg = ng.createImageData(size, size);
-  const nd = nimg.data;
-  const amp = 6.5;
-  for (let y = 0; y < size; y++) {
-    for (let x = 0; x < size; x++) {
-      const i = y * size + x;
-      const hL = hgt[y * size + ((x - 1 + size) % size)];
-      const hR = hgt[y * size + ((x + 1) % size)];
-      const hU = hgt[((y - 1 + size) % size) * size + x];
-      const hD = hgt[((y + 1) % size) * size + x];
-      let nx = (hL - hR) * amp;
-      let ny = (hD - hU) * amp;
-      let nz = 1;
-      const len = Math.hypot(nx, ny, nz) || 1;
-      nx /= len; ny /= len; nz /= len;
-      const p = i * 4;
-      nd[p] = (nx * 0.5 + 0.5) * 255;
-      nd[p + 1] = (ny * 0.5 + 0.5) * 255;
-      nd[p + 2] = (nz * 0.5 + 0.5) * 255;
-      nd[p + 3] = 255;
-    }
-  }
-  ng.putImageData(nimg, 0, 0);
-  const nrm = new THREE.CanvasTexture(nc);
-  nrm.wrapS = nrm.wrapT = THREE.RepeatWrapping;
-  nrm.repeat.set(140, 140);
-  nrm.anisotropy = 16;
-  nrm.minFilter = THREE.LinearMipmapLinearFilter;
-  nrm.magFilter = THREE.LinearFilter;
-  nrm.generateMipmaps = true;
-  nrm.needsUpdate = true;
-
-  const rc = document.createElement("canvas");
-  rc.width = rc.height = size;
-  const rg = rc.getContext("2d");
-  const rimg = rg.createImageData(size, size);
-  const rd = rimg.data;
-  for (let i = 0; i < size * size; i++) {
-    const v = 170 + hgt[i] * 70;
-    rd[i * 4] = v; rd[i * 4 + 1] = v; rd[i * 4 + 2] = v; rd[i * 4 + 3] = 255;
-  }
-  rg.putImageData(rimg, 0, 0);
-  const rough = new THREE.CanvasTexture(rc);
-  rough.wrapS = rough.wrapT = THREE.RepeatWrapping;
-  rough.repeat.set(140, 140);
-  rough.anisotropy = 8;
-  rough.needsUpdate = true;
-
-  return { map, nrm, rough };
-}
-
 let cache = null;
 export function shared() {
   if (cache) return cache;
-  const G = groundMaps();
   cache = {
     plaster: plasterTex(),
     plasterN: plasterN(),
@@ -433,9 +314,6 @@ export function shared() {
     pond: pondTex(),
     cloth: clothTex(),
     atlas: mcAtlas(),
-    ground: G.map,
-    groundN: G.nrm,
-    groundR: G.rough,
   };
   return cache;
 }

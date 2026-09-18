@@ -46,8 +46,8 @@ export const MUSGRAVE = { scale: 8.5, detail: 1.6, dimension: 0.6, lacunarity: 2
  * while beaches, paddies and tea slopes still tell themselves apart.
  */
 export const GROUND_TINT = {
-  village: lin(0.0640, 0.3200, 0.0380),   // the blend's mid green, slightly cooled
-  lowland: lin(0.0850, 0.3450, 0.0430),   // backwater banks: a touch brighter
+  village: lin(0.0720, 0.3350, 0.0430),   // the blend's mid green, slightly cooled
+  lowland: lin(0.0930, 0.3550, 0.0480),   // backwater banks: a touch brighter
   slope: lin(0.0480, 0.2700, 0.0360),     // hill flanks: deeper green
   paddy: lin(0.1330, 0.3600, 0.0480),     // paddy: yellow-green, like the blend's light stop
   tea: lin(0.0520, 0.2700, 0.0480),       // tea slopes: fresh, cool green
@@ -81,7 +81,7 @@ export function groundTint(x, z, district) {
 
   // Slopes and higher ground run deeper green, valleys stay bright.
   const alt = smoothstep01(2.5, 14, h);
-  c.lerp(GROUND_TINT.slope, alt * (kind === "highland" ? 0.35 : 0.45));
+  c.lerp(GROUND_TINT.slope, alt * (kind === "highland" ? 0.30 : 0.38));
 
   // Tea estate belt on the highland rise.
   if (kind === "highland") {
@@ -347,7 +347,7 @@ export function terrainMaterial(opts = {}) {
           m = mix(0.5, m, uPatchContrast + 0.58);
           diffuseColor.rgb *= mix(uDark, uLight, m);
           // Bright patches lean yellow-green, exactly like the ramp's light stop.
-          diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * uWarm * 2.6, m * 0.20);
+          diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * uWarm * 2.6, m * 0.22);
           // Faint fine grain so the ground still reads up close.
           float g = tMusgrave(tp * uFineScale, 2.0, 2.0, 0.62);
           diffuseColor.rgb *= 1.0 + (g - 0.5) * uFineAmount * 2.0;
