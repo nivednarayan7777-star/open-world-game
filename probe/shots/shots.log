@@ -9,14 +9,14 @@ swatch probe/shots/ground-ekm-far.png
 shot probe/shots/alpy-spawn.png {"district":"district","x":-70,"y":2.59,"z":8,"objects":4}
 shot probe/shots/alpy-backwater.png {"district":"district","x":-40,"y":0.26,"z":-30,"objects":4}
 shot probe/shots/alpy-island0-east.png {"x":-132.3,"y":-9.35,"z":-60.4}
-shot probe/shots/alpy-island0-on.png {"x":-171.6,"y":6.01,"z":-60.4}
+shot probe/shots/alpy-island0-on.png {"x":-171.6,"y":6.15,"z":-60.4}
 shot probe/shots/alpy-island0-sea.png {"x":-213,"y":-19.95,"z":-60.4}
 swatch probe/shots/ground-alpy-near.png
 swatch probe/shots/ground-alpy-far.png
 shot probe/shots/pta-spawn.png {"district":"district","x":8,"y":4.98,"z":4,"objects":4}
 shot probe/shots/pta-midland.png {"district":"district","x":40,"y":4.64,"z":0,"objects":4}
 shot probe/shots/pta-island0-east.png {"x":-74.3,"y":3.56,"z":16}
-shot probe/shots/pta-island0-on.png {"x":-120.1,"y":7.47,"z":16}
+shot probe/shots/pta-island0-on.png {"x":-120.1,"y":7.34,"z":16}
 shot probe/shots/pta-island0-sea.png {"x":-167.9,"y":-6.52,"z":16}
 swatch probe/shots/ground-pta-near.png
 swatch probe/shots/ground-pta-far.png
@@ -24,7 +24,7 @@ shot probe/shots/idk-spawn.png {"district":"district","x":24,"y":12.27,"z":0,"ob
 shot probe/shots/idk-slopes.png {"district":"district","x":60,"y":14.71,"z":10,"objects":4}
 shot probe/shots/idk-ridge.png {"district":"district","x":120,"y":24.36,"z":30,"objects":4}
 shot probe/shots/idk-island0-east.png {"x":-99.4,"y":12.6,"z":-6}
-shot probe/shots/idk-island0-on.png {"x":-143.1,"y":6.81,"z":-6}
+shot probe/shots/idk-island0-on.png {"x":-143.1,"y":6.94,"z":-6}
 shot probe/shots/idk-island0-sea.png {"x":-188.7,"y":12.42,"z":-6}
 shot probe/shots/idk-island1-east.png {"x":180.4,"y":34.05,"z":128}
 shot probe/shots/idk-island1-on.png {"x":126,"y":31.19,"z":128}
@@ -34,10 +34,10 @@ swatch probe/shots/ground-idk-far.png
 shot probe/shots/kkd-spawn.png {"district":"district","x":-72,"y":2.11,"z":8,"objects":4}
 shot probe/shots/kkd-hills.png {"district":"district","x":50,"y":4.86,"z":40,"objects":4}
 shot probe/shots/kkd-island0-east.png {"x":-125.6,"y":-5.13,"z":-94}
-shot probe/shots/kkd-island0-on.png {"x":-164.9,"y":6.01,"z":-94}
+shot probe/shots/kkd-island0-on.png {"x":-164.9,"y":6.15,"z":-94}
 shot probe/shots/kkd-island0-sea.png {"x":-206.2,"y":-16.39,"z":-94}
 shot probe/shots/kkd-island1-east.png {"x":-97.2,"y":-3.47,"z":144}
-shot probe/shots/kkd-island1-on.png {"x":-140.9,"y":6.94,"z":144}
+shot probe/shots/kkd-island1-on.png {"x":-140.9,"y":6.81,"z":144}
 shot probe/shots/kkd-island1-sea.png {"x":-186.6,"y":-15.75,"z":144}
 swatch probe/shots/ground-kkd-near.png
 swatch probe/shots/ground-kkd-far.png
