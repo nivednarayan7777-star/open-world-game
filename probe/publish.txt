@@ -1,0 +1,16 @@
+run: 35300503457  https://github.com/nivednarayan7777-star/open-world-game/actions/runs/35300503457
+date: Fri Sep 18 02:53:13 UTC 2026
+files:
+total 4060
+drwxr-xr-x 2 runner runner    4096 Sep 18 02:53 .
+drwxr-xr-x 5 runner runner    4096 Sep 18 02:44 ..
+-rw-r--r-- 1 runner runner   10277 Sep 18 02:53 blender_stdout.txt
+-rw-r--r-- 1 runner runner    6029 Sep 18 02:44 fetch.log
+-rw-r--r-- 1 runner runner   45785 Sep 18 02:44 install.log
+-rw-r--r-- 1 runner runner    2644 Sep 18 02:53 mat_material_001.json
+-rw-r--r-- 1 runner runner 2338189 Sep 18 02:53 probe.log
+-rw-r--r-- 1 runner runner     142 Sep 18 02:53 publish.txt
+-rw-r--r-- 1 runner runner  402212 Sep 18 02:53 view_hero.png
+-rw-r--r-- 1 runner runner  438866 Sep 18 02:53 view_iso.png
+-rw-r--r-- 1 runner runner  362914 Sep 18 02:53 view_low.png
+-rw-r--r-- 1 runner runner  518260 Sep 18 02:53 view_top.png
