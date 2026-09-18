@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { shared } from "./tex.js";
 import { DISTRICTS, getDistrict, roadsFor } from "./districts.js";
+import { kitIsland, kitHeight, kitProps, KIT_INFO, KIT_SOURCE } from "./scenery.js";
 
 function SM(color, kind, extra = {}) {
   const T = shared();
@@ -34,7 +35,107 @@ export function setDistrict(id) {
     id: p.id, name: p.name, x: p.x, z: p.z, r: p.r || 16, region: CURRENT.name, kind: p.kind,
   }));
   ROADS = roadsFor(CURRENT);
+  planIslands();
+  for (const isl of ISLANDS) {
+    LANDMARKS.push({
+      id: `island-${isl.id}`, name: isl.name, x: isl.x, z: isl.z,
+      r: isl.radius * 0.8, region: CURRENT.name, kind: "island",
+    });
+  }
   return CURRENT;
+}
+
+/* ---------------------------------------------------------- the scenery kit */
+
+/**
+ * The owner's low-poly scenery kit (see scenery.js and scenery-data.js) as it
+ * appears in each district: a hill-with-a-lake island standing in the sea just
+ * off the beach, a second one further out, and — for the inland districts — a
+ * massif sitting on the hillside instead. Slots are derived from the district's
+ * own shape and clearance-checked against its places, so every district gets its
+ * own placement and nothing moves between builds.
+ *
+ * `WATER` is where the game's waterline sits, so a sea island is lifted until the
+ * lake in its bowl is comfortably above the sea; an inland one keeps its rim just
+ * under the surrounding ground, which leaves its hill standing proud of it and
+ * its lake a real pool below the trees.
+ */
+const ISLANDS = [];
+const ISLAND_NAMES = ["Thuruthu", "Vettila Thuruthu", "Kunnu", "Mala Kunnu", "Cheru Thuruthu"];
+
+function smoothstep(e0, e1, x) {
+  const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0 || 1)));
+  return t * t * (3 - 2 * t);
+}
+
+function planIslands() {
+  ISLANDS.length = 0;
+  if (!KIT_SOURCE) return ISLANDS;
+  const kind = CURRENT?.kind || "coastal";
+  const seed = CURRENT?.seed || 0;
+  const start = CURRENT?.start || { x: 0, z: 0 };
+  const shore = -98 + Math.sin(start.z * 0.018 + seed) * 12;
+
+  // Candidates, best first: the first two that fit among the district's places
+  // are the ones the district gets. Sea islands sit out beyond the shore line,
+  // inland ones on the rise — a highland district gets its massif on the slopes.
+  const sea = (dx, dz, scale) => ({ x: shore + dx, z: start.z + dz, scale, sea: true });
+  const slots = [];
+  if (kind === "highland") {
+    slots.push(
+      { x: 116 + seed * 4, z: 26 + seed * 10, scale: 26 },
+      { x: 74 + seed * 6, z: -74 - seed * 12, scale: 20 },
+      sea(-36, -6, 17), sea(-80, 34, 15),
+      { x: 150 - seed * 6, z: 96 + seed * 8, scale: 22 },
+    );
+  } else if (kind === "midland") {
+    slots.push(
+      { x: 96 + seed * 5, z: -70 - seed * 10, scale: 22 },
+      sea(-32, 12, 18),
+      { x: 130 + seed * 4, z: 60 + seed * 12, scale: 24 },
+      sea(-74, -30, 15),
+    );
+  } else {
+    // coastal and backwater: the kit's home, out in the sea
+    slots.push(
+      sea(-30, 10 + seed * 4, 20),
+      sea(-76, -46 - seed * 8, 15),
+      sea(-52, 66 + seed * 10, 17),
+      sea(-108, 22 - seed * 10, 13),
+    );
+  }
+
+  for (const slot of slots) {
+    if (ISLANDS.length >= 2) break;
+    if (Math.abs(slot.x) > 190 || Math.abs(slot.z) > 190) continue;
+    const scale = slot.scale;
+    const radius = KIT_INFO.outlineRadius[1] * scale * 1.16;
+    let fits = true;
+    for (const p of CURRENT.places) {
+      if (Math.hypot(p.x - slot.x, p.z - slot.z) < radius + 16) { fits = false; break; }
+    }
+    if (fits) {
+      for (const other of ISLANDS) {
+        if (Math.hypot(other.x - slot.x, other.z - slot.z) < radius + other.radius + 8) {
+          fits = false;
+          break;
+        }
+      }
+    }
+    if (!fits) continue;
+    const base = baseHeight(slot.x, slot.z);
+    // A sea island is lifted until the lake in its bowl clears the waterline; an
+    // inland one keeps its rim just under the surrounding ground, so its hill
+    // stands proud of the hillside and its lake is a pool below the trees.
+    const rimY = slot.sea ? WATER + -KIT_INFO.lakeZ * scale + 0.45 : base - 0.35;
+    ISLANDS.push({
+      id: slot.id ?? `s${ISLANDS.length}`,
+      name: ISLAND_NAMES[(Math.round(seed * 10) + ISLANDS.length) % ISLAND_NAMES.length],
+      x: slot.x, z: slot.z, scale, rimY, radius,
+      seed: seed * 3 + ISLANDS.length * 1.7,
+    });
+  }
+  return ISLANDS;
 }
 
 function hash(x, z) {
@@ -54,7 +155,12 @@ function fbm(x, z) {
   return noise(x, z) + 0.5 * noise(x * 2, z * 2) + 0.25 * noise(x * 4, z * 4) + 0.125 * noise(x * 8, z * 8);
 }
 
-export function heightAt(x, z) {
+/**
+ * The district's own terrain, before the kit's islands are blended onto it:
+ * coast, backwater, the inland rise, the hills. This is the ground the game had
+ * before the scenery arrived, unchanged.
+ */
+function baseHeight(x, z) {
   const seed = CURRENT?.seed || 0;
   const kind = CURRENT?.kind || "coastal";
   const n = fbm(x * 0.012 + seed, z * 0.012);
@@ -107,10 +213,79 @@ export function heightAt(x, z) {
   return h;
 }
 
+/**
+ * Where the kit's island is, at (x, z), and how much of its surface belongs
+ * there. `kz` is the kit's own height in kit units (NaN off the slab), `top` is
+ * that height in the district, and `w` is the blend weight: 0 in the island's
+ * heart, 1 at the outer edge, where the district's own terrain takes over again.
+ *
+ * The blend is what seats the island in the land: the slab's rim is buried by the
+ * terrain outside it, so there is never a seam, a step or a floating edge — the
+ * hill simply rises out of the ground the way the kit's own diorama does.
+ */
+function islandAt(x, z) {
+  for (const isl of ISLANDS) {
+    const dx = x - isl.x, dz = z - isl.z;
+    const r = Math.hypot(dx, dz);
+    if (r >= isl.radius) continue;
+    const kz = kitHeight(dx / isl.scale, dz / isl.scale);
+    const top = isl.rimY + (Number.isNaN(kz) ? KIT_INFO.rimZ : kz) * isl.scale;
+    return { isl, kz, top, r, w: smoothstep(0.60, 1.0, r / isl.radius) };
+  }
+  return null;
+}
+
+/**
+ * The terrain the ground mesh is built from. Under an island it rides just below
+ * the kit's slab, so the slab is always the surface you see and stand on and the
+ * coarse terrain grid can never poke through it.
+ */
+export function groundHeightAt(x, z) {
+  const base = baseHeight(x, z);
+  const hit = islandAt(x, z);
+  if (!hit) return base;
+  return (hit.top - 0.30) * (1 - hit.w) + base * hit.w;
+}
+
+/** The height you can stand on, including the kit's islands. */
+export function heightAt(x, z) {
+  const hit = islandAt(x, z);
+  if (!hit) return baseHeight(x, z);
+  const base = baseHeight(x, z);
+  const ground = (hit.top - 0.30) * (1 - hit.w) + base * hit.w;
+  // on the slab the kit's own surface is the ground; off it, the blend's
+  return Number.isNaN(hit.kz) ? ground : Math.max(hit.top, ground);
+}
+
+/** The lakes the kit's islands bring: swimming, fishing, boat-free water. */
+export function islandLakes() {
+  const out = [];
+  for (const isl of ISLANDS) {
+    if (!KIT_INFO.lakeZ) continue;
+    out.push({
+      x: isl.x, z: isl.z,
+      r: Math.max(3, KIT_INFO.outlineMean * 0.40 * isl.scale),
+      y: isl.rimY + KIT_INFO.lakeZ * isl.scale,
+      island: isl.name,
+    });
+  }
+  return out;
+}
+
 export function biomeAt(x, z) {
   const h = heightAt(x, z);
   const kind = CURRENT?.kind || "coastal";
   const seed = CURRENT?.seed || 0;
+
+  // The kit's islands read as their own ground: green on the hill, and the lake
+  // in the bowl below it.
+  const isl = islandAt(x, z);
+  if (isl && !Number.isNaN(isl.kz)) {
+    const lakeY = isl.isl.rimY + KIT_INFO.lakeZ * isl.isl.scale;
+    if (h <= lakeY + 0.05) return "island-lake";
+    return "island";
+  }
+
   const shore = -98 + Math.sin(z * 0.018 + seed) * 12;
   if (kind === "highland") {
     if (h > 12) return "tea";
@@ -862,7 +1037,7 @@ export function buildWorld(scene, opts = {}) {
   const shops = [];
   const jobs = [];
   const sway = [];
-  const extras = { root, nets: [], boats: [], rain: null, water: null, sun: null, hemi: null, lamp: null, fishSpots, shops, jobs, sway };
+  const extras = { root, nets: [], boats: [], rain: null, water: null, sun: null, hemi: null, lamp: null, fishSpots, shops, jobs, sway, islands: [] };
 
   const hemi = new THREE.HemisphereLight(0xfff4dc, 0xa8c85a, 1.45);
   root.add(hemi);
@@ -909,7 +1084,9 @@ export function buildWorld(scene, opts = {}) {
   let geo = new THREE.PlaneGeometry(SIZE, SIZE, SEG, SEG);
   geo.rotateX(-Math.PI / 2);
   const p0 = geo.attributes.position;
-  for (let i = 0; i < p0.count; i++) p0.setY(i, heightAt(p0.getX(i), p0.getZ(i)));
+  // Under an island the mesh rides below the kit's own slab (groundHeightAt), so
+  // the slab is what you see; everywhere else this is the same ground as before.
+  for (let i = 0; i < p0.count; i++) p0.setY(i, groundHeightAt(p0.getX(i), p0.getZ(i)));
   geo = geo.toNonIndexed();
   const pos = geo.attributes.position;
   const colors = new Float32Array(pos.count * 3);
@@ -925,6 +1102,8 @@ export function buildWorld(scene, opts = {}) {
     else if (b === "tea") c.set(0x9ec848);
     else if (b === "forest") c.set(0x86b844);
     else if (b === "paddy") c.set(0xd0e46a);
+    else if (b === "island") c.set(0x9ec848);
+    else if (b === "island-lake") c.set(0x7fb0a8);
     else c.set(0xc2dc5e);
     const v = (hash(Math.floor(x * 0.22 + z * 0.07), Math.floor(z * 0.22)) - 0.5);
     c.offsetHSL(v * 0.015, v * 0.04, v * 0.045);
@@ -939,6 +1118,106 @@ export function buildWorld(scene, opts = {}) {
   const ground = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true }));
   ground.receiveShadow = true;
   root.add(ground);
+
+  /* ---- the owner's scenery kit -------------------------------------------
+   * The islands: the kit's slab of land, its lake, and its rocks and conifers
+   * standing on it — the whole diorama, seated in the district's terrain by the
+   * blend in heightAt(). Its lakes join fishSpots, so the fishing and swimming
+   * the game already has work on them. */
+  for (const spec of ISLANDS) {
+    const built = kitIsland(spec, { lite });
+    root.add(built.root);
+    extras.islands.push(built);
+    for (const c2 of built.colliders) colliders.push(c2);
+    for (const m of built.sway) sway.push(m);
+    if (built.lakeSpot) {
+      built.lakeSpot.name = spec.name;
+      fishSpots.push(built.lakeSpot);
+    }
+  }
+
+  /* ---- and the kit's own rocks and conifers, on the district's ground too:
+   * the same shapes the island is dressed with, scattered where the ground
+   * suits them — boulders on the banks and the hillsides, conifers in stands
+   * above the village, never in the water, never on a road, never in a lake. */
+  {
+    const { rocks, trees } = kitProps();
+    const dummy = new THREE.Object3D();
+    const rockMat = new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true });
+    const treeMat = new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true });
+    const wantRocks = lite ? 54 : 110;
+    const perRock = Math.ceil(wantRocks / rocks.length) + 2;
+    const rockMeshes = rocks.map((r) => {
+      const im = new THREE.InstancedMesh(r.geo, rockMat, perRock);
+      im.castShadow = true;
+      im.receiveShadow = true;
+      im.count = 0;
+      root.add(im);
+      return im;
+    });
+    let placedRocks = 0;
+    for (let i = 0; i < wantRocks * 6 && placedRocks < wantRocks; i++) {
+      const x = -170 + hash(i, 41) * 340;
+      const z = -170 + hash(i, 42) * 340;
+      const b = biomeAt(x, z);
+      if (b === "island" || b === "island-lake" || b === "sea") continue;
+      const h = heightAt(x, z);
+      if (h < WATER - 0.4 || h > 34) continue;
+      if (onRoad(x, z)) continue;
+      if (CURRENT.places.some((pl) => (pl.kind === "pond" || pl.kind === "lake") &&
+        Math.hypot(x - pl.x, z - pl.z) < 9)) continue;
+      const shape = Math.floor(hash(i, 43) * rocks.length) % rocks.length;
+      const im = rockMeshes[shape];
+      if (im.count >= perRock) continue;
+      const size = 0.5 + hash(i, 44) * 1.9;
+      dummy.position.set(x, h - size * 0.16, z);
+      dummy.rotation.set(0, hash(i, 45) * 6.283, 0);
+      dummy.scale.setScalar(size);
+      dummy.updateMatrix();
+      im.setMatrixAt(im.count++, dummy.matrix);
+      if (size > 1.1) colliders.push({ x, z, r: size * 0.42 });
+      placedRocks++;
+    }
+    for (const im of rockMeshes) im.instanceMatrix.needsUpdate = true;
+
+    const wantTrees = lite ? 10 : 22;
+    const perTree = Math.ceil(wantTrees / trees.length) + 2;
+    const treeMeshes = trees.map((t) => {
+      const im = new THREE.InstancedMesh(t.geo, treeMat, perTree);
+      im.castShadow = true;
+      im.receiveShadow = true;
+      im.count = 0;
+      root.add(im);
+      return im;
+    });
+    let placedTrees = 0;
+    for (let i = 0; i < wantTrees * 10 && placedTrees < wantTrees; i++) {
+      const x = -150 + hash(i, 51) * 300;
+      const z = -150 + hash(i, 52) * 300;
+      const b = biomeAt(x, z);
+      if (b === "sea" || b === "beach" || b === "island" || b === "island-lake") continue;
+      const h = heightAt(x, z);
+      if (h < WATER + 1.4) continue;
+      const dx = heightAt(x + 1.2, z) - heightAt(x - 1.2, z);
+      const dz = heightAt(x, z + 1.2) - heightAt(x, z - 1.2);
+      if (Math.hypot(dx, dz) / 2.4 > 0.5) continue;            // too steep to stand
+      if (onRoad(x, z)) continue;
+      const shape = Math.floor(hash(i, 53) * trees.length) % trees.length;
+      const im = treeMeshes[shape];
+      if (im.count >= perTree) continue;
+      const size = 6 + hash(i, 54) * 6;                        // metres
+      dummy.position.set(x, h - 0.25, z);
+      dummy.rotation.set(0, hash(i, 55) * 6.283, 0);
+      dummy.scale.setScalar(size);
+      dummy.updateMatrix();
+      im.setMatrixAt(im.count++, dummy.matrix);
+      colliders.push({ x, z, r: Math.max(0.5, size * 0.05) });
+      placedTrees++;
+    }
+    for (const im of treeMeshes) im.instanceMatrix.needsUpdate = true;
+    extras.rocks = rockMeshes;
+    extras.conifers = treeMeshes;
+  }
 
   extras.uTime = { value: 0 };
   extras.uPlayer = { value: new THREE.Vector3() };
@@ -962,6 +1241,8 @@ export function buildWorld(scene, opts = {}) {
   const placeTree = (proto, x, z, s = 1, rad = 0.55) => {
     const y = heightAt(x, z);
     if (y < WATER + 0.35) return false;
+    const tb = biomeAt(x, z);
+    if (tb === "island" || tb === "island-lake") return false;   // the kit's islands have their own trees
     for (const pl of CURRENT.places) {
       if ((pl.kind === "pond" || pl.kind === "lake") && Math.hypot(x - pl.x, z - pl.z) < 6.2) return false;
     }

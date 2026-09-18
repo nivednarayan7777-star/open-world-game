@@ -704,7 +704,10 @@ function loop() {
       const w = m.userData.wind;
       if (!w) continue;
       const a = Math.sin(t * w.spd + w.ph) * w.amp;
-      const d = Math.hypot(m.position.x - player.x, m.position.z - player.z);
+      // island trees hang off the island group, so their own position is local
+      const wx = w.wx !== undefined ? w.wx : m.position.x;
+      const wz = w.wz !== undefined ? w.wz : m.position.z;
+      const d = Math.hypot(wx - player.x, wz - player.z);
       const touch = Math.max(0, 1 - d / 3.5);
       m.rotation.z = a + touch * 0.18;
       m.rotation.x = Math.cos(t * w.spd * 0.65 + w.ph) * w.amp * 0.45 + touch * 0.1;
@@ -1100,7 +1103,7 @@ const KIND_ICO = {
   lighthouse: "🗼", nets: "🗼", jetty: "▣", pond: "🎣", lake: "💧", tea: "🍃",
   peak: "⛰", dam: "▬", cave: "⬤", paddy: "🌾", houseboat: "▣", chaya: "🍵",
   palace: "▣", factory: "🏭", shrine: "⛩", tower: "🗼", mandapam: "▣",
-  thattukada: "🍛", hotel: "🏨", market: "🛒", forest: "🌳",
+  thattukada: "🍛", hotel: "🏨", market: "🛒", forest: "🌳", island: "🏝",
 };
 
 function fillSidebar() {
