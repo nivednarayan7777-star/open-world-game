@@ -1,69 +1,70 @@
 Blender 4.0.2
 Read blend: "/tmp/blend/source.blend"
-Fra:32 Mem:69.50M (Peak 70.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | ground
-Fra:32 Mem:69.51M (Peak 70.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | BezierCurve
-Fra:32 Mem:70.02M (Peak 70.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | tree.002
-Fra:32 Mem:71.97M (Peak 71.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Bush.007
-Fra:32 Mem:71.91M (Peak 71.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | ground.002
-Fra:32 Mem:74.11M (Peak 74.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Bush.006
-Fra:32 Mem:74.20M (Peak 74.20M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Cube.004
-Fra:32 Mem:74.91M (Peak 74.91M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Bush.005
-Fra:32 Mem:75.26M (Peak 75.26M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Bush.004
-Fra:32 Mem:75.08M (Peak 75.26M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | BezierCurve.007
-Fra:32 Mem:75.16M (Peak 75.26M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Bush.002
-Fra:32 Mem:75.29M (Peak 75.29M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | tree.001
-Fra:32 Mem:81.97M (Peak 83.63M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Initializing
-Fra:32 Mem:77.98M (Peak 83.63M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Updating Images | Loading Leaves.png
-Fra:32 Mem:77.98M (Peak 83.63M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Updating Images | Loading Verbena_Leaves_V2.png
-Fra:32 Mem:77.98M (Peak 83.63M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Updating Images | Loading Verbena_Red.png
-Fra:32 Mem:150.72M (Peak 282.20M) | Time:00:00.42 | Mem:77.08M, Peak:77.08M | Scene, View Layer | Waiting for render to start
-Fra:32 Mem:150.72M (Peak 282.20M) | Time:00:00.42 | Mem:77.08M, Peak:77.08M | Scene, View Layer | Loading render kernels (may take a few minutes the first time)
-Fra:32 Mem:150.72M (Peak 282.20M) | Time:00:00.42 | Mem:77.08M, Peak:77.08M | Scene, View Layer | Updating Scene
-Fra:32 Mem:150.72M (Peak 282.20M) | Time:00:00.42 | Mem:77.08M, Peak:77.08M | Scene, View Layer | Updating Shaders
-Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Procedurals
-Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Background
-Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Camera
-Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Meshes Flags
-Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Objects
-Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Objects | Copying Transformations to device
-Fra:32 Mem:150.86M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Objects | Applying Static Transformations
-Fra:32 Mem:150.86M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Particle Systems
-Fra:32 Mem:150.86M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Particle Systems | Copying Particles to device
-Fra:32 Mem:150.86M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Meshes
-Fra:32 Mem:153.96M (Peak 282.20M) | Time:00:00.43 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Mesh | Computing attributes
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Mesh | Copying Attributes to device
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:78.66M, Peak:78.66M | Scene, View Layer | Updating Geometry BVH Plane.019 5/5 | Building BVH
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:78.68M, Peak:78.68M | Scene, View Layer | Updating Geometry BVH Plane.019 5/5 | Building BVH 0%
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:78.68M, Peak:78.68M | Scene, View Layer | Updating Geometry BVH Plane.006 1/5 | Building BVH
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:78.74M, Peak:78.74M | Scene, View Layer | Updating Geometry BVH Plane.016 2/5 | Building BVH
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:78.76M, Peak:78.79M | Scene, View Layer | Updating Geometry BVH Plane.018 4/5 | Building BVH
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:78.76M, Peak:78.79M | Scene, View Layer | Updating Geometry BVH Plane.017 3/5 | Building BVH
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:78.85M, Peak:78.89M | Scene, View Layer | Updating Scene BVH | Building
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:78.85M, Peak:78.89M | Scene, View Layer | Updating Scene BVH | Building BVH
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.47 | Mem:91.62M, Peak:97.73M | Scene, View Layer | Updating Scene BVH | Copying BVH to device
-Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.47 | Mem:91.62M, Peak:97.73M | Scene, View Layer | Updating Mesh | Computing normals
-Fra:32 Mem:163.44M (Peak 282.20M) | Time:00:00.47 | Mem:91.62M, Peak:97.73M | Scene, View Layer | Updating Mesh | Copying Mesh to device
-Fra:32 Mem:163.44M (Peak 282.20M) | Time:00:00.47 | Mem:99.58M, Peak:99.58M | Scene, View Layer | Updating Objects Flags
-Fra:32 Mem:163.44M (Peak 282.20M) | Time:00:00.47 | Mem:99.58M, Peak:99.58M | Scene, View Layer | Updating Primitive Offsets
-Fra:32 Mem:163.44M (Peak 282.20M) | Time:00:00.47 | Mem:99.58M, Peak:99.58M | Scene, View Layer | Updating Images
-Fra:32 Mem:163.44M (Peak 282.20M) | Time:00:00.47 | Mem:99.58M, Peak:99.58M | Scene, View Layer | Updating Camera Volume
-Fra:32 Mem:163.44M (Peak 282.20M) | Time:00:00.47 | Mem:99.58M, Peak:99.58M | Scene, View Layer | Updating Lookup Tables
-Fra:32 Mem:163.44M (Peak 282.20M) | Time:00:00.47 | Mem:99.66M, Peak:99.66M | Scene, View Layer | Updating Lights
-Fra:32 Mem:163.45M (Peak 282.20M) | Time:00:00.47 | Mem:99.67M, Peak:99.67M | Scene, View Layer | Updating Lights | Importance map
-Fra:32 Mem:227.48M (Peak 515.45M) | Time:00:29.20 | Mem:163.71M, Peak:323.68M | Scene, View Layer | Updating Lights | Computing distribution
-Fra:32 Mem:227.48M (Peak 515.45M) | Time:00:29.20 | Mem:163.71M, Peak:323.68M | Scene, View Layer | Updating Integrator
-Fra:32 Mem:228.48M (Peak 515.45M) | Time:00:29.20 | Mem:164.71M, Peak:323.68M | Scene, View Layer | Updating Film
-Fra:32 Mem:228.48M (Peak 515.45M) | Time:00:29.20 | Mem:164.63M, Peak:323.68M | Scene, View Layer | Updating Lookup Tables
-Fra:32 Mem:228.48M (Peak 515.45M) | Time:00:29.20 | Mem:164.71M, Peak:323.68M | Scene, View Layer | Updating Baking
-Fra:32 Mem:228.48M (Peak 515.45M) | Time:00:29.20 | Mem:164.71M, Peak:323.68M | Scene, View Layer | Updating Device | Writing constant memory
-Fra:32 Mem:228.48M (Peak 515.45M) | Time:00:29.20 | Mem:164.71M, Peak:323.68M | Scene, View Layer | Sample 0/48
-Fra:32 Mem:234.81M (Peak 515.45M) | Time:00:30.68 | Remaining:01:09.57 | Mem:171.03M, Peak:323.68M | Scene, View Layer | Sample 1/48
-Fra:32 Mem:234.81M (Peak 515.45M) | Time:00:53.83 | Remaining:00:44.90 | Mem:171.03M, Peak:323.68M | Scene, View Layer | Sample 17/48
-Fra:32 Mem:234.81M (Peak 515.45M) | Time:01:16.98 | Remaining:00:21.71 | Mem:171.03M, Peak:323.68M | Scene, View Layer | Sample 33/48
-Fra:32 Mem:241.13M (Peak 515.45M) | Time:01:38.58 | Mem:171.03M, Peak:323.68M | Scene, View Layer | Sample 48/48
-Fra:32 Mem:241.13M (Peak 515.45M) | Time:01:38.58 | Mem:171.03M, Peak:323.68M | Scene, View Layer | Finished
+Fra:32 Mem:69.51M (Peak 71.46M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | ground
+Fra:32 Mem:69.51M (Peak 71.46M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | ground.001
+Fra:32 Mem:69.65M (Peak 71.46M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | BezierCurve
+Fra:32 Mem:70.12M (Peak 71.46M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | ground.002
+Fra:32 Mem:70.83M (Peak 71.46M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | tree.002
+Fra:32 Mem:72.29M (Peak 72.29M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Cube.004
+Fra:32 Mem:73.45M (Peak 73.45M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Bush.007
+Fra:32 Mem:75.08M (Peak 75.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Bush.006
+Fra:32 Mem:75.62M (Peak 75.62M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | BezierCurve.007
+Fra:32 Mem:77.33M (Peak 77.33M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Bush.002
+Fra:32 Mem:76.93M (Peak 77.33M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Bush.005
+Fra:32 Mem:76.98M (Peak 77.33M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | Bush.004
+Fra:32 Mem:77.06M (Peak 77.33M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | tree.001
+Fra:32 Mem:81.97M (Peak 84.37M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Initializing
+Fra:32 Mem:77.98M (Peak 84.37M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Updating Images | Loading Leaves.png
+Fra:32 Mem:77.98M (Peak 84.37M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Updating Images | Loading Verbena_Leaves_V2.png
+Fra:32 Mem:77.98M (Peak 84.37M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Updating Images | Loading Verbena_Red.png
+Fra:32 Mem:150.72M (Peak 282.20M) | Time:00:00.41 | Mem:77.08M, Peak:77.08M | Scene, View Layer | Waiting for render to start
+Fra:32 Mem:150.72M (Peak 282.20M) | Time:00:00.41 | Mem:77.08M, Peak:77.08M | Scene, View Layer | Loading render kernels (may take a few minutes the first time)
+Fra:32 Mem:150.72M (Peak 282.20M) | Time:00:00.41 | Mem:77.08M, Peak:77.08M | Scene, View Layer | Updating Scene
+Fra:32 Mem:150.72M (Peak 282.20M) | Time:00:00.41 | Mem:77.08M, Peak:77.08M | Scene, View Layer | Updating Shaders
+Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.41 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Procedurals
+Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.41 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Background
+Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.41 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Camera
+Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.41 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Meshes Flags
+Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.41 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Objects
+Fra:32 Mem:150.85M (Peak 282.20M) | Time:00:00.41 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Objects | Copying Transformations to device
+Fra:32 Mem:150.86M (Peak 282.20M) | Time:00:00.41 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Objects | Applying Static Transformations
+Fra:32 Mem:150.86M (Peak 282.20M) | Time:00:00.41 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Particle Systems
+Fra:32 Mem:150.86M (Peak 282.20M) | Time:00:00.41 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Particle Systems | Copying Particles to device
+Fra:32 Mem:150.86M (Peak 282.20M) | Time:00:00.41 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Meshes
+Fra:32 Mem:153.96M (Peak 282.20M) | Time:00:00.42 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Mesh | Computing attributes
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.42 | Mem:77.14M, Peak:77.14M | Scene, View Layer | Updating Mesh | Copying Attributes to device
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.42 | Mem:78.66M, Peak:78.66M | Scene, View Layer | Updating Geometry BVH Plane.019 5/5 | Building BVH
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.42 | Mem:78.66M, Peak:78.66M | Scene, View Layer | Updating Geometry BVH Plane.006 1/5 | Building BVH
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.42 | Mem:78.70M, Peak:78.70M | Scene, View Layer | Updating Geometry BVH Plane.006 1/5 | Building BVH 0%
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.42 | Mem:78.70M, Peak:78.70M | Scene, View Layer | Updating Geometry BVH Plane.016 2/5 | Building BVH
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.42 | Mem:78.73M, Peak:78.73M | Scene, View Layer | Updating Geometry BVH Plane.017 3/5 | Building BVH
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.42 | Mem:78.81M, Peak:78.84M | Scene, View Layer | Updating Geometry BVH Plane.018 4/5 | Building BVH
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.42 | Mem:78.85M, Peak:78.87M | Scene, View Layer | Updating Scene BVH | Building
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.42 | Mem:78.85M, Peak:78.87M | Scene, View Layer | Updating Scene BVH | Building BVH
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:91.62M, Peak:97.73M | Scene, View Layer | Updating Scene BVH | Copying BVH to device
+Fra:32 Mem:155.48M (Peak 282.20M) | Time:00:00.44 | Mem:91.62M, Peak:97.73M | Scene, View Layer | Updating Mesh | Computing normals
+Fra:32 Mem:163.45M (Peak 282.20M) | Time:00:00.44 | Mem:91.62M, Peak:97.73M | Scene, View Layer | Updating Mesh | Copying Mesh to device
+Fra:32 Mem:163.45M (Peak 282.20M) | Time:00:00.44 | Mem:99.58M, Peak:99.58M | Scene, View Layer | Updating Objects Flags
+Fra:32 Mem:163.45M (Peak 282.20M) | Time:00:00.44 | Mem:99.58M, Peak:99.58M | Scene, View Layer | Updating Primitive Offsets
+Fra:32 Mem:163.45M (Peak 282.20M) | Time:00:00.44 | Mem:99.58M, Peak:99.58M | Scene, View Layer | Updating Images
+Fra:32 Mem:163.45M (Peak 282.20M) | Time:00:00.44 | Mem:99.58M, Peak:99.58M | Scene, View Layer | Updating Camera Volume
+Fra:32 Mem:163.45M (Peak 282.20M) | Time:00:00.44 | Mem:99.58M, Peak:99.58M | Scene, View Layer | Updating Lookup Tables
+Fra:32 Mem:163.45M (Peak 282.20M) | Time:00:00.44 | Mem:99.66M, Peak:99.66M | Scene, View Layer | Updating Lights
+Fra:32 Mem:163.45M (Peak 282.20M) | Time:00:00.44 | Mem:99.67M, Peak:99.67M | Scene, View Layer | Updating Lights | Importance map
+Fra:32 Mem:227.48M (Peak 515.45M) | Time:00:42.48 | Mem:163.71M, Peak:323.68M | Scene, View Layer | Updating Lights | Computing distribution
+Fra:32 Mem:227.48M (Peak 515.45M) | Time:00:42.48 | Mem:163.71M, Peak:323.68M | Scene, View Layer | Updating Integrator
+Fra:32 Mem:228.48M (Peak 515.45M) | Time:00:42.48 | Mem:164.71M, Peak:323.68M | Scene, View Layer | Updating Film
+Fra:32 Mem:228.48M (Peak 515.45M) | Time:00:42.48 | Mem:164.63M, Peak:323.68M | Scene, View Layer | Updating Lookup Tables
+Fra:32 Mem:228.48M (Peak 515.45M) | Time:00:42.48 | Mem:164.71M, Peak:323.68M | Scene, View Layer | Updating Baking
+Fra:32 Mem:228.48M (Peak 515.45M) | Time:00:42.48 | Mem:164.71M, Peak:323.68M | Scene, View Layer | Updating Device | Writing constant memory
+Fra:32 Mem:228.48M (Peak 515.45M) | Time:00:42.48 | Mem:164.71M, Peak:323.68M | Scene, View Layer | Sample 0/48
+Fra:32 Mem:234.81M (Peak 515.45M) | Time:00:44.53 | Remaining:01:36.08 | Mem:171.03M, Peak:323.68M | Scene, View Layer | Sample 1/48
+Fra:32 Mem:234.81M (Peak 515.45M) | Time:01:16.14 | Remaining:01:01.37 | Mem:171.03M, Peak:323.68M | Scene, View Layer | Sample 17/48
+Fra:32 Mem:234.81M (Peak 515.45M) | Time:01:47.73 | Remaining:00:29.65 | Mem:171.03M, Peak:323.68M | Scene, View Layer | Sample 33/48
+Fra:32 Mem:241.13M (Peak 515.45M) | Time:02:17.38 | Mem:171.03M, Peak:323.68M | Scene, View Layer | Sample 48/48
+Fra:32 Mem:241.13M (Peak 515.45M) | Time:02:17.38 | Mem:171.03M, Peak:323.68M | Scene, View Layer | Finished
 Saved: '/tmp/blendout/view_top.png'
-Time: 01:38.65 (Saving: 00:00.06)
+Time: 02:17.46 (Saving: 00:00.07)
 
 <SCENE payload>
 GROUND_OBJECTS ['ground', 'ground.001', 'ground.002']
@@ -71,15 +72,15 @@ GROUND_OBJECTS ['ground', 'ground.001', 'ground.002']
 <VIEW_TOP payload>
 EMITTED VIEW_TOP 375221 bytes
 <VIEW_ISO payload>
-EMITTED VIEW_ISO 350285 bytes
+EMITTED VIEW_ISO 350316 bytes
 <VIEW_LOW payload>
 EMITTED VIEW_LOW 320188 bytes
 <VIEW_HERO payload>
-EMITTED VIEW_HERO 328182 bytes
+EMITTED VIEW_HERO 328163 bytes
 <VIEW_GROUNDTOP payload>
-EMITTED VIEW_GROUNDTOP 412435 bytes
+EMITTED VIEW_GROUNDTOP 412487 bytes
 <VIEW_CLOSE payload>
-EMITTED VIEW_CLOSE 463788 bytes
+EMITTED VIEW_CLOSE 463783 bytes
 PROBE_DONE
 
 Blender quit
