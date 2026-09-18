@@ -101,22 +101,43 @@ const RAW_TINT = {
 export const BLEND_GRADE = { hueShift: 0.0111, sat: 1.20, val: 0.72 };
 
 /**
+ * Greens are lifted in red and blue, per the blend's own albedo.
+ *
+ * The blend's ColorRamp greens carry far more red than the saturated green the
+ * palette above would land on: its stops sit at R/G 0.135 / B/G 0.045–0.093,
+ * where ours came out at 0.0725 / 0.0725. Rendering agreed — the game's ground
+ * came back with red and blue ~13% under the reference's at the same green
+ * (54.5, 155.0, 42.6 against 62.8, 160.7, 49.5) — so green tints take the
+ * blend's leafy balance back: red ×1.35, blue ×1.15. Sand, earth and water are
+ * left alone; this is a correction for leaves, not for beaches.
+ */
+export const LEAFY = { none: null, red: 1.35, blue: 1.15 };
+
+/**
  * Pre-compensate a colour for Keralam's warm-light + ACES pipeline so that it
  * *renders* like the blend's material does. Greens (80°–170°) get the hue
- * rotation; sand, earth and water keep their hue and only take the saturation
- * and value part of the grade.
+ * rotation and the leafy red/blue lift; sand, earth and water keep their hue
+ * and channels and only take the saturation and value part of the grade.
  */
 export function blendGrade(color, opts = {}) {
-  const { hueShift = BLEND_GRADE.hueShift, sat = BLEND_GRADE.sat, val = BLEND_GRADE.val } = opts;
+  const {
+    hueShift = BLEND_GRADE.hueShift,
+    sat = BLEND_GRADE.sat,
+    val = BLEND_GRADE.val,
+    leafy = true,
+  } = opts;
   const out = color instanceof THREE.Color ? color.clone() : new THREE.Color(color);
   const hsl = { h: 0, s: 0, l: 0 };
   out.getHSL(hsl, THREE.SRGBColorSpace);
-  if (hsl.h > 0.222 && hsl.h < 0.472) {         // 80° … 170°: the green family
-    hsl.h = (hsl.h + hueShift) % 1;
-  }
+  const isGreen = hsl.h > 0.222 && hsl.h < 0.472;   // 80° … 170°: the green family
+  if (isGreen) hsl.h = (hsl.h + hueShift) % 1;
   hsl.s = Math.min(1, hsl.s * sat);
   hsl.l = Math.max(0, Math.min(1, hsl.l * val));
   out.setHSL(hsl.h, hsl.s, hsl.l, THREE.SRGBColorSpace);
+  if (isGreen && leafy) {
+    out.r = Math.min(1, out.r * LEAFY.red);
+    out.b = Math.min(1, out.b * LEAFY.blue);
+  }
   return out;
 }
 
