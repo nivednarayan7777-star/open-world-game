@@ -4,15 +4,56 @@ wrote probe/model/groups.json 16239
 wrote probe/model/materials.json 78413
 wrote probe/model/textures.json 246
 wrote probe/model/geometry_index.json 6037
-geometry: 43 meshes, 10890 verts, 391363 bytes raw -> 65379 gz
+geometry: 43 meshes, 10890 verts, 392051 bytes raw -> 65500 gz
 render engine: CYCLES
-Traceback (most recent call last):
-  File "/home/runner/work/open-world-game/open-world-game/.github/model_probe.py", line 918, in <module>
-    main()
-    ~~~~^^
-  File "/home/runner/work/open-world-game/open-world-game/.github/model_probe.py", line 877, in main
-    engine = setup_render(fast=True)
-  File "/home/runner/work/open-world-game/open-world-game/.github/model_probe.py", line 557, in setup_render
-    sc.cycles.use_persistent_data = True
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'CyclesRenderSettings' object has no attribute 'use_persistent_data'
+bounds x[-5.04,5.19] y[-2.37,1.26] z[-1.0,1.32] span=10.23
+rendered view_top.png
+rendered view_iso.png
+rendered view_low.png
+rendered view_hero.png
+rendered view_close.png
+rendered view_scenecamera.png via Camera
+opengl unavailable: Error: Cannot use OpenGL render in background mode (no opengl context)
+
+per-object renders via cycles
+rendered obj_000_Cube.png (1 of 46)
+rendered obj_001_Landscape.png (2 of 46)
+rendered obj_002_rock_01.png (3 of 46)
+rendered obj_003_rock_01.001.png (4 of 46)
+rendered obj_004_rock_01.002.png (5 of 46)
+rendered obj_005_rock_01.003.png (6 of 46)
+rendered obj_006_rock_01.004.png (7 of 46)
+rendered obj_007_rock_01.005.png (8 of 46)
+rendered obj_008_rock_02.png (9 of 46)
+rendered obj_009_rock_02.001.png (10 of 46)
+rendered obj_010_rock_02.002.png (11 of 46)
+rendered obj_011_rock_02.003.png (12 of 46)
+rendered obj_012_rock_02.004.png (13 of 46)
+rendered obj_013_rock_02.005.png (14 of 46)
+rendered obj_014_rock_03.png (15 of 46)
+rendered obj_015_rock_03.001.png (16 of 46)
+rendered obj_016_rock_03.002.png (17 of 46)
+rendered obj_017_rock_03.003.png (18 of 46)
+rendered obj_018_rock_03.004.png (19 of 46)
+rendered obj_019_rock_03.005.png (20 of 46)
+rendered obj_020_rock_03.006.png (21 of 46)
+rendered obj_021_rock_03.007.png (22 of 46)
+rendered obj_022_rock_04.png (23 of 46)
+rendered obj_023_rock_04.001.png (24 of 46)
+rendered obj_024_rock_04.002.png (25 of 46)
+rendered obj_025_rock_04.003.png (26 of 46)
+rendered obj_026_rock_04.004.png (27 of 46)
+rendered obj_027_rock_05.png (28 of 46)
+rendered obj_028_rock_05.001.png (29 of 46)
+rendered obj_029_rock_05.002.png (30 of 46)
+rendered obj_030_rock_05.003.png (31 of 46)
+rendered obj_031_rock_05.004.png (32 of 46)
+rendered obj_032_rock_05.005.png (33 of 46)
+rendered obj_033_rock_05.006.png (34 of 46)
+rendered obj_034_rock_05.007.png (35 of 46)
+rendered obj_035_rock_05.008.png (36 of 46)
+rendered obj_036_rock_05.009.png (37 of 46)
+rendered obj_037_rock_05.010.png (38 of 46)
+rendered obj_038_sun.png (39 of 46)
+rendered obj_039_tree.001.png (40 of 46)
+wrote probe/model/summary.txt 11257

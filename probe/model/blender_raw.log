@@ -1,71 +1,161 @@
 SOURCE import: /tmp/model/source.glb .glb
-16:12:33 | INFO: Data are loaded, start creating Blender stuff
-16:12:33 | INFO: Blender create Mesh node 0
-16:12:33 | INFO: Blender create Mesh node 1
-16:12:33 | INFO: Blender create Mesh node 2
-16:12:33 | INFO: Blender create Mesh node 3
-16:12:33 | INFO: Blender create Mesh node 4
-16:12:33 | INFO: Blender create Mesh node 5
-16:12:33 | INFO: Blender create Mesh node 6
-16:12:33 | INFO: Blender create Mesh node 7
-16:12:33 | INFO: Blender create Mesh node 8
-16:12:33 | INFO: Blender create Mesh node 9
-16:12:33 | INFO: Blender create Mesh node 10
-16:12:33 | INFO: Blender create Mesh node 11
-16:12:33 | INFO: Blender create Mesh node 12
-16:12:33 | INFO: Blender create Mesh node 13
-16:12:33 | INFO: Blender create Mesh node 14
-16:12:33 | INFO: Blender create Mesh node 15
-16:12:33 | INFO: Blender create Mesh node 16
-16:12:33 | INFO: Blender create Mesh node 17
-16:12:33 | INFO: Blender create Mesh node 18
-16:12:33 | INFO: Blender create Mesh node 19
-16:12:33 | INFO: Blender create Mesh node 20
-16:12:33 | INFO: Blender create Mesh node 21
-16:12:33 | INFO: Blender create Mesh node 22
-16:12:33 | INFO: Blender create Mesh node 23
-16:12:33 | INFO: Blender create Mesh node 24
-16:12:33 | INFO: Blender create Mesh node 25
-16:12:33 | INFO: Blender create Mesh node 26
-16:12:33 | INFO: Blender create Mesh node 27
-16:12:33 | INFO: Blender create Mesh node 28
-16:12:33 | INFO: Blender create Mesh node 29
-16:12:33 | INFO: Blender create Mesh node 30
-16:12:33 | INFO: Blender create Mesh node 31
-16:12:33 | INFO: Blender create Mesh node 32
-16:12:33 | INFO: Blender create Mesh node 33
-16:12:33 | INFO: Blender create Mesh node 34
-16:12:33 | INFO: Blender create Mesh node 35
-16:12:33 | INFO: Blender create Mesh node 36
-16:12:33 | INFO: Blender create Mesh node 37
-16:12:33 | INFO: Blender create Mesh node 38
-16:12:33 | INFO: Blender create Mesh node 39
-16:12:33 | INFO: Blender create Mesh node 40
-16:12:33 | INFO: Blender create Mesh node 41
-16:12:33 | INFO: glTF import finished in 0.09s
-/home/runner/work/open-world-game/open-world-game/.github/model_probe.py:803: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+16:14:14 | INFO: Data are loaded, start creating Blender stuff
+16:14:14 | INFO: Blender create Mesh node 0
+16:14:14 | INFO: Blender create Mesh node 1
+16:14:14 | INFO: Blender create Mesh node 2
+16:14:14 | INFO: Blender create Mesh node 3
+16:14:14 | INFO: Blender create Mesh node 4
+16:14:14 | INFO: Blender create Mesh node 5
+16:14:14 | INFO: Blender create Mesh node 6
+16:14:14 | INFO: Blender create Mesh node 7
+16:14:14 | INFO: Blender create Mesh node 8
+16:14:14 | INFO: Blender create Mesh node 9
+16:14:14 | INFO: Blender create Mesh node 10
+16:14:14 | INFO: Blender create Mesh node 11
+16:14:14 | INFO: Blender create Mesh node 12
+16:14:14 | INFO: Blender create Mesh node 13
+16:14:14 | INFO: Blender create Mesh node 14
+16:14:14 | INFO: Blender create Mesh node 15
+16:14:14 | INFO: Blender create Mesh node 16
+16:14:14 | INFO: Blender create Mesh node 17
+16:14:14 | INFO: Blender create Mesh node 18
+16:14:14 | INFO: Blender create Mesh node 19
+16:14:14 | INFO: Blender create Mesh node 20
+16:14:14 | INFO: Blender create Mesh node 21
+16:14:14 | INFO: Blender create Mesh node 22
+16:14:14 | INFO: Blender create Mesh node 23
+16:14:14 | INFO: Blender create Mesh node 24
+16:14:14 | INFO: Blender create Mesh node 25
+16:14:14 | INFO: Blender create Mesh node 26
+16:14:14 | INFO: Blender create Mesh node 27
+16:14:14 | INFO: Blender create Mesh node 28
+16:14:14 | INFO: Blender create Mesh node 29
+16:14:14 | INFO: Blender create Mesh node 30
+16:14:14 | INFO: Blender create Mesh node 31
+16:14:14 | INFO: Blender create Mesh node 32
+16:14:14 | INFO: Blender create Mesh node 33
+16:14:14 | INFO: Blender create Mesh node 34
+16:14:14 | INFO: Blender create Mesh node 35
+16:14:14 | INFO: Blender create Mesh node 36
+16:14:14 | INFO: Blender create Mesh node 37
+16:14:14 | INFO: Blender create Mesh node 38
+16:14:14 | INFO: Blender create Mesh node 39
+16:14:14 | INFO: Blender create Mesh node 40
+16:14:14 | INFO: Blender create Mesh node 41
+16:14:14 | INFO: glTF import finished in 0.08s
+/home/runner/work/open-world-game/open-world-game/.github/model_probe.py:817: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
   if w and w.use_nodes:
 /home/runner/work/open-world-game/open-world-game/.github/model_probe.py:162: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
   if not mat.use_nodes:
-Traceback (most recent call last):
-  File "/home/runner/work/open-world-game/open-world-game/.github/model_probe.py", line 918, in <module>
-    main()
-    ~~~~^^
-  File "/home/runner/work/open-world-game/open-world-game/.github/model_probe.py", line 877, in main
-    engine = setup_render(fast=True)
-  File "/home/runner/work/open-world-game/open-world-game/.github/model_probe.py", line 557, in setup_render
-    sc.cycles.use_persistent_data = True
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'CyclesRenderSettings' object has no attribute 'use_persistent_data'
+/home/runner/work/open-world-game/open-world-game/.github/model_probe.py:585: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  sc.world.use_nodes = True
+00:02.684  render           | Saved: 'probe/model/view_top.png'
+00:03.166  render           | Saved: 'probe/model/view_iso.png'
+00:03.727  render           | Saved: 'probe/model/view_low.png'
+00:04.210  render           | Saved: 'probe/model/view_hero.png'
+00:06.090  render           | Saved: 'probe/model/view_close.png'
+00:06.738  render           | Saved: 'probe/model/view_scenecamera.png'
+00:07.453  render           | Saved: 'probe/model/obj_000_Cube.png'
+00:07.928  render           | Saved: 'probe/model/obj_001_Landscape.png'
+00:09.313  render           | Saved: 'probe/model/obj_002_rock_01.png'
+00:10.566  render           | Saved: 'probe/model/obj_003_rock_01.001.png'
+00:12.511  render           | Saved: 'probe/model/obj_004_rock_01.002.png'
+00:14.211  render           | Saved: 'probe/model/obj_005_rock_01.003.png'
+00:15.868  render           | Saved: 'probe/model/obj_006_rock_01.004.png'
+00:17.772  render           | Saved: 'probe/model/obj_007_rock_01.005.png'
+00:19.301  render           | Saved: 'probe/model/obj_008_rock_02.png'
+00:20.736  render           | Saved: 'probe/model/obj_009_rock_02.001.png'
+00:22.074  render           | Saved: 'probe/model/obj_010_rock_02.002.png'
+00:23.500  render           | Saved: 'probe/model/obj_011_rock_02.003.png'
+00:25.006  render           | Saved: 'probe/model/obj_012_rock_02.004.png'
+00:26.489  render           | Saved: 'probe/model/obj_013_rock_02.005.png'
+00:27.934  render           | Saved: 'probe/model/obj_014_rock_03.png'
+00:29.062  render           | Saved: 'probe/model/obj_015_rock_03.001.png'
+00:30.302  render           | Saved: 'probe/model/obj_016_rock_03.002.png'
+00:31.743  render           | Saved: 'probe/model/obj_017_rock_03.003.png'
+00:33.183  render           | Saved: 'probe/model/obj_018_rock_03.004.png'
+00:34.659  render           | Saved: 'probe/model/obj_019_rock_03.005.png'
+00:36.020  render           | Saved: 'probe/model/obj_020_rock_03.006.png'
+00:37.450  render           | Saved: 'probe/model/obj_021_rock_03.007.png'
+00:38.996  render           | Saved: 'probe/model/obj_022_rock_04.png'
+00:40.212  render           | Saved: 'probe/model/obj_023_rock_04.001.png'
+00:41.459  render           | Saved: 'probe/model/obj_024_rock_04.002.png'
+00:42.927  render           | Saved: 'probe/model/obj_025_rock_04.003.png'
+00:44.395  render           | Saved: 'probe/model/obj_026_rock_04.004.png'
+00:45.906  render           | Saved: 'probe/model/obj_027_rock_05.png'
+00:47.463  render           | Saved: 'probe/model/obj_028_rock_05.001.png'
+00:48.975  render           | Saved: 'probe/model/obj_029_rock_05.002.png'
+00:50.478  render           | Saved: 'probe/model/obj_030_rock_05.003.png'
+00:51.879  render           | Saved: 'probe/model/obj_031_rock_05.004.png'
+00:53.220  render           | Saved: 'probe/model/obj_032_rock_05.005.png'
+00:54.507  render           | Saved: 'probe/model/obj_033_rock_05.006.png'
+00:55.810  render           | Saved: 'probe/model/obj_034_rock_05.007.png'
+00:56.835  render           | Saved: 'probe/model/obj_035_rock_05.008.png'
+00:57.771  render           | Saved: 'probe/model/obj_036_rock_05.009.png'
+00:58.652  render           | Saved: 'probe/model/obj_037_rock_05.010.png'
+00:59.060  render           | Saved: 'probe/model/obj_038_sun.png'
+00:59.399  render           | Saved: 'probe/model/obj_039_tree.001.png'
 wrote probe/model/objects.json 60689
 wrote probe/model/groups.json 16239
 wrote probe/model/materials.json 78413
 wrote probe/model/textures.json 246
 wrote probe/model/geometry_index.json 6037
-geometry: 43 meshes, 10890 verts, 391363 bytes raw -> 65379 gz
+geometry: 43 meshes, 10890 verts, 392051 bytes raw -> 65500 gz
 render engine: CYCLES
-wrote probe/model/probe.log 887
-MODEL_PROBE_FAILED
+bounds x[-5.04,5.19] y[-2.37,1.26] z[-1.0,1.32] span=10.23
+rendered view_top.png
+rendered view_iso.png
+rendered view_low.png
+rendered view_hero.png
+rendered view_close.png
+rendered view_scenecamera.png via Camera
+Error: Cannot use OpenGL render in background mode (no opengl context)
+opengl unavailable: Error: Cannot use OpenGL render in background mode (no opengl context)
+
+per-object renders via cycles
+rendered obj_000_Cube.png (1 of 46)
+rendered obj_001_Landscape.png (2 of 46)
+rendered obj_002_rock_01.png (3 of 46)
+rendered obj_003_rock_01.001.png (4 of 46)
+rendered obj_004_rock_01.002.png (5 of 46)
+rendered obj_005_rock_01.003.png (6 of 46)
+rendered obj_006_rock_01.004.png (7 of 46)
+rendered obj_007_rock_01.005.png (8 of 46)
+rendered obj_008_rock_02.png (9 of 46)
+rendered obj_009_rock_02.001.png (10 of 46)
+rendered obj_010_rock_02.002.png (11 of 46)
+rendered obj_011_rock_02.003.png (12 of 46)
+rendered obj_012_rock_02.004.png (13 of 46)
+rendered obj_013_rock_02.005.png (14 of 46)
+rendered obj_014_rock_03.png (15 of 46)
+rendered obj_015_rock_03.001.png (16 of 46)
+rendered obj_016_rock_03.002.png (17 of 46)
+rendered obj_017_rock_03.003.png (18 of 46)
+rendered obj_018_rock_03.004.png (19 of 46)
+rendered obj_019_rock_03.005.png (20 of 46)
+rendered obj_020_rock_03.006.png (21 of 46)
+rendered obj_021_rock_03.007.png (22 of 46)
+rendered obj_022_rock_04.png (23 of 46)
+rendered obj_023_rock_04.001.png (24 of 46)
+rendered obj_024_rock_04.002.png (25 of 46)
+rendered obj_025_rock_04.003.png (26 of 46)
+rendered obj_026_rock_04.004.png (27 of 46)
+rendered obj_027_rock_05.png (28 of 46)
+rendered obj_028_rock_05.001.png (29 of 46)
+rendered obj_029_rock_05.002.png (30 of 46)
+rendered obj_030_rock_05.003.png (31 of 46)
+rendered obj_031_rock_05.004.png (32 of 46)
+rendered obj_032_rock_05.005.png (33 of 46)
+rendered obj_033_rock_05.006.png (34 of 46)
+rendered obj_034_rock_05.007.png (35 of 46)
+rendered obj_035_rock_05.008.png (36 of 46)
+rendered obj_036_rock_05.009.png (37 of 46)
+rendered obj_037_rock_05.010.png (38 of 46)
+rendered obj_038_sun.png (39 of 46)
+rendered obj_039_tree.001.png (40 of 46)
+wrote probe/model/summary.txt 11257
+wrote probe/model/probe.log 2400
+MODEL_PROBE_DONE
 Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:34:58)
 
 Blender quit

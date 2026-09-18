@@ -7,23 +7,120 @@ wrote probe/model/groups.json 16239
 wrote probe/model/materials.json 78413
 wrote probe/model/textures.json 246
 wrote probe/model/geometry_index.json 6037
-geometry: 43 meshes, 10890 verts, 391363 bytes raw -> 65379 gz
+geometry: 43 meshes, 10890 verts, 392051 bytes raw -> 65500 gz
 render engine: CYCLES
-wrote probe/model/probe.log 887
-MODEL_PROBE_FAILED
-total 268
-drwxr-xr-x 2 runner runner  4096 Sep 18 16:12 .
-drwxr-xr-x 4 runner runner  4096 Sep 18 16:12 ..
--rw-r--r-- 1 runner runner  3371 Sep 18 16:12 blender_raw.log
--rw-r--r-- 1 runner runner   717 Sep 18 16:12 fetch.log
--rw-r--r-- 1 runner runner 65379 Sep 18 16:12 geometry.json.gz
--rw-r--r-- 1 runner runner  6037 Sep 18 16:12 geometry_index.json
--rw-r--r-- 1 runner runner 16239 Sep 18 16:12 groups.json
--rw-r--r-- 1 runner runner   363 Sep 18 16:12 install.log
--rw-r--r-- 1 runner runner 78413 Sep 18 16:12 materials.json
--rw-r--r-- 1 runner runner 60689 Sep 18 16:12 objects.json
--rw-r--r-- 1 runner runner   887 Sep 18 16:12 probe.log
--rw-r--r-- 1 runner runner   358 Sep 18 16:12 publish.txt
--rw-r--r-- 1 runner runner   501 Sep 18 16:12 run.log
--rw-r--r-- 1 runner runner  1406 Sep 18 16:12 tex_Viewer_Node.png
--rw-r--r-- 1 runner runner   246 Sep 18 16:12 textures.json
+bounds x[-5.04,5.19] y[-2.37,1.26] z[-1.0,1.32] span=10.23
+rendered view_top.png
+rendered view_iso.png
+rendered view_low.png
+rendered view_hero.png
+rendered view_close.png
+rendered view_scenecamera.png via Camera
+opengl unavailable: Error: Cannot use OpenGL render in background mode (no opengl context)
+per-object renders via cycles
+rendered obj_000_Cube.png (1 of 46)
+rendered obj_001_Landscape.png (2 of 46)
+rendered obj_002_rock_01.png (3 of 46)
+rendered obj_003_rock_01.001.png (4 of 46)
+rendered obj_004_rock_01.002.png (5 of 46)
+rendered obj_005_rock_01.003.png (6 of 46)
+rendered obj_006_rock_01.004.png (7 of 46)
+rendered obj_007_rock_01.005.png (8 of 46)
+rendered obj_008_rock_02.png (9 of 46)
+rendered obj_009_rock_02.001.png (10 of 46)
+rendered obj_010_rock_02.002.png (11 of 46)
+rendered obj_011_rock_02.003.png (12 of 46)
+rendered obj_012_rock_02.004.png (13 of 46)
+rendered obj_013_rock_02.005.png (14 of 46)
+rendered obj_014_rock_03.png (15 of 46)
+rendered obj_015_rock_03.001.png (16 of 46)
+rendered obj_016_rock_03.002.png (17 of 46)
+rendered obj_017_rock_03.003.png (18 of 46)
+rendered obj_018_rock_03.004.png (19 of 46)
+rendered obj_019_rock_03.005.png (20 of 46)
+rendered obj_020_rock_03.006.png (21 of 46)
+rendered obj_021_rock_03.007.png (22 of 46)
+rendered obj_022_rock_04.png (23 of 46)
+rendered obj_023_rock_04.001.png (24 of 46)
+rendered obj_024_rock_04.002.png (25 of 46)
+rendered obj_025_rock_04.003.png (26 of 46)
+rendered obj_026_rock_04.004.png (27 of 46)
+rendered obj_027_rock_05.png (28 of 46)
+rendered obj_028_rock_05.001.png (29 of 46)
+rendered obj_029_rock_05.002.png (30 of 46)
+rendered obj_030_rock_05.003.png (31 of 46)
+rendered obj_031_rock_05.004.png (32 of 46)
+rendered obj_032_rock_05.005.png (33 of 46)
+rendered obj_033_rock_05.006.png (34 of 46)
+rendered obj_034_rock_05.007.png (35 of 46)
+rendered obj_035_rock_05.008.png (36 of 46)
+rendered obj_036_rock_05.009.png (37 of 46)
+rendered obj_037_rock_05.010.png (38 of 46)
+rendered obj_038_sun.png (39 of 46)
+rendered obj_039_tree.001.png (40 of 46)
+wrote probe/model/summary.txt 11257
+wrote probe/model/probe.log 2400
+MODEL_PROBE_DONE
+total 5920
+drwxr-xr-x 2 runner runner   4096 Sep 18 16:15 .
+drwxr-xr-x 4 runner runner   4096 Sep 18 16:13 ..
+-rw-r--r-- 1 runner runner   8494 Sep 18 16:15 blender_raw.log
+-rw-r--r-- 1 runner runner    717 Sep 18 16:13 fetch.log
+-rw-r--r-- 1 runner runner  65500 Sep 18 16:14 geometry.json.gz
+-rw-r--r-- 1 runner runner   6037 Sep 18 16:14 geometry_index.json
+-rw-r--r-- 1 runner runner  16239 Sep 18 16:14 groups.json
+-rw-r--r-- 1 runner runner    363 Sep 18 16:14 install.log
+-rw-r--r-- 1 runner runner  78413 Sep 18 16:14 materials.json
+-rw-r--r-- 1 runner runner 174236 Sep 18 16:14 obj_000_Cube.png
+-rw-r--r-- 1 runner runner 151980 Sep 18 16:14 obj_001_Landscape.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_002_rock_01.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_003_rock_01.001.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_004_rock_01.002.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_005_rock_01.003.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_006_rock_01.004.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_007_rock_01.005.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_008_rock_02.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_009_rock_02.001.png
+-rw-r--r-- 1 runner runner 224852 Sep 18 16:14 obj_010_rock_02.002.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_011_rock_02.003.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_012_rock_02.004.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_013_rock_02.005.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_014_rock_03.png
+-rw-r--r-- 1 runner runner 218254 Sep 18 16:14 obj_015_rock_03.001.png
+-rw-r--r-- 1 runner runner 217414 Sep 18 16:14 obj_016_rock_03.002.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_017_rock_03.003.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_018_rock_03.004.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_019_rock_03.005.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_020_rock_03.006.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_021_rock_03.007.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_022_rock_04.png
+-rw-r--r-- 1 runner runner 217509 Sep 18 16:14 obj_023_rock_04.001.png
+-rw-r--r-- 1 runner runner 204511 Sep 18 16:14 obj_024_rock_04.002.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_025_rock_04.003.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_026_rock_04.004.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:14 obj_027_rock_05.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:15 obj_028_rock_05.001.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:15 obj_029_rock_05.002.png
+-rw-r--r-- 1 runner runner  36481 Sep 18 16:15 obj_030_rock_05.003.png
+-rw-r--r-- 1 runner runner 189463 Sep 18 16:15 obj_031_rock_05.004.png
+-rw-r--r-- 1 runner runner 186270 Sep 18 16:15 obj_032_rock_05.005.png
+-rw-r--r-- 1 runner runner 184176 Sep 18 16:15 obj_033_rock_05.006.png
+-rw-r--r-- 1 runner runner 179529 Sep 18 16:15 obj_034_rock_05.007.png
+-rw-r--r-- 1 runner runner 199643 Sep 18 16:15 obj_035_rock_05.008.png
+-rw-r--r-- 1 runner runner 192206 Sep 18 16:15 obj_036_rock_05.009.png
+-rw-r--r-- 1 runner runner 183411 Sep 18 16:15 obj_037_rock_05.010.png
+-rw-r--r-- 1 runner runner 137562 Sep 18 16:15 obj_038_sun.png
+-rw-r--r-- 1 runner runner 139792 Sep 18 16:15 obj_039_tree.001.png
+-rw-r--r-- 1 runner runner  60689 Sep 18 16:14 objects.json
+-rw-r--r-- 1 runner runner   2400 Sep 18 16:15 probe.log
+-rw-r--r-- 1 runner runner   1026 Sep 18 16:13 publish.txt
+-rw-r--r-- 1 runner runner   2581 Sep 18 16:15 run.log
+-rw-r--r-- 1 runner runner  11257 Sep 18 16:15 summary.txt
+-rw-r--r-- 1 runner runner   1406 Sep 18 16:14 tex_Viewer_Node.png
+-rw-r--r-- 1 runner runner    246 Sep 18 16:14 textures.json
+-rw-r--r-- 1 runner runner 417502 Sep 18 16:14 view_close.png
+-rw-r--r-- 1 runner runner 282832 Sep 18 16:14 view_hero.png
+-rw-r--r-- 1 runner runner 287293 Sep 18 16:14 view_iso.png
+-rw-r--r-- 1 runner runner 284173 Sep 18 16:14 view_low.png
+-rw-r--r-- 1 runner runner 294086 Sep 18 16:14 view_scenecamera.png
+-rw-r--r-- 1 runner runner 274058 Sep 18 16:14 view_top.png

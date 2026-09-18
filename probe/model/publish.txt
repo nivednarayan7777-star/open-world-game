@@ -1,19 +1,68 @@
-run: 35367036492  https://github.com/nivednarayan7777-star/open-world-game/actions/runs/35367036492
-date: Fri Sep 18 16:12:36 UTC 2026
+run: 35367206684  https://github.com/nivednarayan7777-star/open-world-game/actions/runs/35367206684
+date: Fri Sep 18 16:15:26 UTC 2026
 files:
-total 268
-drwxr-xr-x 2 runner runner  4096 Sep 18 16:12 .
-drwxr-xr-x 4 runner runner  4096 Sep 18 16:12 ..
--rw-r--r-- 1 runner runner  3371 Sep 18 16:12 blender_raw.log
--rw-r--r-- 1 runner runner   717 Sep 18 16:12 fetch.log
--rw-r--r-- 1 runner runner 65379 Sep 18 16:12 geometry.json.gz
--rw-r--r-- 1 runner runner  6037 Sep 18 16:12 geometry_index.json
--rw-r--r-- 1 runner runner 16239 Sep 18 16:12 groups.json
--rw-r--r-- 1 runner runner   363 Sep 18 16:12 install.log
--rw-r--r-- 1 runner runner 78413 Sep 18 16:12 materials.json
--rw-r--r-- 1 runner runner 60689 Sep 18 16:12 objects.json
--rw-r--r-- 1 runner runner   887 Sep 18 16:12 probe.log
--rw-r--r-- 1 runner runner   142 Sep 18 16:12 publish.txt
--rw-r--r-- 1 runner runner  1385 Sep 18 16:12 run.log
--rw-r--r-- 1 runner runner   334 Sep 18 16:12 tex_Viewer_Node.png
--rw-r--r-- 1 runner runner   246 Sep 18 16:12 textures.json
+total 5504
+drwxr-xr-x 2 runner runner   4096 Sep 18 16:15 .
+drwxr-xr-x 4 runner runner   4096 Sep 18 16:13 ..
+-rw-r--r-- 1 runner runner   8494 Sep 18 16:15 blender_raw.log
+-rw-r--r-- 1 runner runner 191057 Sep 18 16:15 contact_sheet.png
+-rw-r--r-- 1 runner runner    717 Sep 18 16:13 fetch.log
+-rw-r--r-- 1 runner runner  65500 Sep 18 16:14 geometry.json.gz
+-rw-r--r-- 1 runner runner   6037 Sep 18 16:14 geometry_index.json
+-rw-r--r-- 1 runner runner  16239 Sep 18 16:14 groups.json
+-rw-r--r-- 1 runner runner    363 Sep 18 16:14 install.log
+-rw-r--r-- 1 runner runner  78413 Sep 18 16:14 materials.json
+-rw-r--r-- 1 runner runner 143218 Sep 18 16:15 obj_000_Cube.png
+-rw-r--r-- 1 runner runner 116843 Sep 18 16:15 obj_001_Landscape.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_002_rock_01.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_003_rock_01.001.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_004_rock_01.002.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_005_rock_01.003.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_006_rock_01.004.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_007_rock_01.005.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_008_rock_02.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_009_rock_02.001.png
+-rw-r--r-- 1 runner runner 238847 Sep 18 16:15 obj_010_rock_02.002.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_011_rock_02.003.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_012_rock_02.004.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_013_rock_02.005.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_014_rock_03.png
+-rw-r--r-- 1 runner runner 224721 Sep 18 16:15 obj_015_rock_03.001.png
+-rw-r--r-- 1 runner runner 220452 Sep 18 16:15 obj_016_rock_03.002.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_017_rock_03.003.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_018_rock_03.004.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_019_rock_03.005.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_020_rock_03.006.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_021_rock_03.007.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_022_rock_04.png
+-rw-r--r-- 1 runner runner 223476 Sep 18 16:15 obj_023_rock_04.001.png
+-rw-r--r-- 1 runner runner 202724 Sep 18 16:15 obj_024_rock_04.002.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_025_rock_04.003.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_026_rock_04.004.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_027_rock_05.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_028_rock_05.001.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_029_rock_05.002.png
+-rw-r--r-- 1 runner runner  19337 Sep 18 16:15 obj_030_rock_05.003.png
+-rw-r--r-- 1 runner runner 195863 Sep 18 16:15 obj_031_rock_05.004.png
+-rw-r--r-- 1 runner runner 190913 Sep 18 16:15 obj_032_rock_05.005.png
+-rw-r--r-- 1 runner runner 185381 Sep 18 16:15 obj_033_rock_05.006.png
+-rw-r--r-- 1 runner runner 177928 Sep 18 16:15 obj_034_rock_05.007.png
+-rw-r--r-- 1 runner runner 187737 Sep 18 16:15 obj_035_rock_05.008.png
+-rw-r--r-- 1 runner runner 178196 Sep 18 16:15 obj_036_rock_05.009.png
+-rw-r--r-- 1 runner runner 167952 Sep 18 16:15 obj_037_rock_05.010.png
+-rw-r--r-- 1 runner runner  99032 Sep 18 16:15 obj_038_sun.png
+-rw-r--r-- 1 runner runner 104240 Sep 18 16:15 obj_039_tree.001.png
+-rw-r--r-- 1 runner runner  60689 Sep 18 16:14 objects.json
+-rw-r--r-- 1 runner runner   2400 Sep 18 16:15 probe.log
+-rw-r--r-- 1 runner runner    142 Sep 18 16:15 publish.txt
+-rw-r--r-- 1 runner runner   6711 Sep 18 16:15 run.log
+-rw-r--r-- 1 runner runner 406076 Sep 18 16:15 source.glb
+-rw-r--r-- 1 runner runner  11257 Sep 18 16:15 summary.txt
+-rw-r--r-- 1 runner runner    334 Sep 18 16:15 tex_Viewer_Node.png
+-rw-r--r-- 1 runner runner    246 Sep 18 16:14 textures.json
+-rw-r--r-- 1 runner runner 360012 Sep 18 16:15 view_close.png
+-rw-r--r-- 1 runner runner 195483 Sep 18 16:15 view_hero.png
+-rw-r--r-- 1 runner runner 200229 Sep 18 16:15 view_iso.png
+-rw-r--r-- 1 runner runner 197842 Sep 18 16:15 view_low.png
+-rw-r--r-- 1 runner runner 208251 Sep 18 16:15 view_scenecamera.png
+-rw-r--r-- 1 runner runner 185639 Sep 18 16:15 view_top.png
