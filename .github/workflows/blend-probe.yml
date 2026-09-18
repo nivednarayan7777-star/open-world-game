@@ -1,0 +1,39 @@
+name: blend-probe
+
+on:
+  push:
+    paths:
+      - ".github/workflows/blend-probe.yml"
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download .blend from Google Drive
+        run: |
+          set -eux
+          python3 -m pip install --quiet --upgrade gdown
+          mkdir -p /tmp/blend
+          gdown --id 14n6aOH6rBLe40mVZOaBFPoSId_nB7qhS -O /tmp/blend/source.blend \
+            || gdown --fuzzy "https://drive.google.com/file/d/14n6aOH6rBLe40mVZOaBFPoSId_nB7qhS/view" -O /tmp/blend/source.blend
+          ls -la /tmp/blend
+          file /tmp/blend/source.blend
+
+      - name: Install Blender
+        run: |
+          set -eux
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq blender xvfb
+          blender --version
+
+      - name: Probe scene
+        run: |
+          set -eux
+          xvfb-run -a blender -b /tmp/blend/source.blend -noaudio --python .github/blend_probe.py > /tmp/probe.log 2>&1 || true
+          echo "---- log size ----"
+          wc -c /tmp/probe.log
+          cat /tmp/probe.log
