@@ -81,9 +81,11 @@ def node_dump(mat):
 
 
 def mesh_to_grid(obj):
-    """If the mesh is a regular X/Y grid, return (xs, ys, heights[iy][ix])."""
+    """If the mesh only varies in z, return (xs, ys, heights[iy][ix]) for the top surface."""
     mw = obj.matrix_world
     pts = [mw @ v.co for v in obj.data.vertices]
+    if max(p.z for p in pts) - min(p.z for p in pts) > 1e-4:
+        return None
     xs = sorted({round(p.x, 4) for p in pts})
     ys = sorted({round(p.y, 4) for p in pts})
     if len(xs) * len(ys) != len(pts):
@@ -122,22 +124,53 @@ def emit_grid(obj, step=1):
     return data
 
 
-def stats(grid):
-    """Roughness statistics: slope distribution, valley/ridge character."""
-    hs = [h for row in grid for h in row]
+def stats(grid, spacing=1.0):
+    """Shape statistics: slope, curvature, roughness (fbm-like variation)."""
     n = len(grid)
-    sl = []
+    sl, curv, flat, xs, ys = [], [], [], [], []
     for j in range(1, n - 1):
         for i in range(1, n - 1):
-            dx = grid[j][i + 1] - grid[j][i - 1]
-            dy = grid[j + 1][i] - grid[j - 1][i]
-            sl.append(math.hypot(dx, dy) / 2.0)
+            c = grid[j][i]
+            dx = (grid[j][i + 1] - grid[j][i - 1]) / (2 * spacing)
+            dy = (grid[j + 1][i] - grid[j - 1][i]) / (2 * spacing)
+            sl.append(math.hypot(dx, dy))
+            lap = (grid[j][i + 1] + grid[j][i - 1] + grid[j + 1][i] + grid[j - 1][i] - 4 * c) / (spacing ** 2)
+            curv.append(lap)
+            xs.append(float(i))
+            ys.append(c)
+            if abs(lap) < 0.05:
+                flat.append(1)
     sl.sort()
+    curv.sort()
+    hs = sorted(h for row in grid for h in row)
+    p05 = hs[int(len(hs) * 0.05)]
+    p95 = hs[int(len(hs) * 0.95)]
+    # roughness: mean |residual| after removing a local 3x3 mean
+    res = []
+    for j in range(1, n - 1):
+        for i in range(1, n - 1):
+            m = sum(
+                grid[j + a][i + b]
+                for a in (-1, 0, 1) for b in (-1, 0, 1)
+            ) / 9.0
+            res.append(abs(grid[j][i] - m))
+    res.sort()
     return {
-        "slope_median": round(sl[len(sl) // 2], 4),
-        "slope_p90": round(sl[int(len(sl) * 0.9)], 4),
-        "slope_max": round(sl[-1], 4),
-        "flat_fraction": round(sum(1 for s in sl if s < 0.05) / len(sl), 3),
+        "slope_deg_median": round(math.degrees(math.atan(sl[len(sl) // 2])), 2),
+        "slope_deg_p90": round(math.degrees(math.atan(sl[int(len(sl) * 0.9)])), 2),
+        "slope_deg_max": round(math.degrees(math.atan(sl[-1])), 2),
+        "curv_median": round(curv[len(curv) // 2], 3),
+        "curv_p90": round(curv[int(len(curv) * 0.9)], 3),
+        "curv_p10": round(curv[int(len(curv) * 0.1)], 3),
+        "curv_max": round(curv[-1], 3),
+        "curv_min": round(curv[0], 3),
+        "flat_fraction": round(len(flat) / max(1, len(sl)), 3),
+        "height_p05": round(p05, 3),
+        "height_median": round(hs[len(hs) // 2], 3),
+        "height_p95": round(p95, 3),
+        "residual_median": round(res[len(res) // 2], 4),
+        "residual_p90": round(res[int(len(res) * 0.9)], 4),
+        "object_spacing": spacing,
     }
 
 
@@ -150,9 +183,9 @@ def scene_info():
         "sun": None,
         "camera": None,
         "fog": {
-            "type": sc.world.mist_settings.type if sc.world else None,
-            "depth": sc.world.mist_settings.depth if sc.world else None,
-            "start": sc.world.mist_settings.start if sc.world else None,
+            "use_mist": bool(sc.world.mist_settings.use_mist) if sc.world else None,
+            "depth": round(float(sc.world.mist_settings.depth), 3) if sc.world else None,
+            "start": round(float(sc.world.mist_settings.start), 3) if sc.world else None,
         },
     }
     w = sc.world
@@ -207,6 +240,10 @@ def render_views():
     sc.collection.objects.link(cam)
     sc.camera = cam
 
+    for o in list(bpy.data.objects):
+        if o.name.startswith(("CLOUDS", "atmoFog", "Fog")) or o.name.startswith("Cloud"):
+            o.hide_render = True
+
     # Frame the ground meshes.
     pts = []
     for o in bpy.data.objects:
@@ -227,6 +264,8 @@ def render_views():
         ("ISO", "PERSP", (cx - span * 0.8, cy - span * 0.8, top + span * 0.5), None, 0),
         ("LOW", "PERSP", (cx + span * 0.7, cy - span * 0.55, top + span * 0.06), None, 0),
         ("HERO", "PERSP", (cx - span * 0.25, cy - span * 0.95, top + span * 0.22), None, 0),
+        ("GROUNDTOP", "ORTHO", (cx, cy, top + span), (0, 0, 0), span * 0.6),
+        ("CLOSE", "PERSP", (cx + span * 0.16, cy - span * 0.16, top + span * 0.05), None, 0),
     ]
     for name, kind, loc, rot, ortho in views:
         cam_data.type = kind
@@ -272,7 +311,7 @@ def main():
             step = max(1, int(round(len(obj.data.vertices) ** 0.5 / 130)))
             g = emit_grid(obj, step)
             if g:
-                print("STATS %s %s" % (name, json.dumps(stats(g["heights"]))))
+                print("STATS %s %s" % (name, json.dumps(stats(g["heights"], g["spacing"]))))
         except Exception:  # noqa: BLE001
             traceback.print_exc()
 
