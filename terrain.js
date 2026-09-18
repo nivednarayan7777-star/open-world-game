@@ -286,12 +286,13 @@ float tMusgrave(vec2 p, float octaves, float lacunarity, float gain) {
 export function terrainMaterial(opts = {}) {
   const {
     tint = null,              // flat albedo override (used for sand / paddy slabs)
-    patchScale = 0.048,       // ≈ 21 m soft patches, as in the blend's slab
-    patchContrast = 0.42,
-    dark = 0.70,              // albedo multiplier on the darkest patches
-    light = 1.30,             // …and on the brightest
-    fine = 0.42,              // fine grain frequency (≈ 2.4 m)
-    fineAmount = 0.10,
+    patchScale = 0.022,       // ≈ 45 m broad zones
+    patchMid = 0.075,         // ≈ 13 m patches, the blend slab's main motif
+    patchContrast = 0.46,
+    dark = 0.62,              // albedo multiplier on the darkest patches
+    light = 1.20,             // …and on the brightest
+    fine = 0.42,              // fine mottle frequency (≈ 2.4 m)
+    fineAmount = 0.09,
     flatShading = true,
   } = opts;
 
