@@ -1,0 +1,26 @@
+source: /tmp/model/source.glb
+running: blender -b -noaudio --python .github/kit_probe.py -- /tmp/model/source.glb
+blender exit: 0
+rendered island_iso.png
+rendered island_low.png
+rendered island_top.png
+rendered hill_close.png
+rendered lake_close.png
+rendered island_trees.png
+rendered tree_close.png
+wrote kit.log
+total 2428
+drwxr-xr-x 2 runner runner   4096 Sep 18 16:20 .
+drwxr-xr-x 5 runner runner   4096 Sep 18 16:18 ..
+-rw-r--r-- 1 runner runner   3645 Sep 18 16:20 blender_raw.log
+-rw-r--r-- 1 runner runner    717 Sep 18 16:18 fetch.log
+-rw-r--r-- 1 runner runner 348464 Sep 18 16:19 hill_close.png
+-rw-r--r-- 1 runner runner    363 Sep 18 16:18 install.log
+-rw-r--r-- 1 runner runner 351248 Sep 18 16:19 island_iso.png
+-rw-r--r-- 1 runner runner 347738 Sep 18 16:19 island_low.png
+-rw-r--r-- 1 runner runner 360582 Sep 18 16:19 island_top.png
+-rw-r--r-- 1 runner runner 351292 Sep 18 16:20 island_trees.png
+-rw-r--r-- 1 runner runner    916 Sep 18 16:20 kit.log
+-rw-r--r-- 1 runner runner 346624 Sep 18 16:20 lake_close.png
+-rw-r--r-- 1 runner runner    314 Sep 18 16:20 run.log
+-rw-r--r-- 1 runner runner 338407 Sep 18 16:20 tree_close.png

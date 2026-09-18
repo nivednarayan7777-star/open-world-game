@@ -1,0 +1,81 @@
+importing /tmp/model/source.glb
+16:18:55 | INFO: Data are loaded, start creating Blender stuff
+16:18:55 | INFO: Blender create Mesh node 0
+16:18:55 | INFO: Blender create Mesh node 1
+16:18:55 | INFO: Blender create Mesh node 2
+16:18:55 | INFO: Blender create Mesh node 3
+16:18:55 | INFO: Blender create Mesh node 4
+16:18:55 | INFO: Blender create Mesh node 5
+16:18:55 | INFO: Blender create Mesh node 6
+16:18:55 | INFO: Blender create Mesh node 7
+16:18:55 | INFO: Blender create Mesh node 8
+16:18:55 | INFO: Blender create Mesh node 9
+16:18:55 | INFO: Blender create Mesh node 10
+16:18:55 | INFO: Blender create Mesh node 11
+16:18:55 | INFO: Blender create Mesh node 12
+16:18:55 | INFO: Blender create Mesh node 13
+16:18:55 | INFO: Blender create Mesh node 14
+16:18:55 | INFO: Blender create Mesh node 15
+16:18:55 | INFO: Blender create Mesh node 16
+16:18:55 | INFO: Blender create Mesh node 17
+16:18:55 | INFO: Blender create Mesh node 18
+16:18:55 | INFO: Blender create Mesh node 19
+16:18:55 | INFO: Blender create Mesh node 20
+16:18:55 | INFO: Blender create Mesh node 21
+16:18:55 | INFO: Blender create Mesh node 22
+16:18:55 | INFO: Blender create Mesh node 23
+16:18:55 | INFO: Blender create Mesh node 24
+16:18:55 | INFO: Blender create Mesh node 25
+16:18:55 | INFO: Blender create Mesh node 26
+16:18:55 | INFO: Blender create Mesh node 27
+16:18:55 | INFO: Blender create Mesh node 28
+16:18:55 | INFO: Blender create Mesh node 29
+16:18:55 | INFO: Blender create Mesh node 30
+16:18:55 | INFO: Blender create Mesh node 31
+16:18:55 | INFO: Blender create Mesh node 32
+16:18:55 | INFO: Blender create Mesh node 33
+16:18:55 | INFO: Blender create Mesh node 34
+16:18:55 | INFO: Blender create Mesh node 35
+16:18:55 | INFO: Blender create Mesh node 36
+16:18:55 | INFO: Blender create Mesh node 37
+16:18:55 | INFO: Blender create Mesh node 38
+16:18:55 | INFO: Blender create Mesh node 39
+16:18:55 | INFO: Blender create Mesh node 40
+16:18:55 | INFO: Blender create Mesh node 41
+16:18:55 | INFO: glTF import finished in 0.08s
+/home/runner/work/open-world-game/open-world-game/.github/kit_probe.py:89: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  sc.world.use_nodes = True
+00:26.692  render           | Saved: 'probe/kit/island_iso.png'
+00:36.945  render           | Saved: 'probe/kit/island_low.png'
+00:48.614  render           | Saved: 'probe/kit/island_top.png'
+01:00.236  render           | Saved: 'probe/kit/hill_close.png'
+01:12.505  render           | Saved: 'probe/kit/lake_close.png'
+01:23.418  render           | Saved: 'probe/kit/island_trees.png'
+01:33.776  render           | Saved: 'probe/kit/tree_close.png'
+engine BLENDER_EEVEE
+FACETS Landscape: 2549 polys, 2549 smooth-shaded
+FACETS Landscape: face area median 0.00200 (edge ~0.0447), max 0.12312
+FACETS Landscape: ngons [(3, 2549)]
+FACETS rock_01: 40 polys, 2 smooth-shaded
+FACETS rock_01: face area median 0.00061 (edge ~0.0247), max 0.00086
+FACETS rock_01: ngons [(3, 40)]
+FACETS tree.001: 464 polys, 29 smooth-shaded
+FACETS tree.001: face area median 0.00133 (edge ~0.0364), max 0.02346
+FACETS tree.001: ngons [(3, 464)]
+rendered island_iso.png
+rendered island_low.png
+rendered island_top.png
+rendered hill_close.png
+rendered lake_close.png
+planted tree.001 at -0.3 0.05 height 0.12
+planted tree.002 at 0.15 0.35 height -0.006
+planted tree.003 at 0.05 0.62 height 0.041
+rendered island_trees.png
+rendered tree_close.png
+SLAB world bbox min [-1.502 -1.25  -0.104] max [1.25  1.25  0.421]
+SLAB 2549 tris, 2549 smooth (100%), height 0.525
+wrote kit.log
+KIT_PROBE_DONE
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:34:58)
+
+Blender quit

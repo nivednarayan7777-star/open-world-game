@@ -1,0 +1,13 @@
+== listing https://download.blender.org/release/ ==
+Blender4.4/
+Blender4.5/
+Blender5.0/
+Blender5.1/
+Blender5.2/
+== newest release dir: Blender5.2/ ==
+== downloading blender-5.2.2-linux-x64.tar.xz ==
+-rw-r--r-- 1 runner runner 383295504 Sep 18 16:18 /tmp/blender.tar.xz
+Blender 5.2.2 LTS
+	build date: 2026-09-15
+	build time: 01:34:58
+BLENDER_OK (official tarball)
