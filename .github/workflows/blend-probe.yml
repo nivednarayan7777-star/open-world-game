@@ -1,39 +1,100 @@
 name: blend-probe
 
-# Manual only: downloads the reference .blend, reads its scene + node graphs and
-# renders it, then commits the results back to the branch it runs on. Run it
-# from the Actions tab when you want to re-measure the reference.
+# Manual only: downloads a model file from Google Drive, reads its scene, node
+# graphs and geometry and renders it, then commits the results back to the
+# branch it runs on. Run it from the Actions tab (or `gh workflow run`) when you
+# want to measure a reference file. It never fires on its own.
 on:
   workflow_dispatch:
+    inputs:
+      blend_id:
+        description: Google Drive file id of the .blend / model file
+        required: false
+        default: "14n6aOH6rBLe40mVZOaBFPoSId_nB7qhS"
+      probe_script:
+        description: Blender python script to run
+        required: false
+        default: ".github/model_probe.py"
+      out_dir:
+        description: Folder the results are committed to
+        required: false
+        default: "probe/model"
+      blender:
+        description: '"latest" = official newest Blender, "apt" = distro package'
+        required: false
+        default: "latest"
+      runs_on:
+        description: Runner label (e.g. a self-hosted GPU runner)
+        required: false
+        default: "ubuntu-latest"
 
 permissions:
   contents: write
 
 jobs:
   probe:
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
+    runs-on: ${{ inputs.runs_on }}
+    timeout-minutes: 90
     env:
-      BLEND_ID: 14n6aOH6rBLe40mVZOaBFPoSId_nB7qhS
+      BLEND_ID: ${{ inputs.blend_id }}
       BRANCH: ${{ github.ref_name }}
+      OUT_DIR: ${{ inputs.out_dir }}
+      MODEL_OUT: ${{ inputs.out_dir }}
+      WORK: /tmp/model
+      PROBE_SCRIPT: ${{ inputs.probe_script }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download .blend from Drive
+      - name: Download source file from Drive
         id: fetch
         continue-on-error: true
-        run: bash .github/fetch_blend.sh
+        run: bash .github/fetch_source.sh
 
       - name: Install Blender
         if: steps.fetch.outcome == 'success'
         id: blender
         continue-on-error: true
-        run: bash .github/install_blender.sh
+        run: |
+          if [ "${{ inputs.blender }}" = "latest" ]; then
+            bash .github/install_blender_latest.sh || bash .github/install_blender.sh
+          else
+            bash .github/install_blender.sh
+          fi
 
-      - name: Probe scene
+      - name: Probe the model
         if: steps.fetch.outcome == 'success' && steps.blender.outcome == 'success'
         continue-on-error: true
-        run: bash .github/run_probe.sh
+        run: bash .github/run_model_probe.sh
+
+      - name: Contact sheet
+        if: always()
+        continue-on-error: true
+        run: |
+          python3 -m pip install --quiet --break-system-packages pillow 2>/dev/null \
+            || python3 -m pip install --quiet pillow
+          python3 .github/make_contact_sheet.py "$MODEL_OUT" || true
+
+      - name: Shrink images for the repo
+        if: always()
+        continue-on-error: true
+        run: |
+          # Keep the committed payload small: renders are for reading, not print.
+          python3 - <<'PY'
+          import glob, os
+          from PIL import Image
+          out = os.environ.get("MODEL_OUT", "probe/model")
+          total = 0
+          for p in glob.glob(os.path.join(out, "*.png")):
+              try:
+                  im = Image.open(p)
+                  if max(im.size) > 720:
+                      im.thumbnail((720, 720))
+                  im.save(p, optimize=True)
+                  total += os.path.getsize(p)
+              except Exception as exc:
+                  print("skip", p, exc)
+          print("image bytes:", total)
+          PY
 
       - name: Publish results
         if: always()
