@@ -51,6 +51,13 @@ jobs:
           set -o pipefail
           node .github/shots.mjs "$OUT_DIR" 2>&1 | tee "$OUT_DIR/shots.log" || echo "shots exit: $?"
 
+      - name: Compare ground against the reference blend
+        if: always()
+        run: |
+          python3 -m pip install --quiet --break-system-packages numpy pillow 2>/dev/null \
+            || python3 -m pip install --quiet numpy pillow
+          python3 .github/compare_ground.py probe probe/shots | tee probe/shots/ground_report.txt
+
       - name: Publish shots
         if: always()
         run: |

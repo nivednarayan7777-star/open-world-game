@@ -93,6 +93,32 @@ for (const [district, views] of SHOTS) {
     notes.push({ file, ...info });
     console.log("shot", file, JSON.stringify(info));
   }
+
+  // Ground swatches: everything but the ground slab hidden and the camera
+  // pointed at it, so `compare_ground.py` can measure the ground's own colour
+  // and mottling with no trees, buildings or HUD in the way.
+  //
+  //   near  — straight down, ~2.7 m of ground across the frame. Matched against
+  //           the reference's top-down view (view_groundtop.png): colour,
+  //           saturation, brightness and fine grain.
+  //   far   — a normal walking eye-line. Matched against the reference's
+  //           perspective views: the ~13 m blob pattern of the ramp.
+  await page.evaluate((id) => window.__keralam.setDistrict(id), district);
+  await page.waitForTimeout(1200);
+  await page.evaluate(([px, pz]) => {
+    const k = window.__keralam;
+    if (px != null) k.place(px, pz);
+  }, views[0][1] != null ? [views[0][1], views[0][2]] : [null, null]);
+  await page.evaluate(() => window.__keralam.debugGroundOnly(true));
+  const CLIP = { x: 240, y: 100, width: 800, height: 560 };
+  for (const [tag, pitch] of [["near", -1.35], ["far", -0.32]]) {
+    await page.evaluate((p) => window.__keralam.look(0.4, p), pitch);
+    await page.waitForTimeout(700);
+    const swatch = path.join(OUT, `ground-${district}-${tag}.png`);
+    await page.screenshot({ path: swatch, clip: CLIP });
+    console.log("swatch", swatch);
+  }
+  await page.evaluate(() => window.__keralam.debugGroundOnly(false));
 }
 
 } catch (err) {

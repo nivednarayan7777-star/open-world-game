@@ -1502,6 +1502,29 @@ window.__keralam = {
     return player.y;
   },
   surfaceY: (x, z) => (world ? surfaceY(x, z, world.docks) : null),
+  /**
+   * Hide everything but the ground (used by the screenshot harness to take
+   * clean ground swatches for the comparison against the reference blend).
+   * Returns how many children were hidden.
+   */
+  debugGroundOnly(on = true) {
+    if (!world) return 0;
+    let n = 0;
+    for (const child of world.root.children) {
+      const keep = child.isLight || child.name === "ground" || child.name === "ground-edge" || child === world.water;
+      if (keep) continue;
+      if (on) {
+        if (!("__vis" in child.userData)) child.userData.__vis = child.visible;
+        child.visible = false;
+        n++;
+      } else if ("__vis" in child.userData) {
+        child.visible = child.userData.__vis;
+        delete child.userData.__vis;
+        n++;
+      }
+    }
+    return n;
+  },
 };
 
 loop();

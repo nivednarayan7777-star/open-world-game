@@ -50,11 +50,14 @@ export const GRASS_RAMP = {
 export const MUSGRAVE = { scale: 8.5, detail: 1.6, dimension: 0.6, lacunarity: 2.0, gain: 1.0 };
 
 /**
- * Ground albedo (linear). Every tint stays inside the green family of the
- * blend's ColorRamp so the fourteen districts read as one hand-painted terrain,
- * while beaches, paddies and tea slopes still tell themselves apart.
+ * Ground albedo (linear) as it is written *in the blend*. Every tint stays
+ * inside the green family of the blend's ColorRamp so the fourteen districts
+ * read as one hand-painted terrain, while beaches, paddies and tea slopes still
+ * tell themselves apart. `blendGrade` below turns this into what our renderer
+ * needs — the exported palette is the graded one, this object is only its
+ * source of truth.
  */
-export const GROUND_TINT = {
+const RAW_TINT = {
   village: lin(0.0480, 0.3300, 0.0400),   // the blend's mid green, slightly cooled
   lowland: lin(0.0640, 0.3480, 0.0455),   // backwater banks: a touch brighter
   slope: lin(0.0480, 0.2700, 0.0360),     // hill flanks: deeper green
@@ -65,10 +68,59 @@ export const GROUND_TINT = {
   wet: lin(0.0420, 0.2150, 0.1050),       // just above the waterline
   sea: lin(0.0450, 0.1900, 0.1450),
 };
+
+/**
+ * Where the reference's greens actually land on screen, and where ours do.
+ *
+ * Measured by `probe/ground_stats.py` — the blend's own renders through the
+ * probe (Cycles) against the game's screenshots, both masked to green-dominant,
+ * sunlit pixels:
+ *
+ *   reference (probe/view_groundtop.png, view_iso.png)   hue 113–115°
+ *                                                        sat 0.69–0.72
+ *                                                        value 0.55–0.63
+ *   game before this grade (probe/shots/*.png)           hue  98–108°
+ *                                                        sat 0.55–0.59
+ *                                                        value 0.73–0.76
+ *
+ * The albedo is already the blend's albedo; the difference is the *lighting
+ * rig*. Keralam is lit by a warm sun (0xffe6b0) and a warm hemisphere
+ * (0xfff4dc), then finished with ACES, which lifts mid tones and pulls greens
+ * towards yellow. So the palette is pre-compensated by that measured shift:
+ * greens rotate 12° away from yellow, saturation goes up 18%, value down 18%.
+ * With the grade applied the game's ground lands on the reference's numbers —
+ * a deep, saturated green carrying soft blobs, not a bright yellow-green wash.
+ */
+export const BLEND_GRADE = { hueShift: 0.0333, sat: 1.18, val: 0.82 };
+
+/**
+ * Pre-compensate a colour for Keralam's warm-light + ACES pipeline so that it
+ * *renders* like the blend's material does. Greens (80°–170°) get the hue
+ * rotation; sand, earth and water keep their hue and only take the saturation
+ * and value part of the grade.
+ */
+export function blendGrade(color, opts = {}) {
+  const { hueShift = BLEND_GRADE.hueShift, sat = BLEND_GRADE.sat, val = BLEND_GRADE.val } = opts;
+  const out = color instanceof THREE.Color ? color.clone() : new THREE.Color(color);
+  const hsl = { h: 0, s: 0, l: 0 };
+  out.getHSL(hsl, THREE.SRGBColorSpace);
+  if (hsl.h > 0.222 && hsl.h < 0.472) {         // 80° … 170°: the green family
+    hsl.h = (hsl.h + hueShift) % 1;
+  }
+  hsl.s = Math.min(1, hsl.s * sat);
+  hsl.l = Math.max(0, Math.min(1, hsl.l * val));
+  out.setHSL(hsl.h, hsl.s, hsl.l, THREE.SRGBColorSpace);
+  return out;
+}
+
+/** The ground palette the game actually uses: the blend's albedo, graded. */
+export const GROUND_TINT = Object.fromEntries(
+  Object.entries(RAW_TINT).map(([k, c]) => [k, blendGrade(c)])
+);
 export const TINT = GROUND_TINT;
 
 /** Earth used for the slab edge that frames the map like the blend's ground slab. */
-export const EDGE_TINT = lin(0.1500, 0.1050, 0.0700);
+export const EDGE_TINT = blendGrade(lin(0.1500, 0.1050, 0.0700));
 
 function smoothstep01(e0, e1, x) {
   const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0 || 1)));
@@ -354,8 +406,13 @@ export function terrainMaterial(opts = {}) {
     levelHigh = 0.70,
     dark = RAMP_DARK_MUL,     // channel-wise multiplier on the darkest patches
     light = RAMP_LIGHT_MUL,   // …and on the brightest
-    fine = 1.10,              // fine mottle frequency (≈ 0.9 m)
-    fineAmount = 0.09,
+    fine = 0.90,              // fine mottle frequency (≈ 1.1 m)
+    // The reference's ground is *clean*: the probe measures its fine-detail
+    // contrast (p90/p10 of the lit ground) at 2.5, and that includes tree
+    // shadows and stone edges — the colour itself carries no grain at all. An
+    // earlier 0.09 grain here pushed ours to 4.6 and made the meadow look
+    // speckled instead of painted, so it is kept as a whisper.
+    fineAmount = 0.04,
     flatShading = false,
   } = opts;
 
@@ -419,11 +476,11 @@ export function terrainMaterial(opts = {}) {
           vec2 tp = vTerrPos.xz;
           // Musgrave(FBM).Fac, summed over three scales: the broad zones, the
           // blend slab's ~13 m patches (the scale that carries the recipe; the
-          // reference's tiling works out at 13.4 m × 8.7 m), and a light
+          // reference's tiling works out at 13.4 m × 8.7 m), and a whisper of
           // close-range mottle. Weights keep the sum normalised.
           float f = 0.30 * tMusgrave(tp * uPatchScale, 2.0, 2.0, 0.62)
-                  + 0.55 * tMusgrave(tp * uPatchMid, 3.0, 2.0, 0.62)
-                  + 0.15 * tMusgrave(tp * uFineScale, 2.0, 2.0, 0.62);
+                  + 0.62 * tMusgrave(tp * uPatchMid, 3.0, 2.0, 0.62)
+                  + 0.08 * tMusgrave(tp * uFineScale, 2.0, 2.0, 0.62);
           f = smoothstep(uLevelLow, uLevelHigh, f);
           // …read straight through the blend's ColorRamp (stops 0.0 / 0.2909 /
           // 0.8591, B_SPLINE). Walking dark→mid→light in two smoothstepped legs

@@ -6,12 +6,24 @@ import {
   SIZE as T_SIZE,
   GROUND_TINT,
   EDGE_TINT,
+  GRASS_RAMP,
+  blendGrade,
   shapeHeight,
   groundTint,
   terrainMaterial,
   buildGround,
   buildSkirt,
 } from "./terrain.js";
+
+/**
+ * Ground cover keeps the ground's own greens. In the reference scene the grass
+ * and bushes sit in exactly the same green family as the slab under them — they
+ * read as texture on the meadow, never as a second, yellower surface. These are
+ * the blend's own ColorRamp stops, taken through the same render grade the
+ * ground palette gets (see terrain.js → BLEND_GRADE).
+ */
+const GRASS_GREEN = blendGrade(GRASS_RAMP.dark.clone().lerp(GRASS_RAMP.mid, 0.6));
+const BUSH_GREEN = blendGrade(GRASS_RAMP.dark.clone().lerp(GRASS_RAMP.mid, 0.25));
 
 function SM(color, kind, extra = {}) {
   const T = shared();
@@ -1133,7 +1145,7 @@ export function buildWorld(scene, opts = {}) {
   if (wantTea) {
     const teaGeo = new THREE.SphereGeometry(0.7, 6, 4);
     teaGeo.scale(1.3, 0.55, 1.1);
-    const teaMat = new THREE.MeshLambertMaterial({ color: 0x3d8c28 });
+    const teaMat = new THREE.MeshLambertMaterial({ color: BUSH_GREEN });
     const teaCount = lite ? 160 : 360;
     const tea = new THREE.InstancedMesh(teaGeo, teaMat, teaCount);
     tea.castShadow = true;
@@ -1159,7 +1171,7 @@ export function buildWorld(scene, opts = {}) {
   // read as extra texture on the meadow instead of a second, clashing surface.
   const grassGeo = new THREE.ConeGeometry(0.055, 0.42, 3);
   grassGeo.translate(0, 0.21, 0);
-  const grassMat = new THREE.MeshLambertMaterial({ color: 0x6fa63a, side: THREE.DoubleSide });
+  const grassMat = new THREE.MeshLambertMaterial({ color: GRASS_GREEN, side: THREE.DoubleSide });
   grassMat.onBeforeCompile = (shader) => {
     shader.uniforms.uTime = extras.uTime;
     shader.uniforms.uPlayer = extras.uPlayer;
