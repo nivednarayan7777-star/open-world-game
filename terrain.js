@@ -46,10 +46,10 @@ export const MUSGRAVE = { scale: 8.5, detail: 1.6, dimension: 0.6, lacunarity: 2
  * while beaches, paddies and tea slopes still tell themselves apart.
  */
 export const GROUND_TINT = {
-  village: lin(0.0720, 0.3350, 0.0430),   // the blend's mid green, slightly cooled
-  lowland: lin(0.0930, 0.3550, 0.0480),   // backwater banks: a touch brighter
+  village: lin(0.0560, 0.3000, 0.0350),   // the blend's mid green, slightly cooled
+  lowland: lin(0.0740, 0.3250, 0.0420),   // backwater banks: a touch brighter
   slope: lin(0.0480, 0.2700, 0.0360),     // hill flanks: deeper green
-  paddy: lin(0.1330, 0.3600, 0.0480),     // paddy: yellow-green, like the blend's light stop
+  paddy: lin(0.1150, 0.3400, 0.0450),     // paddy: yellow-green, like the blend's light stop
   tea: lin(0.0520, 0.2700, 0.0480),       // tea slopes: fresh, cool green
   forest: lin(0.0330, 0.2100, 0.0390),    // forest floor: dark green
   beach: lin(0.5200, 0.4400, 0.2900),
@@ -306,6 +306,7 @@ export function terrainMaterial(opts = {}) {
 
   const uniforms = {
     uPatchScale: { value: patchScale },
+    uPatchMid: { value: patchMid },
     uPatchContrast: { value: patchContrast },
     uDark: { value: dark },
     uLight: { value: light },
@@ -329,6 +330,7 @@ export function terrainMaterial(opts = {}) {
       .replace("#include <common>", `#include <common>
         varying vec3 vTerrPos;
         uniform float uPatchScale;
+        uniform float uPatchMid;
         uniform float uPatchContrast;
         uniform float uDark;
         uniform float uLight;
@@ -341,16 +343,19 @@ export function terrainMaterial(opts = {}) {
         `#include <color_fragment>
         {
           vec2 tp = vTerrPos.xz;
-          // Big soft patches: Musgrave(FBM) → ColorRamp, B-spline smooth.
-          float m = tMusgrave(tp * uPatchScale, 3.0, 2.0, 0.62);
-          m = smoothstep(0.30, 0.86, m);
-          m = mix(0.5, m, uPatchContrast + 0.58);
+          // Musgrave(FBM) → ColorRamp at three scales: broad zones, the blend
+          // slab's 13 m patches, and a light close-range mottle. Every level is
+          // smoothstepped, so the greens always blend (B-spline feel) instead of
+          // banding like a hard ramp.
+          float m1 = smoothstep(0.34, 0.84, tMusgrave(tp * uPatchScale, 2.0, 2.0, 0.62));
+          float m2 = smoothstep(0.30, 0.86, tMusgrave(tp * uPatchMid, 2.0, 2.0, 0.62));
+          float m3 = smoothstep(0.30, 0.88, tMusgrave(tp * uFineScale, 2.0, 2.0, 0.62));
+          float m = clamp(0.52 * m1 + 0.31 * m2 + 0.17 * m3, 0.0, 1.0);
+          m = mix(0.5, m, uPatchContrast + 0.55);
           diffuseColor.rgb *= mix(uDark, uLight, m);
           // Bright patches lean yellow-green, exactly like the ramp's light stop.
-          diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * uWarm * 2.6, m * 0.22);
-          // Faint fine grain so the ground still reads up close.
-          float g = tMusgrave(tp * uFineScale, 2.0, 2.0, 0.62);
-          diffuseColor.rgb *= 1.0 + (g - 0.5) * uFineAmount * 2.0;
+          diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * uWarm * 2.6, m * 0.24);
+          diffuseColor.rgb *= 1.0 + (m3 - 0.5) * uFineAmount * 2.0;
         }`
       );
   };
