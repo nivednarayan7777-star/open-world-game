@@ -98,7 +98,7 @@ const RAW_TINT = {
  * was still missing (hue 3° then 2° too yellow, saturation 0.05 light, value
  * 0.07 too bright when the first grade landed).
  */
-export const BLEND_GRADE = { hueShift: 0.0111, sat: 1.27, val: 0.72 };
+export const BLEND_GRADE = { hueShift: 0.0111, sat: 1.20, val: 0.72 };
 
 /**
  * Pre-compensate a colour for Keralam's warm-light + ACES pipeline so that it
