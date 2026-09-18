@@ -6,34 +6,35 @@ on:
       - ".github/workflows/blend-probe.yml"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
+    env:
+      BLEND_ID: 14n6aOH6rBLe40mVZOaBFPoSId_nB7qhS
+      BRANCH: arena/01a0b25d-open-world-game
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download .blend from Google Drive
-        run: |
-          set -eux
-          python3 -m pip install --quiet --upgrade gdown
-          mkdir -p /tmp/blend
-          gdown --id 14n6aOH6rBLe40mVZOaBFPoSId_nB7qhS -O /tmp/blend/source.blend \
-            || gdown --fuzzy "https://drive.google.com/file/d/14n6aOH6rBLe40mVZOaBFPoSId_nB7qhS/view" -O /tmp/blend/source.blend
-          ls -la /tmp/blend
-          file /tmp/blend/source.blend
+      - name: Download .blend from Drive
+        id: fetch
+        continue-on-error: true
+        run: bash .github/fetch_blend.sh
 
       - name: Install Blender
-        run: |
-          set -eux
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq blender xvfb
-          blender --version
+        if: steps.fetch.outcome == 'success'
+        id: blender
+        continue-on-error: true
+        run: bash .github/install_blender.sh
 
       - name: Probe scene
-        run: |
-          set -eux
-          xvfb-run -a blender -b /tmp/blend/source.blend -noaudio --python .github/blend_probe.py > /tmp/probe.log 2>&1 || true
-          echo "---- log size ----"
-          wc -c /tmp/probe.log
-          cat /tmp/probe.log
+        if: steps.fetch.outcome == 'success' && steps.blender.outcome == 'success'
+        continue-on-error: true
+        run: bash .github/run_probe.sh
+
+      - name: Publish results
+        if: always()
+        run: bash .github/publish.sh
