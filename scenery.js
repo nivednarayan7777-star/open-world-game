@@ -248,9 +248,11 @@ export function kitIsland(spec, opts = {}) {
   // the kit's ground plane is (x, y) and its up is z; three.js wants up = y, so
   // the geometry's own axes already line up: kit x -> x, kit y -> z, kit z -> y.
 
+  // The kit's slab is smooth-shaded (its own bake: 2549 of 2549 faces smooth),
+  // which is also how the game's ground is drawn — the two read as one surface.
   const slab = new THREE.Mesh(
     kitIslandGeometry(),
-    new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true })
+    new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: false })
   );
   slab.receiveShadow = true;
   root.add(slab);
@@ -258,6 +260,8 @@ export function kitIsland(spec, opts = {}) {
   const colliders = [];
   const sway = [];
   const { rocks, trees } = kitProps();
+  // the kit's rocks and conifers are flat-shaded (faceted), the whole character
+  // of low-poly scenery
   const rockMat = new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true });
   const treeMat = new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true });
 

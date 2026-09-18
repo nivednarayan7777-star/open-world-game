@@ -94,6 +94,39 @@ for (const [district, views] of SHOTS) {
     console.log("shot", file, JSON.stringify(info));
   }
 
+  // The scenery kit's islands: the owner's hill-with-a-lake, seated in this
+  // district's terrain. Three angles — from the shore looking at the hill, on
+  // the hill itself looking around, and from the sea looking back at it.
+  const islands = await page.evaluate(() => {
+    const list = window.__keralam.world?.islands || [];
+    return list.map((i) => ({ ...i.spec }));
+  });
+  for (const [n, isl] of islands.entries()) {
+    const tag = `${district}-island${n}`;
+    const views = [
+      ["east", isl.x + isl.radius + 7, isl.z, null],     // looking west at the hill
+      ["on", isl.x, isl.z, null],                        // standing on it
+      ["sea", isl.x - isl.radius - 9, isl.z, null],      // looking east, from the sea
+    ];
+    for (const [label, px, pz, _] of views) {
+      await page.evaluate(([x, z, cx, cz, on]) => {
+        const k = window.__keralam;
+        k.place(x, z);
+        // face the island's middle: the game's yaw is atan2(dx, dz)
+        k.look(Math.atan2(cx - x, cz - z), on ? 0.02 : -0.06);
+      }, [px, pz, isl.x, isl.z, label === "on"]);
+      await page.waitForTimeout(800);
+      const file = path.join(OUT, `${tag}-${label}.png`);
+      await page.screenshot({ path: file });
+      const info = await page.evaluate(() => {
+        const k = window.__keralam;
+        return { x: +k.player.x.toFixed(1), y: +k.player.y.toFixed(2), z: +k.player.z.toFixed(1) };
+      });
+      notes.push({ file, ...info });
+      console.log("shot", file, JSON.stringify(info));
+    }
+  }
+
   // Ground swatches: everything but the ground slab hidden and the camera
   // pointed at it, so `compare_ground.py` can measure the ground's own colour
   // and mottling with no trees, buildings or HUD in the way.
