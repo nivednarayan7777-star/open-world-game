@@ -1,0 +1,108 @@
+{
+ "collections": {
+  "atmo": [
+   "atmoFog_1",
+   "atmoFog_2",
+   "Fog"
+  ],
+  "Clouds": [
+   "CLOUDS_2.001",
+   "CLOUDS_2.002",
+   "CLOUDS_2.003",
+   "CLOUDS_2.005",
+   "CLOUDS_2.006",
+   "Clouds_empty"
+  ],
+  "Collection": [
+   "Camera",
+   "ground",
+   "Sun",
+   "ground.001",
+   "ground.002",
+   "Depth_empty"
+  ],
+  "Flores": [
+   "Verbena red",
+   "flower2",
+   "flower11.001",
+   "flower1"
+  ],
+  "Flores.001": [
+   "flower10.001",
+   "flower5"
+  ],
+  "Grass": [
+   "grass_1_large",
+   "grass_1_medium",
+   "grass_1_tail"
+  ],
+  "Stones": [
+   "Cube.003",
+   "Cube.001",
+   "pedra_base.001",
+   "pedra_base",
+   "Cube.005",
+   "Cube",
+   "Cube.004"
+  ],
+  "Trees": [
+   "Bush.001",
+   "Bush.002",
+   "tree.002",
+   "tree.001",
+   "Bush.004",
+   "Bush.005",
+   "Bush.006",
+   "Bush.007",
+   "tree.003"
+  ],
+  "wind_streak": [
+   "BezierCurve",
+   "BezierCurve.004",
+   "BezierCurve.007",
+   "vento.002",
+   "stripes_empty.001"
+  ]
+ },
+ "unit": {
+  "scale": 1.0,
+  "system": "METRIC"
+ },
+ "world": null,
+ "sun": {
+  "name": "Sun",
+  "kind": "SUN",
+  "energy": 3.0,
+  "color": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "rotation": [
+   -47.13,
+   -0.0,
+   20.57
+  ],
+  "angle": 0.0002
+ },
+ "camera": {
+  "name": "Camera",
+  "lens": 50.0,
+  "type": "PERSP",
+  "loc": [
+   1.103,
+   20.853,
+   1.855
+  ],
+  "rotation": [
+   89.49,
+   -0.0,
+   -181.92
+  ]
+ },
+ "fog": {
+  "use_mist": false,
+  "depth": 25.0,
+  "start": 5.0
+ }
+}
