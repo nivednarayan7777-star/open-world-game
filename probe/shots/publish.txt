@@ -1,34 +1,34 @@
-run: 35358966224  https://github.com/nivednarayan7777-star/open-world-game/actions/runs/35358966224
-date: Fri Sep 18 14:57:29 UTC 2026
-commit: 704383235f7af8fd5e45c0cec71870627d5b4b42
-total 10560
-drwxr-xr-x 2 runner runner    4096 Sep 18 14:52 .
-drwxr-xr-x 3 runner runner    4096 Sep 18 14:52 ..
--rw-r--r-- 1 runner runner  745755 Sep 18 14:54 alpy-backwater.png
--rw-r--r-- 1 runner runner  732651 Sep 18 14:54 alpy-spawn.png
--rw-r--r-- 1 runner runner  639126 Sep 18 14:54 ekm-beach.png
--rw-r--r-- 1 runner runner  583716 Sep 18 14:53 ekm-inland.png
--rw-r--r-- 1 runner runner 1021049 Sep 18 14:53 ekm-spawn.png
--rw-r--r-- 1 runner runner  301387 Sep 18 14:55 ground-alpy-far.png
--rw-r--r-- 1 runner runner  307989 Sep 18 14:54 ground-alpy-near.png
--rw-r--r-- 1 runner runner  296749 Sep 18 14:54 ground-ekm-far.png
--rw-r--r-- 1 runner runner  276187 Sep 18 14:54 ground-ekm-near.png
--rw-r--r-- 1 runner runner  259378 Sep 18 14:56 ground-idk-far.png
--rw-r--r-- 1 runner runner  306108 Sep 18 14:56 ground-idk-near.png
--rw-r--r-- 1 runner runner  302201 Sep 18 14:57 ground-kkd-far.png
--rw-r--r-- 1 runner runner  334153 Sep 18 14:57 ground-kkd-near.png
--rw-r--r-- 1 runner runner  272495 Sep 18 14:55 ground-pta-far.png
--rw-r--r-- 1 runner runner  315364 Sep 18 14:55 ground-pta-near.png
--rw-r--r-- 1 runner runner    1995 Sep 18 14:57 ground_report.json
--rw-r--r-- 1 runner runner    1995 Sep 18 14:57 ground_report.txt
--rw-r--r-- 1 runner runner  413900 Sep 18 14:56 idk-ridge.png
--rw-r--r-- 1 runner runner  603569 Sep 18 14:56 idk-slopes.png
--rw-r--r-- 1 runner runner  392682 Sep 18 14:56 idk-spawn.png
--rw-r--r-- 1 runner runner  720030 Sep 18 14:56 kkd-hills.png
--rw-r--r-- 1 runner runner  627969 Sep 18 14:56 kkd-spawn.png
--rw-r--r-- 1 runner runner  674722 Sep 18 14:55 pta-midland.png
--rw-r--r-- 1 runner runner  607462 Sep 18 14:55 pta-spawn.png
--rw-r--r-- 1 runner runner     184 Sep 18 14:57 publish.txt
--rw-r--r-- 1 runner runner    1703 Sep 18 14:57 report.json
--rw-r--r-- 1 runner runner      31 Sep 18 14:57 server.log
--rw-r--r-- 1 runner runner    1588 Sep 18 14:57 shots.log
+run: 35359485268  https://github.com/nivednarayan7777-star/open-world-game/actions/runs/35359485268
+date: Fri Sep 18 15:02:43 UTC 2026
+commit: 89fb22ef364126d8b060e85608ff22c860469c93
+total 10488
+drwxr-xr-x 2 runner runner   4096 Sep 18 14:57 .
+drwxr-xr-x 3 runner runner   4096 Sep 18 14:57 ..
+-rw-r--r-- 1 runner runner 741508 Sep 18 14:59 alpy-backwater.png
+-rw-r--r-- 1 runner runner 745726 Sep 18 14:59 alpy-spawn.png
+-rw-r--r-- 1 runner runner 622041 Sep 18 14:59 ekm-beach.png
+-rw-r--r-- 1 runner runner 653595 Sep 18 14:59 ekm-inland.png
+-rw-r--r-- 1 runner runner 977028 Sep 18 14:58 ekm-spawn.png
+-rw-r--r-- 1 runner runner 301111 Sep 18 15:00 ground-alpy-far.png
+-rw-r--r-- 1 runner runner 345316 Sep 18 15:00 ground-alpy-near.png
+-rw-r--r-- 1 runner runner 297255 Sep 18 14:59 ground-ekm-far.png
+-rw-r--r-- 1 runner runner 272033 Sep 18 14:59 ground-ekm-near.png
+-rw-r--r-- 1 runner runner 271458 Sep 18 15:01 ground-idk-far.png
+-rw-r--r-- 1 runner runner 305983 Sep 18 15:01 ground-idk-near.png
+-rw-r--r-- 1 runner runner 300461 Sep 18 15:02 ground-kkd-far.png
+-rw-r--r-- 1 runner runner 332750 Sep 18 15:02 ground-kkd-near.png
+-rw-r--r-- 1 runner runner 273175 Sep 18 15:00 ground-pta-far.png
+-rw-r--r-- 1 runner runner 293626 Sep 18 15:00 ground-pta-near.png
+-rw-r--r-- 1 runner runner   1995 Sep 18 15:02 ground_report.json
+-rw-r--r-- 1 runner runner   1995 Sep 18 15:02 ground_report.txt
+-rw-r--r-- 1 runner runner 428834 Sep 18 15:01 idk-ridge.png
+-rw-r--r-- 1 runner runner 606732 Sep 18 15:01 idk-slopes.png
+-rw-r--r-- 1 runner runner 377675 Sep 18 15:01 idk-spawn.png
+-rw-r--r-- 1 runner runner 661174 Sep 18 15:02 kkd-hills.png
+-rw-r--r-- 1 runner runner 538507 Sep 18 15:02 kkd-spawn.png
+-rw-r--r-- 1 runner runner 676711 Sep 18 15:00 pta-midland.png
+-rw-r--r-- 1 runner runner 634393 Sep 18 15:00 pta-spawn.png
+-rw-r--r-- 1 runner runner    184 Sep 18 15:02 publish.txt
+-rw-r--r-- 1 runner runner   1703 Sep 18 15:02 report.json
+-rw-r--r-- 1 runner runner     31 Sep 18 15:02 server.log
+-rw-r--r-- 1 runner runner   1588 Sep 18 15:02 shots.log

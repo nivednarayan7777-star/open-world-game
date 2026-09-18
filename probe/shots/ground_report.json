@@ -32,15 +32,15 @@
    ]
   },
   "game": {
-   "hue_deg": 113.8,
-   "sat": 0.748,
-   "value": 0.624,
-   "blobs": 1.199,
-   "fine": 1.567,
+   "hue_deg": 113.9,
+   "sat": 0.737,
+   "value": 0.608,
+   "blobs": 1.225,
+   "fine": 1.523,
    "rgb_lit": [
-    54.4,
-    159.3,
-    41.8
+    54.5,
+    155.0,
+    42.6
    ],
    "samples": [
     "probe/shots/ground-alpy-near.png",
@@ -51,11 +51,11 @@
    ]
   },
   "delta_game_minus_reference": {
-   "hue_deg": 0.8,
-   "sat": 0.054,
-   "value": -0.006,
-   "blobs": -0.065,
-   "fine": -0.888
+   "hue_deg": 0.9,
+   "sat": 0.043,
+   "value": -0.022,
+   "blobs": -0.039,
+   "fine": -0.932
   }
  },
  "far_sunlit": {
@@ -76,15 +76,15 @@
    ]
   },
   "game": {
-   "hue_deg": 115.8,
-   "sat": 0.776,
-   "value": 0.608,
-   "blobs": 1.26,
-   "fine": 1.54,
+   "hue_deg": 115.4,
+   "sat": 0.759,
+   "value": 0.595,
+   "blobs": 1.258,
+   "fine": 1.543,
    "rgb_lit": [
-    47.8,
-    155.1,
-    39.1
+    49.5,
+    151.9,
+    40.2
    ],
    "samples": [
     "probe/shots/ground-alpy-far.png",
@@ -95,11 +95,11 @@
    ]
   },
   "delta_game_minus_reference": {
-   "hue_deg": 1.7,
-   "sat": 0.067,
-   "value": 0.023,
-   "blobs": -0.186,
-   "fine": -2.552
+   "hue_deg": 1.3,
+   "sat": 0.05,
+   "value": 0.01,
+   "blobs": -0.188,
+   "fine": -2.549
   }
  }
 }
