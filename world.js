@@ -1015,7 +1015,9 @@ export function disposeWorld(world) {
   if (!world?.root) return;
   world.root.removeFromParent();
   world.root.traverse((o) => {
-    if (o.geometry) o.geometry.dispose();
+    // The scenery kit's geometry is shared by every island of every district
+    // (scenery.js unpacks it once), so it is never disposed with a district.
+    if (o.geometry && !o.geometry.userData?.shared) o.geometry.dispose();
     if (o.material) {
       const ms = Array.isArray(o.material) ? o.material : [o.material];
       for (const m of ms) {

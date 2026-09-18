@@ -54,6 +54,9 @@ function geometryFrom(q) {
   geo.setIndex(new THREE.BufferAttribute(indices, 1));
   geo.computeVertexNormals();
   geo.computeBoundingBox();
+  // unpacked once and handed to every island of every district, so it must
+  // outlive a single district (world.js → disposeWorld honours this flag)
+  geo.userData.shared = true;
   return geo;
 }
 
