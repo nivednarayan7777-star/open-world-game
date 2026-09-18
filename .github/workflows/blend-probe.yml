@@ -3,7 +3,7 @@ name: blend-probe
 on:
   push:
     paths:
-      - ".github/workflows/blend-probe.yml"
+      - ".github/**"
   workflow_dispatch:
 
 permissions:
