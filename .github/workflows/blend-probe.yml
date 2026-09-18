@@ -105,4 +105,13 @@ jobs:
 
       - name: Publish results
         if: always()
-        run: bash .github/publish.sh
+        run: |
+          # Keep the downloaded source itself when it is small enough to commit
+          # (the sandbox cannot reach Drive, so this is how it gets one).
+          SRC=$(cat "$WORK/path.txt" 2>/dev/null || true)
+          if [ -n "$SRC" ] && [ -f "$SRC" ] && [ "$(stat -c%s "$SRC")" -le 4000000 ]; then
+            mkdir -p "$OUT_DIR"
+            cp "$SRC" "$OUT_DIR/source.${SRC##*.}"
+            echo "kept source: $(ls -l "$OUT_DIR/source.${SRC##*.}")"
+          fi
+          bash .github/publish.sh

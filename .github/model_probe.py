@@ -503,6 +503,15 @@ def capture_geometry(objects, depsgraph):
                 continue
             verts = np.array([v.co[:] for v in me.vertices], dtype=np.float32)
             idx = np.array([i.vertices[:] for i in me.loop_triangles], dtype=np.uint32).reshape(-1)
+            cols = None
+            for ca in getattr(me, "color_attributes", []) or []:
+                try:
+                    arr = np.array([d.color[:] for d in ca.data], dtype=np.float32)
+                    if len(arr) == len(verts):
+                        cols = [[rnd(float(c), 4) for c in row] for row in arr]
+                        break
+                except Exception:  # noqa: BLE001
+                    pass
             blobs[key] = None
             index.append({
                 "key": key, "name": obj.name, "verts": int(len(verts)),
@@ -511,6 +520,7 @@ def capture_geometry(objects, depsgraph):
                 "materials": info.get("materials"),
                 "geometry": [rnd(v) for v in verts.reshape(-1)],
                 "indices": [int(v) for v in idx],
+                "colors": cols,
             })
             total += len(verts)
             ev.to_mesh_clear()
@@ -554,8 +564,12 @@ def setup_render(fast):
         sc.cycles.use_denoising = False
         sc.cycles.max_bounces = 3
         sc.cycles.transmission_bounces = 2
-        sc.cycles.use_persistent_data = True
-        sc.cycles.use_fast_gi = True if hasattr(sc.cycles, "use_fast_gi") else None
+        for key, val in (("use_persistent_data", True), ("use_fast_gi", True)):
+            if hasattr(sc.cycles, key):
+                try:
+                    setattr(sc.cycles, key, val)
+                except Exception:  # noqa: BLE001
+                    pass
     elif engine.startswith("BLENDER_EEVEE"):
         if hasattr(sc.eevee, "taa_render_samples"):
             sc.eevee.taa_render_samples = 16
@@ -874,9 +888,17 @@ def main():
     capture_geometry(objects, depsgraph)
 
     # ---- renders
-    engine = setup_render(fast=True)
+    try:
+        engine = setup_render(fast=True)
+    except Exception:  # noqa: BLE001
+        traceback.print_exc()
+        engine = str(bpy.context.scene.render.engine)
     all_meshes = [o for o in bpy.data.objects if o.type == "MESH"]
-    views = render_views(all_meshes, engine)
+    try:
+        views = render_views(all_meshes, engine)
+    except Exception:  # noqa: BLE001
+        traceback.print_exc()
+        views = []
     use_opengl = False
     try:
         probe = os.path.join(OUT, "_opengl_test.png")
@@ -886,7 +908,11 @@ def main():
     except Exception:  # noqa: BLE001
         use_opengl = False
     log("per-object renders via", "opengl/workbench" if use_opengl else "cycles")
-    objs = render_objects(groups, engine, use_opengl)
+    try:
+        objs = render_objects(groups, engine, use_opengl)
+    except Exception:  # noqa: BLE001
+        traceback.print_exc()
+        objs = []
 
     # ---- human summary
     lines = []
@@ -904,6 +930,23 @@ def main():
         lines.append("  %-28s x%-4d verts=%-6s tris=%-6s dims=%-26s mats=%s" % (
             (g["sample"] or "")[:28], g["count"], m.get("verts"), m.get("tris"),
             m.get("dims"), g.get("materials")))
+    lines.append("")
+    lines.append("")
+    lines.append("PROFILES (world bounds, so a model can be stood on the ground)")
+    for g in sorted(groups.values(), key=lambda g: -(g.get("mesh", {}).get("verts") or 0)):
+        name = g["sample"]
+        obj = bpy.data.objects.get(name)
+        if not obj or obj.type != "MESH":
+            continue
+        try:
+            pts = [obj.matrix_world @ Vector(c) for c in obj.bound_box]
+            lines.append("  %-24s x%-3d world x[%6.2f %6.2f] y[%7.3f %7.3f] z[%6.2f %6.2f]" % (
+                name[:24], g["count"],
+                min(p.x for p in pts), max(p.x for p in pts),
+                min(p.y for p in pts), max(p.y for p in pts),
+                min(p.z for p in pts), max(p.z for p in pts)))
+        except Exception:  # noqa: BLE001
+            pass
     lines.append("")
     lines.append("OBJECT TYPES %s" % json.dumps(
         {t: len([o for o in objects if o["type"] == t]) for t in sorted({o["type"] for o in objects})}))
