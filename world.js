@@ -7,6 +7,7 @@ import {
   GROUND_TINT,
   EDGE_TINT,
   shapeHeight,
+  groundTint,
   terrainMaterial,
   buildGround,
   buildSkirt,
@@ -1036,7 +1037,7 @@ export function buildWorld(scene, opts = {}) {
 
   const SEG = lite ? 84 : 132;
   const ground = new THREE.Mesh(
-    buildGround(SIZE, SEG, heightAt, (x, z) => GROUND_TINT[biomeAt(x, z)] || GROUND_TINT.village),
+    buildGround(SIZE, SEG, heightAt, (x, z) => groundTint(x, z, CURRENT)),
     terrainMaterial({ flatShading: true })
   );
   ground.receiveShadow = true;

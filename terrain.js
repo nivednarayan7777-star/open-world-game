@@ -41,23 +41,80 @@ export const GRASS_RAMP = {
 export const MUSGRAVE = { scale: 8.5, detail: 1.6, dimension: 0.6, lacunarity: 2.0, gain: 1.0 };
 
 /**
- * Biome albedo (linear). Every tint sits in the same green family as the ramp
- * above so the fourteen districts read as one hand-painted terrain while the
- * player can still tell beach from paddy from tea.
+ * Ground albedo (linear). Every tint stays inside the green family of the
+ * blend's ColorRamp so the fourteen districts read as one hand-painted terrain,
+ * while beaches, paddies and tea slopes still tell themselves apart.
  */
 export const GROUND_TINT = {
-  village: lin(0.0730, 0.3280, 0.0500),
-  paddy: lin(0.1500, 0.3800, 0.0560),
-  tea: lin(0.0560, 0.2760, 0.0560),
-  forest: lin(0.0420, 0.2300, 0.0520),
+  village: lin(0.0640, 0.3200, 0.0380),   // the blend's mid green, slightly cooled
+  lowland: lin(0.0850, 0.3450, 0.0430),   // backwater banks: a touch brighter
+  slope: lin(0.0480, 0.2700, 0.0360),     // hill flanks: deeper green
+  paddy: lin(0.1330, 0.3600, 0.0480),     // paddy: yellow-green, like the blend's light stop
+  tea: lin(0.0520, 0.2700, 0.0480),       // tea slopes: fresh, cool green
+  forest: lin(0.0330, 0.2100, 0.0390),    // forest floor: dark green
   beach: lin(0.5200, 0.4400, 0.2900),
-  backwater: lin(0.0620, 0.3050, 0.0980),
-  sea: lin(0.0500, 0.2050, 0.1550),
+  wet: lin(0.0420, 0.2150, 0.1050),       // just above the waterline
+  sea: lin(0.0450, 0.1900, 0.1450),
 };
 export const TINT = GROUND_TINT;
 
 /** Earth used for the slab edge that frames the map like the blend's ground slab. */
 export const EDGE_TINT = lin(0.1500, 0.1050, 0.0700);
+
+function smoothstep01(e0, e1, x) {
+  const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0 || 1)));
+  return t * t * (3 - 2 * t);
+}
+
+/**
+ * Ground colour at (x, z): a *continuous* blend of the palette above.
+ *
+ * The blend's ground is one even green with soft patches — never a patchwork
+ * with hard borders — so every weight here is a smoothstep of height or
+ * position, and the result feeds the shader, which adds the mottling on top.
+ */
+export function groundTint(x, z, district) {
+  const kind = district?.kind || "coastal";
+  const seed = district?.seed || 0;
+  const h = shapeHeight(x, z, district);
+  const c = GROUND_TINT.village.clone();
+
+  // Slopes and higher ground run deeper green, valleys stay bright.
+  const alt = smoothstep01(2.5, 14, h);
+  c.lerp(GROUND_TINT.slope, alt * (kind === "highland" ? 0.35 : 0.45));
+
+  // Tea estate belt on the highland rise.
+  if (kind === "highland") {
+    const tea = smoothstep01(9, 15, h) * smoothstep01(20, 60, x);
+    c.lerp(GROUND_TINT.tea, tea * 0.75);
+  }
+
+  // Paddy flats: the low, flat inland pockets.
+  const paddyZone = (kind === "midland" ? 0.55 : 0.35) *
+    (1 - smoothstep01(0.6, 3.4, h)) *
+    smoothstep01(-140, -60, z) * (1 - smoothstep01(60, 140, z));
+  c.lerp(GROUND_TINT.paddy, paddyZone);
+
+  // Forest belt (Kerala's hills all carry a green canopy).
+  const forestZone = smoothstep01(4.5, 11, h) * smoothstep01(-40, 40, z + seed * 30);
+  c.lerp(GROUND_TINT.forest, forestZone * (kind === "highland" ? 0.5 : 0.4));
+
+  // Backwater banks and the strip just above the waterline.
+  const lowland = (1 - smoothstep01(0.5, 3.2, h)) * smoothstep01(-2, 6, h);
+  c.lerp(GROUND_TINT.lowland, lowland * (kind === "backwater" ? 0.8 : 0.45));
+  const wet = 1 - smoothstep01(WATER - 0.9, WATER + 1.2, h);
+  c.lerp(GROUND_TINT.wet, wet * 0.7);
+
+  // River-mouth sand only right at the coast, and only low down.
+  if (kind !== "highland") {
+    const shore = -98 + Math.sin(z * 0.018 + seed) * 12;
+    const beach = (1 - smoothstep01(shore - 4, shore + 9, x)) *
+      (1 - smoothstep01(WATER + 0.6, WATER + 3.2, h));
+    c.lerp(GROUND_TINT.beach, beach * 0.75);
+  }
+
+  return c;
+}
 
 export const WATER = 0.42;
 export const SIZE = 420;
@@ -290,7 +347,7 @@ export function terrainMaterial(opts = {}) {
           m = mix(0.5, m, uPatchContrast + 0.58);
           diffuseColor.rgb *= mix(uDark, uLight, m);
           // Bright patches lean yellow-green, exactly like the ramp's light stop.
-          diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * uWarm * 3.1, m * 0.30);
+          diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * uWarm * 2.6, m * 0.20);
           // Faint fine grain so the ground still reads up close.
           float g = tMusgrave(tp * uFineScale, 2.0, 2.0, 0.62);
           diffuseColor.rgb *= 1.0 + (g - 0.5) * uFineAmount * 2.0;
