@@ -25,21 +25,9 @@
    "objects": 4
   },
   {
-   "file": "probe/shots/ekm-island0-east.png",
-   "x": -129.8,
-   "y": -6.38,
-   "z": -35.6
-  },
-  {
    "file": "probe/shots/ekm-island0-on.png",
    "x": -169.2,
-   "y": 6.01,
-   "z": -35.6
-  },
-  {
-   "file": "probe/shots/ekm-island0-sea.png",
-   "x": -210.5,
-   "y": -16.94,
+   "y": 4.82,
    "z": -35.6
   },
   {
@@ -59,22 +47,16 @@
    "objects": 4
   },
   {
-   "file": "probe/shots/alpy-island0-east.png",
-   "x": -132.3,
-   "y": -9.35,
-   "z": -60.4
-  },
-  {
    "file": "probe/shots/alpy-island0-on.png",
    "x": -171.6,
-   "y": 6.15,
+   "y": 4.99,
    "z": -60.4
   },
   {
-   "file": "probe/shots/alpy-island0-sea.png",
-   "x": -213,
-   "y": -19.95,
-   "z": -60.4
+   "file": "probe/shots/alpy-island1-on.png",
+   "x": -147.6,
+   "y": 4.58,
+   "z": 102
   },
   {
    "file": "probe/shots/pta-spawn.png",
@@ -94,20 +76,14 @@
   },
   {
    "file": "probe/shots/pta-island0-east.png",
-   "x": -74.3,
-   "y": 3.56,
+   "x": -82.9,
+   "y": 3.05,
    "z": 16
   },
   {
    "file": "probe/shots/pta-island0-on.png",
    "x": -120.1,
-   "y": 7.34,
-   "z": 16
-  },
-  {
-   "file": "probe/shots/pta-island0-sea.png",
-   "x": -167.9,
-   "y": -6.52,
+   "y": 5.62,
    "z": 16
   },
   {
@@ -136,39 +112,39 @@
   },
   {
    "file": "probe/shots/idk-island0-east.png",
-   "x": -99.4,
-   "y": 12.6,
+   "x": -105.9,
+   "y": 12.57,
    "z": -6
   },
   {
    "file": "probe/shots/idk-island0-on.png",
    "x": -143.1,
-   "y": 6.94,
+   "y": 5.62,
    "z": -6
   },
   {
-   "file": "probe/shots/idk-island0-sea.png",
-   "x": -188.7,
-   "y": 12.42,
-   "z": -6
+   "file": "probe/shots/idk-island0-north.png",
+   "x": -143.1,
+   "y": 10.07,
+   "z": -45.2
   },
   {
    "file": "probe/shots/idk-island1-east.png",
-   "x": 180.4,
-   "y": 34.05,
+   "x": 167.5,
+   "y": 31.69,
    "z": 128
   },
   {
    "file": "probe/shots/idk-island1-on.png",
    "x": 126,
-   "y": 31.19,
+   "y": 28.84,
    "z": 128
   },
   {
-   "file": "probe/shots/idk-island1-sea.png",
-   "x": 69.6,
-   "y": 17.4,
-   "z": 128
+   "file": "probe/shots/idk-island1-north.png",
+   "x": 126,
+   "y": 26.56,
+   "z": 84.5
   },
   {
    "file": "probe/shots/kkd-spawn.png",
@@ -187,39 +163,15 @@
    "objects": 4
   },
   {
-   "file": "probe/shots/kkd-island0-east.png",
-   "x": -125.6,
-   "y": -5.13,
-   "z": -94
-  },
-  {
    "file": "probe/shots/kkd-island0-on.png",
    "x": -164.9,
-   "y": 6.15,
+   "y": 5.05,
    "z": -94
-  },
-  {
-   "file": "probe/shots/kkd-island0-sea.png",
-   "x": -206.2,
-   "y": -16.39,
-   "z": -94
-  },
-  {
-   "file": "probe/shots/kkd-island1-east.png",
-   "x": -97.2,
-   "y": -3.47,
-   "z": 144
   },
   {
    "file": "probe/shots/kkd-island1-on.png",
    "x": -140.9,
-   "y": 6.81,
-   "z": 144
-  },
-  {
-   "file": "probe/shots/kkd-island1-sea.png",
-   "x": -186.6,
-   "y": -15.75,
+   "y": 4.78,
    "z": 144
   }
  ],
