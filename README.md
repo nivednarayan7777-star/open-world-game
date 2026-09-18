@@ -96,8 +96,17 @@ screenshotted headlessly, so "does it match?" is a measurement, not an opinion:
   saturation, value, patch contrast) and writes
   `probe/shots/ground_report.json`.
 
-Latest run: the game's ground renders at hue 113–115°, saturation 0.69, blob
-contrast ~1.2 against the reference's 113–114°, 0.69–0.71 and ~1.26–1.45.
+**Where the measurement stands.** `debugGroundOnly` looks for a mesh named
+`ground` — which `world.js` never set, so the swatch pass was photographing an
+empty scene and the numbers in `ground_report.json` (`null`) meant nothing. The
+mesh is named now, and the first honest reading is: ground-only swatch — hue
+65.1°, saturation 0.394, value 0.873 (near) and 64.8 / 0.392 / 0.874 (far),
+against the reference's 113°, 0.694, 0.63. So the game's own ground is still
+lighter and yellower than the reference's; the palette it renders (unchanged by
+the scenery kit, which only adds the `island` / `island-lake` cases) is a set of
+pale yellow-greens. Closing that gap is a change to `buildWorld`'s palette, and
+it would move every district, so it is left as the next piece of this goal
+rather than smuggled in with the kit.
 
 ## The scenery kit (islands, rocks, conifers)
 
