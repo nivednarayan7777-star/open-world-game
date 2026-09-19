@@ -111,6 +111,14 @@
   <div class="panel" id="pause">
     <h2>Paused</h2>
     <p class="sub">WASD walk · E act · Tab menu · 1–4 ride</p>
+    <div class="quality-control" aria-label="Graphics quality">
+      <div class="quality-label"><span>Graphics</span><strong id="quality-value">High</strong></div>
+      <div class="quality-picker" role="group" aria-label="Select graphics quality">
+        <button type="button" class="quality-option" data-quality="low">Low</button>
+        <button type="button" class="quality-option" data-quality="medium">Medium</button>
+        <button type="button" class="quality-option active" data-quality="high">High</button>
+      </div>
+    </div>
     <button class="btn" id="btn-resume">Resume</button>
   </div>
 

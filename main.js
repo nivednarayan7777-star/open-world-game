@@ -12,9 +12,17 @@ const $ = (id) => document.getElementById(id);
 const canvas = $("c");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
-renderer.setPixelRatio(Math.min(devicePixelRatio, TOUCH ? 1.35 : 1.85));
+const QUALITY = {
+  low: { label: "Low", ratio: 0.85, shadows: false },
+  medium: { label: "Medium", ratio: TOUCH ? 1.1 : 1.35, shadows: true },
+  high: { label: "High", ratio: TOUCH ? 1.35 : 1.85, shadows: true },
+};
+let quality = "high";
+try { quality = localStorage.getItem("keralam-quality") || "high"; } catch (_) {}
+if (!QUALITY[quality]) quality = "high";
+renderer.setPixelRatio(Math.min(devicePixelRatio, QUALITY[quality].ratio));
 renderer.setSize(innerWidth, innerHeight);
-renderer.shadowMap.enabled = true;
+renderer.shadowMap.enabled = QUALITY[quality].shadows;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -1469,6 +1477,24 @@ $("name-form").addEventListener("submit", (e) => {
   enterGame($("name-in").value);
 });
 $("btn-resume").onclick = () => closePanels();
+
+function applyQuality(next) {
+  if (!QUALITY[next]) return;
+  quality = next;
+  renderer.setPixelRatio(Math.min(devicePixelRatio, QUALITY[next].ratio));
+  renderer.shadowMap.enabled = QUALITY[next].shadows;
+  $("quality-value").textContent = QUALITY[next].label;
+  document.querySelectorAll(".quality-option").forEach((button) => {
+    const active = button.dataset.quality === next;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  try { localStorage.setItem("keralam-quality", next); } catch (_) {}
+}
+document.querySelectorAll(".quality-option").forEach((button) => {
+  button.addEventListener("click", () => applyQuality(button.dataset.quality));
+});
+applyQuality(quality);
 
 fillSidebar();
 try {
